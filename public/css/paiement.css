@@ -1,0 +1,207 @@
+/* --------------------------------------------------------------------------CART*/
+
+.container-pannier{
+    width: 80%;
+    margin: 2vh auto 5vh auto;
+    min-height: 80vh;
+    position: relative;
+}
+
+
+.panier-title{
+    background-color:#b6dbcf;
+    font-size: 4em;
+    font-family: 'Playfair', serif;
+    width: fit-content;
+    padding: 11px 49px;
+    text-transform: uppercase;
+    font-weight: bold;
+    display: unset;
+}
+
+.th-cart-border{
+    border-bottom: #b6dbcf solid 2px;
+}
+
+.tr-cart-borber{
+    border-bottom: #fdebc3 solid 2px;
+}
+
+.td-cart-border{
+    
+}
+
+.image-option{
+    width:80%;
+}
+
+.commande-resume-title{
+    font-size: 2.1em;
+    text-align: center;
+    padding: 14px;
+    font-family: 'Playfair', serif;
+    background-color: #f4d2af;
+}
+
+.resume-container{
+    padding: 0 20px!important;
+
+}
+
+.selection-number-button{
+    background-color: #f4d2af;
+    border-radius: 2px;
+}
+
+.selection-number-button:hover{
+    background-color: #fbb36f;
+    border-radius: 2px;
+}
+
+.commande-pay{
+    margin-top: 2vh;
+}
+
+.commande-pay-total{
+    background-color: #fdebc3;
+    padding: 10px 0;
+}
+
+.commande-pay-title{
+    font-size: 1.8em;
+    text-align: center;
+    padding: 14px;
+    font-family: 'Playfair', serif;
+}
+
+.commande-pay-price{
+    font-size: 1.2em;
+    text-align: center;
+    padding: 18px;
+}
+
+.commande-pay-button{
+    position: relative;
+    width: 100%;
+    padding: 24px 0;
+    font-size: 2.1em;
+    box-shadow: inset 0 0 0 0 #fdebc3;
+    border: solid 2px #fdebc3;
+    transition: ease-out .5s;
+}
+
+.commande-pay-button:hover{
+    
+    box-shadow: inset 20vw 0 0 0 #fdebc3;
+    
+}
+
+/* -------------------------------------- facturation */
+
+.h1-payement{
+    background-color:#b6dbcf;
+    font-size: 3em;
+    font-family: 'Playfair', serif;
+    width: 100%;
+    padding: 11px 49px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.facturation-title{
+    background-color:#b6dbcf;
+    font-size: 2em;
+    margin: 3vh 0;
+    font-family: 'Playfair', serif;
+    width: fit-content;
+    padding: 11px 49px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.livraison-title{
+    background-color:#b6dbcf;
+    font-size: 2em;
+    margin: 3vh 0;
+    font-family: 'Playfair', serif;
+    width: fit-content;
+    padding: 11px 49px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.form-payement{
+    width: 97%;
+    margin: 0 auto;
+}
+
+#payment-form{
+    height: 236px;
+}
+
+.input-payement{
+    margin: 1vh 0;
+    width: 100%;
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+    border-bottom: solid 1px gray;
+}
+
+.commande-payement-button{
+    position: relative;
+    width: 25vw;
+    padding: 24px 0;
+    font-size: 2.1em;
+    box-shadow: inset 0 0 0 0 #fdebc3;
+    border: solid 2px #fdebc3;
+    transition: ease-out .5s;
+}
+
+.commande-payement-button:hover{
+    
+    box-shadow: inset 25vw 0 0 0 #fdebc3;
+    
+}
+
+.btn-carte-paiement{
+    position: absolute;
+    right: 30px;
+    bottom: 30px;
+}
+
+/* Recap */
+
+.facturation-title-recap{
+    font-weight: bold;
+    font-size: 1em;
+    background-color:#b6dbcf;
+    padding: 10px;
+    margin: 20px 0;
+}
+
+.InputElement{
+    border-bottom: 2px solid gray!important;
+}
+
+
+.btn-carte-paiement{
+    width: fit-content;
+    float: right;
+}
+
+
+.detail-commande-title-right{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.coupon-input{
+    text-align: center;
+}
+
+
+.coupon-input::placeholder{
+    text-align: center;
+}
+

@@ -1,0 +1,630 @@
+/*boutique-all*/
+
+.shop-first-image{
+    background: url("../img/tissu1.jpg");
+    height: 75vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    margin: 0 auto;
+}
+
+.shop-h1{
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 70px;
+    font-weight: bold;
+    padding: 20px 40px 20px 20px;
+}
+
+.category-h1-1{
+    background-color: #fdebc3 ;
+}
+
+.category-h1-2{
+    background-color: #ffeae3;
+}
+
+.category-h1-3{
+    background-color: #f4d2af;
+}
+
+.category-h1-4{
+    background-color: #b6dbcf;
+}
+
+.product-shop-categories{
+    justify-content: space-between;
+    list-style: none;
+    margin: 2vh 0;
+}
+
+.category-all{
+    cursor: pointer;
+    font-family: 'Merriweather', serif;
+    font-size: 21px;
+    font-weight: bold;  
+}
+
+.category-jaune{
+    border: #fdebc3 2px solid;
+    cursor: pointer;
+    font-family: 'Merriweather', serif;
+    font-size: 21px;
+    font-weight: bold;
+}
+
+.category-rose{
+    border: #ffeae3 2px solid;
+    cursor: pointer;
+    font-family: 'Merriweather', serif;
+    font-size: 21px;
+    font-weight: bold;
+}
+
+.category-orange{
+    border: #f4d2af 2px solid;
+    cursor: pointer;
+    font-family: 'Merriweather', serif;
+    font-size: 21px;
+    font-weight: bold;
+}
+
+.category-vert{
+    border: #b6dbcf 2px solid;
+    cursor: pointer;
+    font-family: 'Merriweather', serif;
+    font-size: 21px;
+    font-weight: bold;
+}
+
+
+
+.category-jaune:hover{
+    border: #fdebc3 2px solid;
+    background-color:#fdebc3 ;
+}
+
+.category-rose:hover{
+    border: #ffeae3 2px solid;
+    background-color: #ffeae3 ;
+}
+
+.category-orange:hover{
+    border: #f4d2af 2px solid;
+    background-color:#f4d2af ;
+}
+
+.category-vert:hover{
+    border: #b6dbcf 2px solid;
+    background-color:#b6dbcf ;
+}
+
+/* boutique */
+
+.shop-card{
+    margin: 0 auto;
+}
+
+.shop-card a:hover{
+    color: black!important;
+}
+
+.shop-title-cat{
+    font-size: 37px;
+    font-weight: bold;
+    margin-top: 4vh;
+}
+
+.img-product-miniature{
+    height: 400px;
+    background-repeat: no-repeat!important;
+    background-size: cover!important;
+    position: relative;
+}
+
+.product-vert{
+    background-color: #b6dbcf;
+    padding: 20px;
+    width: 65%;
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.product-rose{
+    background-color: #ffeae3;
+    padding: 20px;
+    width: 65%;
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.product-jaune{
+    background-color: #fdebc3;
+    padding: 20px;
+    width: 65%;
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+
+}
+
+.product-orange{
+    background-color: #f4d2af;
+    padding: 20px;
+    width: 65%;
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.product-price-boutique{
+    padding: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+
+/* mobile */
+
+.dropdown-cat-mobile{
+    display: none;
+}
+
+.dropdown-button-cat{
+    font-family: 'Playfair', serif;
+    font-weight: bold;
+    font-size: 28px;
+    padding: 7px;
+}
+
+.categories-drop-boutique ul{
+    margin-top: -4px;
+    position: absolute;
+    z-index: 10;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 30vh;
+    background: white;
+    left: 0px;
+    list-style: none;
+    border-radius: 5px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-10px);
+    transition: all 0.4s ease;
+    border: 4px solid #fdebc3;
+}
+
+.categories-drop-boutique button:focus + ul {
+    opacity: 1;
+    pointer-events: all;
+    transform: translateY(0px);
+}
+
+/* ------------------------------------------------------- Single-product */
+
+
+
+.content-product{
+    width: 80%;
+    margin: 0 auto;
+}
+
+/* images */
+
+#img-product{
+    width: 100%;
+    height: 52vh;
+}
+
+.product-miniature-img{
+    width: 25%;
+}
+
+/* names */
+
+.product-name{
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.product-restant{
+    font-size: 20px;
+    font-family: 'Merriweather', serif;
+    font-style: italic;
+    font-weight: bold;
+    text-align: right;
+}
+
+.product-name-rate{
+    padding-left: 22%!important;
+}
+
+/* description */
+
+.product-description-title{
+    font-size: 1.6rem
+}
+
+.product-description{
+    background-color: #b6dbcf;
+    padding: 2% 3% 2% 10%;
+    font-size: 1.5rem;
+    margin-top: 2vh;
+}
+
+.product-description-text{
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.content-product-52vh{
+    height: 52vh;
+    position: relative;
+}
+
+/* price section */
+
+.price-container{
+    width: max-content!important;
+    margin: 0 auto!important;
+}
+
+.product-price{
+    font-size: 1.6rem;
+    font-weight: bold;
+    font-family: 'Playfair', serif;
+}
+
+.select-variant{
+    border: 2px #f4d2af solid!important;
+}
+
+
+/* form selection */
+
+.product-form{
+    margin-left: 10%;
+}
+
+#addproduct{
+    width: 100%;
+    background-color: #f4d2af;
+    font-size: 25px;
+    font-family: 'Playfair', serif;
+    border-radius: 0px!important;
+}
+
+.text-livraison{
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* detail */
+
+#detail_product{
+    padding: 5vh 0;
+}
+
+.detail-title{
+    background-color: #ffeae3;
+    font-size: 30px;
+    padding: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.detail-text{
+    padding: 2vh 1vw;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+/* com */
+
+#com{
+    margin: 0 auto;
+}
+
+.avis-title{
+    background-color: #fdebc3;
+    font-size: 30px;
+    padding: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 2vh;
+}
+
+.avis-star-name{
+    padding: 0 10px 0 0;
+    border-right: 2px gray solid;
+    margin-right: 10px;
+}
+
+.avis-comment{
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.avis-connexion-button{
+    background-color: #f4d2af;
+    font-weight: bold;
+    
+}
+
+/* valeur */
+
+.product-valeur-img{
+        margin: 0 auto;
+        width: 43%;
+}
+
+.product-valeur {
+    margin-top: -5%;
+    font-weight: bold;
+    font-size: 35px;
+}
+
+/*mobile*/
+
+.product-description-mobile{
+    background-color: #b6dbcf;
+    padding: 2% 3% 2% 10%;
+    display: none;
+    font-size: 1.5rem;
+}
+
+/* -----------------------------------------------------responsive boutique-all */
+
+@media (max-width: 1536px){
+
+    .product-price-boutique {
+        padding: 15px;
+        font-size: 1.3em;
+    }
+}
+
+@media (max-width: 1280px){
+    .product-price-boutique {
+        font-size: 1em;
+        padding: 10px 5px;
+    }
+
+    .product-jaune{
+        padding: 15px;
+        font-size: 15px;
+    }
+
+    .product-rose{
+        padding: 15px;
+        font-size: 15px;
+    }
+
+    .product-orange{
+        padding: 15px;
+        font-size: 15px;
+    }
+
+    .product-vert{
+        padding: 15px;
+        font-size: 15px;
+    }
+}
+
+
+@media (max-width: 991px){
+
+    .product-price-boutique {
+        font-size: 1.3rem;
+    }
+
+
+    .product-price-boutique {
+        font-size: 1.2em;
+        padding: 20px;
+    }
+
+    .product-jaune{
+        padding: 20px;
+        font-size: 20px;
+    }
+
+    .product-rose{
+        padding: 20px;
+        font-size: 20px;
+    }
+
+    .product-orange{
+        padding: 20px;
+        font-size: 20px;
+    }
+
+    .product-vert{
+        padding: 20px;
+        font-size: 20px;
+    }
+
+}
+
+@media (max-width: 978px){
+
+    .shop-h1{
+        font-size: 55px;
+    }
+}
+
+@media (max-width: 768px){
+    .category-all{
+        font-size: 16px;
+    }
+    .category-jaune{
+        font-size: 16px;
+    }
+    
+    .category-rose{
+        font-size: 16px;
+    }
+    
+    .category-orange{
+        font-size: 16px;
+    }
+    
+    .category-vert{
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 575px){
+
+    .product-shop-categories{
+        display: none;
+    }
+
+    .dropdown-cat-mobile{
+        display: block;
+    }
+
+    .shop-h1{
+        font-size: 38px;
+    }
+
+    .product-price-boutique {
+        font-size: 1.2rem;
+    }
+
+    .category-all{
+        font-size: 20px;
+    }
+    .category-jaune{
+        font-size: 20px;
+    }
+    
+    .category-rose{
+        font-size: 20px;
+    }
+    
+    .category-orange{
+        font-size: 20px;
+    }
+    
+    .category-vert{
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 475px){
+
+    
+
+    .product-price-boutique {
+        font-size: 1rem;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 340px){
+    .shop-title-cat {
+        font-size: 35px;
+        font-weight: bold;
+        margin-top: 4vh;
+    }
+
+    .product-price-boutique {
+        font-size: 1rem;
+        padding: 15px 6px;
+    }
+
+    .product-jaune{
+        padding: 15px;
+        font-size: 15px;
+    }
+
+    .product-rose{
+        padding: 15px;
+        font-size: 15px;
+    }
+
+    .product-orange{
+        padding: 15px;
+        font-size: 15px;
+    }
+
+    .product-vert{
+        padding: 15px;
+        font-size: 15px;
+    }
+
+
+}
+
+
+/* ------------------------------------------------ responsive single-product*/
+@media (max-width: 1161px){
+
+    .product-description-text{
+        font-size: 1.1rem;
+    }
+
+}
+
+@media (max-width: 991px){
+
+    .product-description{
+        display: none;
+    }
+
+    .product-description-mobile{
+        display: block;
+    }
+
+    .product-name-rate{
+        padding-left: 0!important;
+        /* margin-bottom: 20px; */
+    }
+
+    .content-product-52vh {
+        height: initial;
+        position: relative;
+    }
+
+    .product-form{
+        margin-left: 0;
+        
+    }
+}
+
+
+@media (max-width: 780px){
+
+    #img-product {
+        width: 100%;
+        height: 60vh;
+    }
+   
+
+}
+
+
+@media (max-width: 575px){
+    .price-container{
+        margin: 2vh auto!important;
+    }
+}   
+
+@media (max-width: 400px){
+
+    #img-product {
+        width: 100%;
+        height: 39vh;
+    }
+
+}

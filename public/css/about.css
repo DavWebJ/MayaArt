@@ -1,0 +1,271 @@
+/*main image*/
+
+.content-about{
+    width: 80%;
+    margin: 0 auto;
+}
+
+/* First image */
+
+.about-first-image{
+    /* background: url(https://atelier-efka.fr/img/girly.jpg); */
+    height: 75vh;
+    background-repeat: no-repeat!important;
+    background-size: cover!important;
+    background-position: center top!important;
+    margin: 0 auto;
+}
+
+.about-h1{
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-weight: bold;
+    font-size: 70px;
+    padding: 20px 40px 20px 20px;
+    background-color: #f4d2af;
+}
+
+/* title 1 */
+.yellow-container{
+    margin: 7vh auto 0 auto;
+}
+
+.about-title-yellow{
+    padding: 15px;
+    font-size: 46px;
+    font-weight: bold;
+    background-color: #fdebc3;
+    letter-spacing: 2px;
+    margin-bottom: 1rem
+}
+
+.about-yellow-text{
+    font-size: 27px;
+    font-weight: bold;
+}
+
+.tissu-1{
+    margin: 0%;
+    width: 71%;
+    float: right;
+}
+
+/* title 2 */
+
+.orange-container{
+    margin: 0 auto 0;
+}
+
+.tissu-2{
+    margin: 0%;
+    width: 71%;
+    float: left;
+}
+
+.about-title-orange{
+    padding: 15px;
+    font-size: 46px;
+    font-weight: bold;
+    background-color: #f4d2af;
+    letter-spacing: 2px;
+}
+
+.about-orange-text{
+    font-size: 27px;
+    font-weight: bold;
+    text-align: right;
+}
+
+/* title-3*/
+
+.green-container{
+    margin: 0 auto 0;
+}
+
+.about-title-green{
+    padding: 15px;
+    font-size: 46px;
+    font-weight: bold;
+    background-color: #b6dbcf;
+    letter-spacing: 2px;
+    position: absolute;
+    bottom: 0;
+    width: 67%;
+    left: 71%;
+}
+
+.about-green-text{
+    font-size: 27px;
+    font-weight: bold;
+    text-align: left;
+    margin: 2% 0 3% 0%;
+}
+
+/* test */
+
+.test-caontainer{
+    width: 1200px;
+}
+
+.image-test1{
+    z-index: 2;
+    top: 0;
+    left: 0;
+}
+
+.image-test2{
+    z-index: 1;
+    right: 0;
+    bottom: 0;
+}
+
+/* mobile */
+
+.about-title-green-mobile{
+    display: none;
+}
+
+.about-yellow-text-mobile{
+    display: none;
+}
+
+.about-title-yellow-mobile{
+    display: none;
+}
+
+/* responsive */
+@media (max-width: 1861px){
+
+    .about-title-green, .about-title-orange, .about-title-yellow{
+        font-size: 30px!important;
+    }
+
+    .about-yellow-text, .about-orange-text, .about-green-text {
+        font-size: 22px;
+        font-weight: bold;
+    }
+
+}
+
+@media (max-width: 1468px){
+
+    .about-yellow-text{
+        display: none;
+    }
+
+    .about-yellow-text-mobile{
+        display: block;
+        font-size: 22px;
+        font-weight: bold;
+        text-align: justify;
+        padding: 10px;
+        margin-bottom: 6vh;
+    }
+
+    .about-title-yellow{
+        margin-bottom: 0rem;
+        position: absolute;
+        bottom: 0;  
+    }
+
+    .tissu-1 {
+        margin: 0%;
+        width: 100%;
+        float: right;
+    }
+
+    .tissu-2 {
+        margin: 0%;
+        width: 100%;
+        float: left;
+    }
+
+
+    .about-title-green{
+        display: none;
+    }
+
+    .about-title-green-mobile{
+        display: block;
+        font-size: 30px!important;
+        padding: 15px;
+        font-weight: bold;
+        background-color: #b6dbcf;
+        letter-spacing: 2px;
+        width: 73%;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .about-orange-text, .about-green-text {
+        text-align: justify;
+        padding: 10px;
+    }
+
+    .orange-container {
+        margin: 20px auto 0;
+    }
+
+    .green-container {
+        margin: 35px auto 0;
+    }
+
+
+}
+
+@media (max-width: 978px){
+
+    
+
+    .content-about{
+        width: 100%;
+    }
+    
+    .about-h1{
+        font-size: 55px;
+    }
+
+    .yellow-container {
+        margin: 0;
+    }
+    
+}
+
+
+
+@media (max-width: 575px){
+
+    .about-h1{
+        font-size: 38px;
+    }
+
+    
+
+    .about-title-yellow{
+        display: none;
+    }
+
+    .tissu-1 {
+        margin: 0%;
+        width: 100%;
+        float: right;
+    }
+
+    .about-title-yellow-mobile{
+        display: block;
+        padding: 15px;
+        font-size: 30px!important;
+        font-weight: bold;
+        background-color: #fdebc3;
+        letter-spacing: 2px;
+        margin-bottom: 1rem
+    }
+
+    .about-green-text {
+        width: 87%;
+        margin: 0 auto;
+    }
+
+
+}
