@@ -21,7 +21,7 @@ class ShopComponents extends Component
         $productsCount =  Product::where('stock','>',0)->count();
 
         //$products = Product::with('category')->where('id','!=',$id)->where('stock','>',0)->paginate(9);
-        $products = Product::with('category')->where('stock','>',0)->orderBy('Created_at','desc')->paginate(9);
+        $products = Product::with('category','ratings')->where('stock','>',0)->orderBy('Created_at','desc')->paginate(9);
         
         return view('livewire.shop-components',
         [
@@ -29,6 +29,6 @@ class ShopComponents extends Component
             'products'=>$products,
             'category'=>$category,
             'productsCount'=>$productsCount
-        ])->layout('layouts.app');
+        ])->layout('layouts.master');
     }
 }

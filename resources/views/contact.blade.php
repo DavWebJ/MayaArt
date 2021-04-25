@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.master')
 @section('title')
     contactez-moi
 @endsection
@@ -18,34 +18,70 @@
         toastr.error("{{ Session::get('error') }}");
     </script>
     @endif
-        <div class=" col-lg-5 col-sm-12 contact-image">
-            <h1 class="contact-title contact-title-mobile uppercase font-bold">Contactez-moi</h1>
-            </div>
-            <div class="col-lg-7 col-sm-12 relative">
-                <div class="formulaire-container">
-                    <h1 class="contact-title contact-title-laptop uppercase font-bold">Contactez-moi</h1>
-                    <form class="grid form-contact" action="{{route('message')}}" method="post" id="message">
-                        @csrf
-                        <div class=" flex">
-                            <input type="text" class="w-1/2 input-contact" name="prenom" id="prenom" required autofocus placeholder="Prénom">
-                            <input type="text" class="w-1/2 input-contact" name="name" id="name" required placeholder="Nom">
-                        </div>
-                        
-                        <input type="email"  class="input-contact" name="email" id="email" required placeholder="Email">
-                        <div class="flex input-contact checkbox-contact-container">
-                            <input class="checkbox-newsletter-contact" type="checkbox" name="newsletter" id="newsletter">
-                            <label class="newsletter-contact" for="newletter">J'accepte de recevoir la newsletter</label>
-                        </div>
-                        <textarea class="input-contact input-contact" name="message" id="message"  placeholder="Message"></textarea>
-        
-                        <button class="submit-button-contact" type="submit" id="submit"><span class="fas fa-paper-plane fa-2x text-indigo-400"></span></button>
-                    </form>
-                </div>
-                
-            </div>
+ <div class="hero-wrap hero-bread" style="background-image: url('images/bg_6.jpg');">
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+          <div class="col-md-9 ftco-animate text-center">
+            <h1 class="mb-0 bread">Contactez moi</h1>
+          </div>
+        </div>
+      </div>
     </div>
-    
-</section>
+
+    <section class="ftco-section contact-section bg-light">
+      <div class="container-fluid">
+      	<div class="row d-flex mb-5 contact-info">
+          <div class="w-100"></div>
+          <div class="col-md-3 d-flex">
+          	<div class="info bg-white p-4">
+	            <p><span>Adresse:</span> 16000 Angoulême</p>
+	          </div>
+          </div>
+          <div class="col-md-3 d-flex">
+          	<div class="info bg-white p-4">
+	            <p><span>Phone:</span> <a href="tel://1234567920">+ 33.......</a></p>
+	          </div>
+          </div>
+          <div class="col-md-3 d-flex">
+          	<div class="info bg-white p-4">
+	            <p><span>Email:</span> <a href="mailto:contact@mayart.com">contact@mayart.com</a></p>
+	          </div>
+          </div>
+          <div class="col-md-3 d-flex">
+          	<div class="info bg-white p-4">
+	            <p><span>Développeur qui  as fais mon site</span> <a href="https://www.david-friquet.com" target="_blank">David Friquet</a></p>
+	          </div>
+          </div>
+        </div>
+        <div class="row block-9">
+          <div class="col-md-6 order-md-last d-flex">
+            <form action="{{ route('message') }}" class="bg-white p-5 contact-form" method="POST">
+                @csrf
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Your Name" name="name" required autofocus>
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Your Email" name="email" required>
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Subject" name="sujet" required>
+              </div>
+              <div class="form-group">
+                <textarea cols="30" rows="7" class="form-control" placeholder="Message" name="message" required></textarea>
+              </div>
+              <div class="form-group">
+                <button type="submit"  class="btn btn-primary py-3 px-5">envoyer votre message</button>
+              </div>
+            </form>
+          
+          </div>
+
+          <div class="col-md-6 d-flex">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d22314.0519320729!2d0.11467829212243849!3d45.64567066261197!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47fe2d85032bc499%3A0x1c05d395aa855070!2s16000%20Angoul%C3%AAme!5e0!3m2!1sfr!2sfr!4v1618255300607!5m2!1sfr!2sfr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+          </div>
+        </div>
+      </div>
+    </section> 
 <script>
     $(function () {
         $("input[type=checkbox]").change(function(){

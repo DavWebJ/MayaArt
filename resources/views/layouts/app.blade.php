@@ -2,18 +2,42 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta http-equiv="X-UA-Compatible" content="IE=7">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+         <meta name="keywords" content="tissus,design,maya art,art,peinture,dessin,vetement,commerce,boutique,shop">
+         <meta name="description"content="@yield('meta')">
+        <meta name="author" content="Ludmilla Quesnot">
+        <!--<meta http-equiv="refresh" content="0; url="">-->
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-        <meta name="description"content="@yield('meta')">
-        <title>{{ config('app.name', 'Laravel') }} @yield('title')</title>
+        {{--  <meta name="author" content="David Friquet">
+        <meta name="twitter:site" content="@david_friquet">
+        <meta name="twitter:title" content="david-friquet développeur Web/Unity freelance">
+        <meta name="twitter:description" content="développeur web freelance/développeur Unity.">
+        <meta name="twitter:image:src" content="https://twitter.com/david_friquet/photo">  --}}
+        <!-- Open Graph meta pour Facebook -->
+        {{--  <meta property="og:title" content="David-friquet developpeur web freelance" />
+        <meta property="og:url" content="https://www.facebook.com/davidfriquet27/" />
+        <meta property="og:image" content="https://www.facebook.com/610335496111481/photos/678034209341609/" />
+        <meta property="og:description" content="développeur web freelance/développeur Unity." />
+        <meta property="og:site_name" content="davidfriquet27" />  --}}
+        <title>@yield('title')</title>
 
         <link rel="alternate" href="rss.xml" type="application/rss+xml" title="RSS">
         <!-- styles  -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" >
-        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.css' />
+        <link rel="icon" href="{{ asset('img/favicon.png') }}">
+        <link rel="stylesheet" href="{{ asset('css/all.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/flaticon.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/magnific-popup.css') }}">
+        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css' />
+        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css'/>
+        <link rel="stylesheet" href="{{ asset('css/slick.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/themify-icons.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/lightslider.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css" />
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css'/>
         <link rel="stylesheet" type="text/css" href="{{asset("vendor/cookie-consent/css/cookie-consent.css")}}">
@@ -21,7 +45,6 @@
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.3/dist/alpine.js" defer></script>
         
         <!-- Scripts -->
-        <script src="https://kit.fontawesome.com/804c3fbc70.js" ></script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js'></script>
         
         @yield('extra-script')
@@ -32,19 +55,7 @@
 
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/header.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/about.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/home.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/blog.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/contact.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/boutique-all.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/paiement.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/main.css') }}" rel="stylesheet">
         <link href="{{ asset('css/coookie.css') }}" rel="stylesheet">
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
         <link rel="preconnect" href="https://fonts.gstatic.com">
         @livewireStyles
     </head>
@@ -459,24 +470,69 @@
                 @yield('content')
                 @yield('script')
                 @yield('shop.category')
+                @yield('login')
                 @include('includes.errors')
         </div>
         @stack('modals')
 
-    <footer class="flex relative ">
-        <div class="footer-container">
-            <div class="nav-logo-link-mobile" >
-                        <img class="footer-logo cursor-pointer" onclick="window.location.href='{{route('home')}}'" src="{{asset('img/logo-noir.svg')}}" alt="">
+       <!--::footer_part start::-->
+    <footer class="footer_part">
+        <div class="footer_iner">
+            <div class="container">
+                <div class="row justify-content-between align-items-center">
+                    <div class="col-lg-8">
+                        <div class="footer_menu">
+                            <div class="footer_logo">
+                                <a href="index.html"><img src="img/logo.png" alt="#"></a>
+                            </div>
+                            <div class="footer_menu_item">
+                                <a href="index.html">Home</a>
+                                <a href="about.html">About</a>
+                                <a href="product_list.html">Products</a>
+                                <a href="#">Pages</a>
+                                <a href="blog.html">Blog</a>
+                                <a href="contact.html">Contact</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="social_icon">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-google-plus-g"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class=" footer-legale">
-                <p class="mention-legale"><a href="{{ route('mentions') }}">Mentions Légales</a> </p>
-                <p><a href="">CGV</a></p>
-                <p>© {{ \Carbon\Carbon::now()->parse()->year }}</p>
-            </div>
-        </div>      
-    </footer>
-        @yield('stripejs')
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" ></script>
+        </div>
         
+        <div class="copyright_part">
+            <div class="container">
+                <div class="row ">
+                    <div class="col-lg-12">
+                        <div class="copyright_text">
+                            <P>Copyright &copy; © {{ \Carbon\Carbon::now()->parse()->year }} All rights reserved <i class="ti-heart" aria-hidden="true"></i> by <a href="#" target="_blank">someone</a></P>
+                            <div class="copyright_link">
+                            <p class="mention-legale"><a href="{{ route('mentions') }}">Mentions Légales</a> </p>
+                            <p><a href="">CGV</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--::footer_part end::-->
+        @yield('stripejs')
+        <script src="{{ asset('js/popper.min.js') }}"></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js' ></script>
+        <script src="{{ asset('js/jquery.magnific-popup.js') }}"></script>
+        <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
+        <script src="{{ asset('js/jquery.nice-select.min.js') }}"></script>
+        <script src="{{ asset('js/slick.min.js') }}"></script>
+        <script src="{{ asset('js/jquery.counterup.min.js') }}"></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.js' ></script>
+        <script src="{{ asset('js/custom.js') }}"></script>
     </body>
 </html>

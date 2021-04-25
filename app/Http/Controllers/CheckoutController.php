@@ -35,7 +35,7 @@ class CheckoutController extends Controller
         }
         $user = Auth::user();
         $shipping = Shipping::where('user_id',$user->id)->first();
-        Stripe::setApiKey('sk_test_51IYXNDKSfoIUPZH8jAxqtNUUVxe0lQhfGSvXgNUrmnf0K0AFa3V9w1jcQJmrr7w5qR1KeUPU4BZ7uftVL00rkyxt0060ruyHIc');
+        Stripe::setApiKey('sk_test_51IEul1C9XhMP61c89ogzQ1vClIgqBL7wiwNSA2ljux8iZiUcsWrIJGeAOxO3VplRzfkMxR5tMQcU8TZ6O3GMjPhL00IRfWthR6');
         if(request()->session()->has('coupon'))
         {
             if ( IsFreeShipping() ){

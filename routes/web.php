@@ -41,7 +41,7 @@ use App\Http\Livewire\SinglePostComponent;
 
 // simple page
 Route::get('/',[HomeController::class,'index'])->name('home');
-Route::get('/about',[HomeController::class,'about'])->name('about');
+Route::get('/qui-suis-je',[HomeController::class,'about'])->name('about');
 Route::get('/contact',[HomeController::class,'contact'])->name('contact');
 
 // blog routes
@@ -55,7 +55,7 @@ Route::get('/boutique/{slug}',SingleProductComponent::class)->name('shop.show');
 Route::get('/boutique/categories/{category_slug}',CategoryComponent::class)->name('shop.category');
 
 // mentions and polices  routes
-Route::get('/polices',[HomeController::class,'policies'])->name('police de confidentialite');
+Route::get('/cgv',[HomeController::class,'policies'])->name('cgv');
 Route::get('/mentions légales',[HomeController::class,'mentions'])->name('mentions');
 
 // send messages

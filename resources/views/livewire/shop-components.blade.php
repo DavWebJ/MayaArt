@@ -9,176 +9,105 @@
     toastr.error("{{ Session::get('error') }}");
 </script>
 @endif
-
-<div class="content-about">
-
-    <div class=" relative w-full shop-first-image">
-        <h1 class="shop-h1 jaune-background">BIENVENUE</h1>
-        <div class="absolute promotion-home-text"><p class="font-bold ">Livraison offerte à partir de 50 € d’achat </p></div>
+<div class="hero-wrap hero-bread" style="background-image: url('images/bg_6.jpg');">
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+          <div class="col-md-9 ftco-animate text-center">
+          	<p class="breadcrumbs"><span class="mr-2"><a href="{{ route('home') }}">Acceuil</a></span> <span>Boutique</span></p>
+            <h1 class="mb-0 bread">Tous les produits</h1>
+          </div>
+        </div>
+      </div>
     </div>
 
-</section>
-
-<section id="shop" class="my-3">
-    <div class="container">
-        <h2 class="uppercase shop-title-cat">Produits en vente :</h2>
-        <ul class="flex product-shop-categories">
-            <a class="category-all px-4 py-2 " href="{{route('shop')}}">Toutes les catégories<span class="badge ">{{$productsCount}}</span></a> 
-            @foreach ($category as $cat)
-                @if ($cat->id === 1 )
-                    <a class="category-jaune px-4 py-2 " href="{{route('shop.category',['category_slug'=>$cat->slug])}}">{{$cat->name}} <span class="badge ">{{$cat->products->count()}}</span></a> 
-                @elseif ($cat->id === 2 )
-                    <a class="category-rose px-4 py-2  " href="{{route('shop.category',['category_slug'=>$cat->slug])}}">{{$cat->name}} <span class="badge ">{{$cat->products->count()}}</span></a> 
-                @elseif ($cat->id === 3 )
-                    <a class="category-orange px-4 py-2 " href="{{route('shop.category',['category_slug'=>$cat->slug])}}">{{$cat->name}} <span class="badge ">{{$cat->products->count()}}</span></a> 
-                @elseif ($cat->id === 4 )
-                    <a class="category-vert px-4 py-2 " href="{{route('shop.category',['category_slug'=>$cat->slug])}}">{{$cat->name}} <span class="badge ">{{$cat->products->count()}}</span></a> 
-                @endif
-        @endforeach
-        </ul>
-
-        <div class="dropdown-cat-mobile">
-
-            <div class="categories-drop-boutique relative">
-                <button class="dropdown-button-cat w-full jaune-background">Catégories <i class="fas fa-caret-down"></i></button>
-                <ul class="ul-cat-dropdown">
-                    <li><a class="category-all px-4 py-2 " href="{{route('shop')}}">Toutes les catégories<span class="badge ">{{$productsCount}}</span></a> </li>
-                    @foreach ($category as $cat)
-                        @if ($cat->id === 1 )
-                            <a class="category-jaune px-4 py-2 " href="{{route('shop.category',['category_slug'=>$cat->slug])}}"><li>{{$cat->name}} <span class="badge ">{{$cat->products->count()}}</span></li></a> 
-                        @elseif ($cat->id === 2 )
-                            <a class="category-rose px-4 py-2  " href="{{route('shop.category',['category_slug'=>$cat->slug])}}"><li>{{$cat->name}} <span class="badge ">{{$cat->products->count()}}</span></li></a> 
-                        @elseif ($cat->id === 3 )
-                            <a class="category-orange px-4 py-2 " href="{{route('shop.category',['category_slug'=>$cat->slug])}}"><li>{{$cat->name}} <span class="badge ">{{$cat->products->count()}}</span></li></a> 
-                        @elseif ($cat->id === 4 )
-                            <a class="category-vert px-4 py-2 " href="{{route('shop.category',['category_slug'=>$cat->slug])}}"><li>{{$cat->name}} <span class="badge ">{{$cat->products->count()}}</span></li></a>
+    <section class="ftco-section bg-light">
+    	<div class="container">
+    		<div class="row">
+    			<div class="col-md-8 col-lg-10 order-md-last">
+    				<div class="row">
+                         @if ($products ?? '')
+                            @foreach ($products as $product)
+		    			<div class="col-sm-6 col-md-6 col-lg-4 ftco-animate">
+		    				<div class="product">
+		    					<a href="{{ route('shop.show', ['slug'=> $product->slug]) }}" class="img-prod"><img class="img-fluid" src="{{ asset($product->vignette1) }}" alt="Colorlib Template">
+                                    @if ($product->price_promos ?? '')
+		    						<span class="status text-white"> -{{ $product->price_promos }} €</span>
+                                    @endif
+		    						<div class="overlay"></div>
+		    					</a>
+		    					<div class="text py-3 px-3">
+		    						<h3><a href="#">{{$product->name}}</a></h3>
+		    						<div class="d-flex">
+		    							<div class="pricing">
+                                        @if ($product->price_promos ?? '')
+                                            <p class="price"><span class="mr-2 price-dc">{{$product->price}} €</span><span class="price-sale">{{$product->FormatPrice()}}</span></p>
+                                        @else
+                                            <p class="price"><span class="price-sale">{{$product->FormatPrice()}}</span></p>
+                                        @endif
+				    					</div>
+				    					<div class="rating">
+			    							<p class="text-right">
+                                                @if ($product->ratings ?? '')
+                                                    {!! str_repeat('<i class="fa fa-star text-yellow-400" aria-hidden="true"></i>', $product->calculateRating()) !!}
+                                                    <a href="{{ route('shop.show', ['slug'=> $product->slug]) }}">{!! str_repeat('<span class="ion-ios-star-outline"></span>', 5- $product->calculateRating()) !!}</a>
+                                                    @else
+                                                    <a href="{{ route('shop.show', ['slug'=> $product->slug]) }}"><span class="ion-ios-star-outline"></span></a>
+                                                @endif
+			    							</p>
+			    						</div>
+			    					</div>
+                                    <form  action="{{route('cart.store')}}" method="post">
+			    					<p class="bottom-area d-flex px-3"> 
+                                            @csrf
+                                            <input type="hidden" name="product_id" id="product_id" value="{{ $product->id}}">
+		    							<button  class="add-to-cart text-center py-2 mr-1"><span>Ajouter au panier <i class="ion-ios-cart ml-1"></i></span></button>
+                                        </form>
+		    						</p>
+		    					</div>
+		    				</div>
+		    			</div>
+                        @endforeach
+                        @else
+                            <p>Aucun produit à vendre pour le moment</p>
                         @endif
-                    @endforeach
-                </ul>
-            </div>
-        </div>
+		    		</div>
+		    		<div class="row mt-5">
+		          <div class="col text-center">
+		            <div class="block-27">
+                        {{ $products->appends(request()->input())->links() }}
+		            </div>
+		          </div>
+		        </div>
+		    	</div>
 
-
-        <div class="col-lg-12">
-            <div class="row justify-center">
-                @if ($products ?? '')
-                    @foreach ($products as $product)
-                    <div class="col-lg-4 my-3"> 
-                        @if ($product->category_id === 1)
-                        <div class=" w-4/5 shop-card card-jaune">
-                            <a href="{{ route('shop.show', ['slug'=> $product->slug]) }}">
-                                <div class="img-product-miniature" style="background: url('{{asset($product->vignette1)}}')">
-                                    <div class="hover-article-jaune">
-                                        <p class="description-article-miniature">
-                                            {!! Str::limit($product->desc, 180, '') !!}
-                                                    @if (strlen($product->desc) > 180)
-                                                    <span id="dots-{{ $product->slug }}">[...]</span>
-                                                    <span id="more-{{ $product->slug }}"style="display: none;">{!! substr($product->desc, 180) !!}</span>
-                                                @endif
-                                        </p>
-                                    </div>
-                                </div>
-                            </a>
-                            <div class="flex ">
-                                <h4 class="product-jaune">{{$product->name}}</h4>
-                                <div class="product-price-boutique">
-                                @if ($product->price_promos ?? '')
-                                    <span>prix : <del>{{$product->price}} €</del> <i class="text-red-400">{{$product->FormatPrice()}}</i></span>
-                                @else
-                                    <span>{{$product->FormatPrice()}}</span>
-                                @endif
-                                </div>
-                            </div>
+		    	<div class="col-md-4 col-lg-2 sidebar">
+		    		<div class="sidebar-box-2">
+		    			<h2 class="heading mb-4">Produits:</h2>
+		    			<ul>
+                            <li><a href="{{route('shop')}}">Toutes les catégories<span class="badge bg-purple-200 mx-2">{{$productsCount}}</span></a> </li>
+                            @foreach ($category as $cat)
+                            <li><a href="{{route('shop.category',['category_slug'=>$cat->slug])}}">{{$cat->name}} <span class="badge bg-purple-200 mx-1">{{$cat->products->count()}}</span></a> </li>
+                        @endforeach
+		    			</ul>
+		    		</div>
+		    		<div class="sidebar-box-2">
+		    			<h2 class="heading mb-2"><a href="#">Newsletter</a></h2>
+		    			<p>Filtre<span class="fas fa-filter"></span></p>
+                        <div class="card">
+                            <form action="#" method="post">
+                                @csrf
+                                <select name="searchby" id="searchby" class="form-control dropdown">
+                                    <option value="" style="display: none" selected>choisisser un filtre</option>
+                                    <option value="asc">prix croissant</option>
+                                    <option value="desc">prix décroissant</option>
+                                </select>
+                            </form>
                         </div>
-                        @elseif ($product->category_id === 2)
-                        <div class=" w-4/5 shop-card card-rose">
-                            <a href="{{ route('shop.show', ['slug'=> $product->slug]) }}">
-                                <div class="img-product-miniature" style="background: url('{{asset($product->vignette1)}}')">
-                                    <div class="hover-article-rose">
-                                        <p class="description-article-miniature">{!! Str::limit($product->desc, 180,'') !!}
-                                                    @if (strlen($product->desc) > 180)
-                                                    <span id="dots-{{ $product->slug }}">[...]</span>
-                                                    <span id="more-{{ $product->slug }}"style="display: none;">{!! substr($product->desc, 180) !!}</span>
-                                                @endif
-                                            </p>
-                                    </div>
-                                </div>
-                            </a>
-                            <div class="flex ">
-                                <h4 class="product-rose">{{$product->name}}</h4>
-                                <div class="product-price-boutique">
-                                @if ($product->price_promos ?? '')
-                                    <span>prix : <del>{{$product->price}} €</del> <i class="text-red-400">{{$product->FormatPrice()}}</i></span>
-                                @else
-                                    <span>{{$product->FormatPrice()}}</span>
-                                @endif
-                                </div>
-                            </div>
-                        </div>
-                        @elseif ($product->category_id === 3)
-                        <div class=" w-4/5 shop-card card-orange">
-                            <a href="{{ route('shop.show', ['slug'=> $product->slug]) }}">
-                                <div class="img-product-miniature" style="background: url('{{asset($product->vignette1)}}')">
-                                    <div class="hover-article-orange">
-                                        <p class="description-article-miniature">
-                                        {!! Str::limit($product->desc, 180, '') !!}
-                                                    @if (strlen($product->desc) > 180)
-                                                    <span id="dots-{{ $product->slug }}">[...]</span>
-                                                    <span id="more-{{ $product->slug }}"style="display: none;">{!! substr($product->desc, 180) !!}</span>
-                                                @endif
-                                        </p>
-                                    </div>
-                                </div>
-                            </a>
-                            <div class="flex ">                                                                                        
-                                <h4 class="product-orange">{{$product->name}}</h4>
-                                <div class="product-price-boutique">
-                                @if ($product->price_promos ?? '')
-                                    <span>prix : <del>{{$product->price}} €</del> <i class="text-red-400">{{$product->FormatPrice()}}</i></span>
-                                @else
-                                    <span>{{$product->FormatPrice()}}</span>
-                                @endif
-                                </div>
-                            </div>
-                        </div>
-                        @elseif ($product->category_id === 4)
-                        <div class=" w-4/5 shop-card card-vert">
-                            <a href="{{ route('shop.show', ['slug'=> $product->slug]) }}">
-                                <div class="img-product-miniature" style="background: url('{{asset($product->vignette1)}}')">
-                                    <div class="hover-article-vert">
-                                        <p class="description-article-miniature">
-                                            {!! Str::limit($product->desc, 180,'') !!}
-                                                    @if (strlen($product->desc) > 180)
-                                                    <span id="dots-{{ $product->slug }}">[...]</span>
-                                                    <span id="more-{{ $product->slug }}"style="display: none;">{!! substr($product->desc, 180) !!}</span>
-                                                @endif
-                                        </p>
-                                    </div>
-                                </div>
-                            </a>
-                            <div class="flex ">
-                                <h4 class="product-vert">{{$product->name}}</h4>                                
-                                <div class="product-price-boutique">
-                                @if ($product->price_promos ?? '')
-                                    <span> <del>{{$product->price}} €</del> <i class="text-red-400">{{$product->FormatPrice()}}</i></span>
-                                @else
-                                    <span>{{$product->FormatPrice()}}</span>
-                                @endif
-                                </div>
-                            </div>
-                        </div>
-                        @endif
-                        
-                    </div>
-                    @endforeach
-                @else
-                    <p>Aucun produit à vendre pour le moment</p>
-                @endif
-            </div>
-        </div>
-        {{ $products->appends(request()->input())->links() }}
-    </div>
-</section>
+		    		</div>
+    			</div>
+    		</div>
+    	</div>
+    </section>
 
 <script>
     $(function () {

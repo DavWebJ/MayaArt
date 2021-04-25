@@ -181,7 +181,7 @@
 
 
   //Suppression de la barre de navigation
-  var stripe = Stripe('pk_test_51IYXNDKSfoIUPZH88yV0rCfeH21c5TeO1egSMdvWBDCBTY8Fy3hm8k8EaBm12ks1cwQEwqcSr8wcPcPiMN6EsCxF003SEbpG27', {
+  var stripe = Stripe('pk_test_51IEul1C9XhMP61c8cf1D7BSx8zkpJaNgaDy80uql2GL6MCQfASmVUXwl0GZr54VWze6WyytsxxnWqkbXWtt1pYVC00aaDdTA5R', {
       locale: 'fr'
   });
     var elements = stripe.elements();

@@ -27,9 +27,11 @@ class CategoryFactory extends Factory
       
         $name = $this->faker->unique->companySuffix .' '. Arr::random($randomcat);
         $slug = Str::slug($name, '-');
+        
         return [
             'name'=>$name,
             'slug'=>$slug,
+            'image'=> 'https://picsum.photos/200/200?random=' .$this->faker->numberBetween($min = 1, $max = 75) 
         ];
     }
 }

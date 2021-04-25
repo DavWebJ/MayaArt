@@ -1,49 +1,64 @@
-<x-guest-layout>
+@extends('layouts.master')
+@section('login')
 
-        <form method="POST"  id="form-login" action="{{ route('login') }}">
-            <a href="{{route('home')}}"><img  class="login-logo" src="{{asset('img/logo-noir.svg')}}" alt=""></a>
-            @csrf
-            <div>
-                <x-jet-label for="email" value="{{ __('Email') }}" />
-                <x-jet-input id="email" class=" block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+ <!--================login_part Area =================-->
+    <section class="login_part section_padding ">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-md-6">
+                    <div class="login_part_text text-center">
+                        <div class="login_part_text_iner">
+                            <h2>Pas encore inscrit ? </h2>
+                            <p>There are advances being made in science and technology
+                                everyday, and a good example of this is the</p>
+                                @if (Route::has('register'))
+                                    <a href="{{ route('register') }}" class="btn btn-secondary px-5 py-3 mt-3">Créer un compte.</a>
+                                @endif
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="login_part_form">
+                        <div class="login_part_form_iner">
+                            <h3>Content de vous revoir ! <br>
+                                Connectez vous ici</h3>
+                            <form method="POST"  id="form-login" action="{{ route('login') }}" class="row contact_form" novalidate="novalidate">
+                                @csrf
+                                <div class="col-md-12 form-group p_star">
+                                    <input type="email" id="email" name="email" class="form-control":value="old('email')" required autofocus
+                                        placeholder="Votre adresse email">
+                                </div>
+                                <div class="col-md-12 form-group p_star">
+                                    <input  class="form-control" type="password" name="password" required autocomplete="current-password"
+                                        placeholder="Mot de passe">
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <div class="creat_account d-flex align-items-center">
+                                        <input type="checkbox" id="f-option" name="selector">
+                                        <label for="f-option">Se souvenir de moi</label>
+                                    </div>
+                                    <button type="submit" value="submit" class="btn btn-primary px-5 py-3 mt-3">
+                                        Connexion
+                                    </button>
+                                    @if (Route::has('password.request'))
+                                        <a class="btn btn-primary px-5 py-3 mt-3" href="{{ route('password.request') }}">Mot de passe oublié ?</a>
+                                    @endif
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </div>
+    </section>
+    <!--================login_part end =================-->
 
-            <div class="mt-4">
-                <x-jet-label for="password" value="{{ __('Password') }}" />
-                <x-jet-input id="password" class=" block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
-            </div>
 
-            <div class="block mt-4">
-                <label for="remember_me" class="flex items-center">
-                    <x-jet-checkbox id="remember_me" name="remember" />
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label>
-            </div>
-
-            <div class="flex items-center justify-around mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                @endif
-                @if (Route::has('register'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('register') }}">
-                        Pas encore inscrit ? Créer un compte.
-                    </a>
-                @endif
-                <x-jet-button class="ml-4">
-                    {{ __('Login') }}
-                </x-jet-button>
-            </div>
-        </form> 
-        
         <x-jet-validation-errors class="mb-4" />
-
         @if (session('status'))
             <div class="mb-4 font-medium text-sm text-green-600">
                 {{ session('status') }}
             </div>
         @endif
-        
+@endsection
     
-</x-guest-layout>

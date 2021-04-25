@@ -19,6 +19,7 @@ class CreatePromotionsTable extends Migration
             $table->longtext('desc')->nullable();
             $table->string('banner')->nullable();
             $table->string('alt')->nullable();
+            $table->foreignId('product_id')->constrained('products');
             $table->timestamps();
         });
     }

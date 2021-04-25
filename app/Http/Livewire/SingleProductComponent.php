@@ -86,7 +86,7 @@ class SingleProductComponent extends Component
                    'rating_valide'=>$rating_valide,
                    'attributes'=>$attributes
            
-                ])->layout('layouts.app');
+                ])->layout('layouts.master');
             
 
         }else 
@@ -101,7 +101,7 @@ class SingleProductComponent extends Component
                     'rate'=>$rate,
                      'attributes'=>$attributes
   
-                ])->layout('layouts.app');
+                ])->layout('layouts.master');
            
         }
 

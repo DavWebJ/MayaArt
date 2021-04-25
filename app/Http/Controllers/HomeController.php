@@ -20,19 +20,14 @@ class HomeController extends Controller
     {
 
         $posts = Post::all();
-        if($posts->count() < 4 )
-        {
-            $posts = Post::with('postcategory')->orderBy('created_at','DESC')->get();
-        }else
-        {
-            $posts = Post::with('postcategory')->orderBy('created_at','DESC')->take(4)->get();
-        }
-        $promos = Promotion::first();
-        $categories = Category::with('products')->get();
+        $products = Product::with('category')->where('stock','>',0)->orderBy('Created_at','desc')->get();
+         $others = Product::with('category')->where('stock','>',0)->take(6)->get();
+        $promos = Promotion::with('product')->get();
+        $category = Category::with('products')->get();
         $products_cat = Product::with('category')->get();
-        $author = User::where('role_id',2)->first();
 
-        return view('home',compact(['posts','promos','categories','products_cat','author']));
+
+        return view('home',compact(['products','promos','category','products_cat','others']));
 
     }
     public function about()

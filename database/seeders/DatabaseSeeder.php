@@ -28,30 +28,34 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        //création des utilisateurs fake
-      // $user = User::factory(25)->create();
-        //création des categories blog fake
+
+      $user = User::factory(25)->create();
+
       $postcat =  PostCategory::factory()->count(5)->create();
 
         //création des categories de produit fake
         $categories = new Category();
-        $categories->name = 'chambre';
+        $categories->name = 'design';
         $categories->slug =  Str::slug($categories->name, '-');
+        $categories->image = 'https://picsum.photos/200/200?random=1';
         $categories->save();
 
         $categories = new Category();
-        $categories->name = 'toillettes';
+        $categories->name = 'quotidien';
         $categories->slug =  Str::slug($categories->name, '-');
+        $categories->image = 'https://picsum.photos/200/200?random=2';
         $categories->save();
 
         $categories = new Category();
-        $categories->name = 'salle de bain';
+        $categories->name = 'snikers';
         $categories->slug =  Str::slug($categories->name, '-');
+        $categories->image = 'https://picsum.photos/200/200?random=3';
         $categories->save();
 
         $categories = new Category();
-        $categories->name = 'cuisine';
+        $categories->name = 'vêtement';
         $categories->slug =  Str::slug($categories->name, '-');
+        $categories->image = 'https://picsum.photos/200/200?random=4';
         $categories->save();
      $attr = Option::factory()->count(25)->create();
         //création des produits fake
@@ -67,8 +71,8 @@ class DatabaseSeeder extends Seeder
         $role->save();
         //création de l' admin
         DB::table('users')->insert([
-            'name' => 'Admin',
-            'prenom'=>'efka',
+            'name' => 'admin',
+            'prenom'=>'maya',
             'email'=> 'admin@admin.com',
             'email_verified_at' => now(),
             'password' => Hash::make('123456'),
@@ -76,21 +80,21 @@ class DatabaseSeeder extends Seeder
 
         ]);
     
-    //  $post =  Post::factory()->count(10)->create();
-      $promo =  Promotion::factory()->count(1)->create();
-      //  $comments = Rating::factory()->count(20)->state(new Sequence(
-      //        ['status' => 0],
-      //        ['status' => 1],
-      //    ))->create();
+     $post =  Post::factory()->count(25)->create();
+      $promo =  Promotion::factory()->count(3)->create();
+       $comments = Rating::factory()->count(20)->state(new Sequence(
+             ['status' => 0],
+             ['status' => 1],
+         ))->create();
 
-      //     $product->each(function (Product $r) use ($attr) {
-      //       $r->options()->attach(
-      //     [
-      //     'product_id' => Product::all()->random()->id,
-      //       'option_id'=> Option::all()->random()->id
-      //      ]
-      //  );
-      // });
+          $product->each(function (Product $r) use ($attr) {
+            $r->options()->attach(
+          [
+          'product_id' => Product::all()->random()->id,
+            'option_id'=> Option::all()->random()->id
+           ]
+       );
+      });
 
 
 

@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-
+use App\Models\Product;
 use App\Models\Promotion;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -25,8 +25,9 @@ class PromotionFactory extends Factory
         return [
             'title' => $this->faker->sentence(1,true),
             'desc' => $this->faker->paragraphs(3,true),
-            'banner'=> 'https://picsum.photos/1920/500?random=' .$this->faker->numberBetween($min = 1, $max = 75) ,
+            'banner'=> 'https://picsum.photos/700/400?random=' .$this->faker->numberBetween($min = 1, $max = 75) ,
             'alt'=>$this->faker->word(),
+            'product_id'=>Product::all()->random()->id,
         ];
     }
 }

@@ -32,7 +32,7 @@ class ProductFactory extends Factory
             'desc' => $this->faker->paragraphs(4,true),
             'slug' => $slug,
             'detail' => $this->faker->paragraphs(1,true),
-            'vignette1'=> 'https://picsum.photos/200/200?random=' .$this->faker->numberBetween($min = 1, $max = 75) ,
+            'vignette1'=> 'https://picsum.photos/500/500?random=' .$this->faker->numberBetween($min = 1, $max = 75) ,
             'vignette2'=> 'https://picsum.photos/200/200?random=' .$this->faker->numberBetween($min = 1, $max = 75) ,
             'vignette3'=> 'https://picsum.photos/200/200?random=' .$this->faker->numberBetween($min = 1, $max = 75) ,
             'vignette4'=> 'https://picsum.photos/200/200?random=' .$this->faker->numberBetween($min = 1, $max = 75) ,
