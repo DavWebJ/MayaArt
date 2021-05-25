@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
 use App\Actions\Fortify\PasswordValidationRules;
 use App\Models\Order;
+use App\Models\Product;
+use App\Models\Rating;
+use Carbon\Carbon;
 
 class AdminController extends Controller
 {
@@ -24,7 +27,39 @@ class AdminController extends Controller
 
     public function dashboard()
     {
-        return view('admin.dashboard');
+        $now = Carbon::now('Europe/Paris');
+        $order = Order::all();
+        $ordertoday = Order::where('created_at','>=', Carbon::now())->count();
+        $comment = Rating::where('status','=',0)->count();
+        $product = Product::all();
+        $emptystock = $product->where('stock','=',0)->count();
+        $emptyproduct = Product::where('stock','=',0)->get();
+        $user = User::where('role_id','!=', '1')->get();
+        $newcustomer = User::where('role_id','=', '1')->where('created_at','>=',Carbon::now())->count();
+        $currentcustomer = User::where('role_id','=', '1')->count();
+        $totalcomment = Rating::where('status','=',1)->count();
+        $totals = DB::table('orders')->pluck('total');
+        $total_orders = 0;
+        foreach ($totals as $total) {
+            $total_orders+= $total;
+            
+        }
+        $last_comment = Rating::latest()->first();
+        return view('admin.dashboard',
+        [
+            'order' => $order,
+            'product' => $product,
+            'user' => $user,
+            'comment' => $comment,
+            'emptystock' => $emptystock,
+            'emptyproduct' =>$emptyproduct,
+            'ordertoday' => $ordertoday,
+            'totalcomment'=>$totalcomment,
+            'newcustomer'=>$newcustomer,
+            'currentcustomer'=>$currentcustomer,
+            'total'=>$total_orders,
+            'lastcomment'=>$last_comment
+        ]);
     }
     public function index()
     {

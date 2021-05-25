@@ -75,79 +75,79 @@ class CustomerController extends Controller
          return  redirect()->back()->with('success','Le code promo a été retiré avec succès !');
     }
 
-    public function store(Request $request)
-    {
-        $product_id = $request->product_id;
-        $option = $request->attr;
+    // public function store(Request $request)
+    // {
+    //     $product_id = $request->product_id;
+    //     $option = $request->attr;
 
-        $double =  Cart::search(function ($cartItem, $rowId) use($product_id){
-	        return $cartItem->id === $product_id;
-        });
-        if($double->isNotEmpty() )
-        {
-            Session::flash('success', 'Cet article est déjà dans votre panier');
-            return redirect()->route('customer.cart');
-        }
+    //     $double =  Cart::search(function ($cartItem, $rowId) use($product_id){
+	//         return $cartItem->id === $product_id;
+    //     });
+    //     if($double->isNotEmpty() )
+    //     {
+    //         Session::flash('success', 'Cet article est déjà dans votre panier');
+    //         return redirect()->route('customer.cart');
+    //     }
 
-        if(!empty($option))
-        {
-            $attributes = Option::find($option);
-            $name_option = $attributes->option;
-            $option_price = $attributes->option_price;
+    //     if(!empty($option))
+    //     {
+    //         $attributes = Option::find($option);
+    //         $name_option = $attributes->option;
+    //         $option_price = $attributes->option_price;
            
-        }
+    //     }
 
-        $product  = Product::where('id','=',$product_id)->with('options')->firstOrFail();
-        $product_id = $product->id;
-        $product_name = $product->name;
+    //     $product  = Product::where('id','=',$product_id)->with('options')->firstOrFail();
+    //     $product_id = $product->id;
+    //     $product_name = $product->name;
 
-        if($product->price_promos != 0)
-        {
+    //     if($product->price_promos != 0)
+    //     {
             
-            if(!empty($option))
-            {
-                $product_price = $product->price +  $option_price - $product->price_promos ;
+    //         if(!empty($option))
+    //         {
+    //             $product_price = $product->price +  $option_price - $product->price_promos ;
       
-            }
-            else
-            {
-                $product_price = $product->price - $product->price_promos;
-            }
+    //         }
+    //         else
+    //         {
+    //             $product_price = $product->price - $product->price_promos;
+    //         }
 
             
             
-        }else{
+    //     }else{
 
-            if(!empty($option))
-            {
-                $product_price = $product->price + $option_price;
+    //         if(!empty($option))
+    //         {
+    //             $product_price = $product->price + $option_price;
                 
-            }
-            else
-            {
-                $product_price = $product->price;
-            }
+    //         }
+    //         else
+    //         {
+    //             $product_price = $product->price;
+    //         }
 
             
-        }
+    //     }
         
         
        
 
-        if($option)
-        {
+    //     if($option)
+    //     {
 
-            Cart::add($product_id, $product_name,1,$product_price,['name_option'=>$name_option  ,'option_price'=>$option_price])->associate(Product::class);
+    //         Cart::add($product_id, $product_name,1,$product_price,['name_option'=>$name_option  ,'option_price'=>$option_price])->associate(Product::class);
            
             
-        }else{
-             Cart::add($product_id, $product_name,1,$product_price)->associate(Product::class);
-        }
+    //     }else{
+    //          Cart::add($product_id, $product_name,1,$product_price)->associate(Product::class);
+    //     }
     
        
         
-        Session::flash('success', 'Cet article a bien été ajouté à votre panier !');
-         return redirect()->route('shop');
-    }
+    //     Session::flash('success', 'Cet article a bien été ajouté à votre panier !');
+    //      return redirect()->route('shop');
+    // }
 
 }

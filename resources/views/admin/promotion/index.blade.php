@@ -4,19 +4,12 @@
 <style>
   [x-cloak=""] { display: none; }
 </style>
-   <div class="elegant-color">
-       <div class="jumbotron text-center">
-           <h1 class="text-info display-2">Liste des promotions</h1>
-       </div>
-   </div>
-
-   <div class="row">
-      <div class="col-12">
-      	<div class="card card-list">
-          <div class="card-body">
-            <livewire:promo-table searchable="title"/>
+<div class="content">
+  <div class="my-5">
+          <div class="row justify-content-center">
+            <a href="{{ route('promotion.create') }}"class="btn btn-hero-lg btn-rounded btn-outline-dark"><i class="fas fa-plus mx-2"></i>Créer une promos</a>
           </div>
-        </div>
-      </div>
-    </div>
+            <livewire:promo-table searchable="title"/>
+  </div>
+</div>
 @endsection

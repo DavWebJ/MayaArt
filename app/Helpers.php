@@ -13,27 +13,27 @@ function FormatPrice($priceInDecimal)
 function Total()
 {
 
-    return (Cart::subtotal());
+    return (Cart::instance('cart')->subtotal());
     
 }
 
 function FraisDePort()
 {
-    $taxe = Cart::subtotal() * 20 / 100;
+    $taxe = Cart::instance('cart')->subtotal() * 20 / 100;
     return ($taxe);
 }
 
 function TotalTTC()
 {
-    $taxe = Cart::subtotal()  * 20 / 100;
+    $taxe = Cart::instance('cart')->subtotal()  * 20 / 100;
     $taxeRound =  round($taxe, 1);
-    $priceTTC = Cart::subtotal()  + $taxeRound;
+    $priceTTC = Cart::instance('cart')->subtotal()  + $taxeRound;
     return $priceTTC;
 }
 
 function IsFreeShipping()
 {
-    $price =  Cart::subtotal();
+    $price =  Cart::instance('cart')->subtotal();
     $maxPrice = 50;
     $isFree = false;
     if($price > $maxPrice)
@@ -50,7 +50,7 @@ function IsFreeShipping()
 function IsPriceReduce()
 {
     $isReduce = false;
-    foreach (Cart::content() as $item) {
+    foreach (Cart::instance('cart')->content() as $item) {
         if($item->model->price_promos > 0)
         {
             $isReduce = true;
@@ -65,7 +65,7 @@ function IsPriceReduce()
 function OptionPrice($option)
 {
 
-    $theOption = Cart::subtotal() + $option;
+    $theOption = Cart::instance('cart')->subtotal() + $option;
     return $theOption;
    
 }

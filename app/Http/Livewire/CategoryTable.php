@@ -23,15 +23,19 @@ class CategoryTable extends LivewireDatatable
             Column::name('name')
                 ->label('Nom de la  catégorie')
                 ->filterable(),
-            Column::name('slug')
-                ->label('Slug de la  catégorie'),
 
-            Column::callback(['id'], function ($id) {
+            Column::callback(['color'], function ($color) {
 
-                    return view('admin.action.categoriesaction', ['id' => $id]);
-             
+                return view('admin.action.color', [ 'color' => $color]);
+                
+            })->label('Couleur'),
 
-            })
+            Column::callback(['id', 'name'], function ($id, $name) {
+ 
+                    return view('admin.action.categoriesaction', ['id' => $id, 'name' => $name]);
+                
+
+            })->label('action')
 
 
         ];

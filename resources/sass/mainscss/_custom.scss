@@ -1,0 +1,111 @@
+.bg-yellow
+{
+    background-color: $lila !important;
+}
+h2
+{
+    color: $orchid !important;
+}
+
+.lila
+{
+    color: $lila !important;
+}
+.orchid
+{
+    color: $orchid !important;
+}
+a.rose-red
+{
+    color: $rose_red !important;
+ 
+}
+.rose-red
+{
+    color: $rose_red !important;
+ 
+}
+.coeur
+{
+    background-color: $primary !important;
+}
+
+.btn
+{
+    &.btn-primary
+    {
+        background: $rose_red !important;
+        border-color: $rose_red !important;
+        color: white !important;
+    }
+
+    &:hover
+    {
+        background: transparent !important;
+        border-color: $rose_red !important;
+        color: $rose_red !important;
+        transition: 1s;
+    }
+}
+.share
+{
+    & a
+    {
+        & i.fa-pinterest{
+                color: $pinterest !important;
+        }
+        & i.fa-facebook-f{
+                color: $facebook !important;
+        }
+        & i.fa-instagram{
+                color: $instagram !important;
+        }
+        & i.fa-linkedin{
+                color: $linkedin !important;
+        }
+        & i.fa-twitter{
+                color: $twitter !important;
+        }
+        & i.fa-whatsapp{
+                color: $whatsapp !important;
+        }
+        &:hover {
+            color: $orchid !important;
+        }
+    }
+}
+
+    #toast-container > div {
+        position: relative;
+        overflow: hidden;
+        margin: 0 0 6px;
+        padding: 15px 15px 15px 50px;
+        width: 350px;
+        -moz-border-radius: 3px 3px 3px 3px;
+        -webkit-border-radius: 3px 3px 3px 3px;
+        border-radius: 3px 3px 3px 3px;
+        background-position: 15px center;
+        background-repeat: no-repeat;
+        -moz-box-shadow: 0 0 12px #999999;
+        -webkit-box-shadow: 0 0 12px #999999;
+        box-shadow: 0 0 12px #999999;
+        color: #ffffff;
+        opacity: 1;
+        -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+        filter: alpha(opacity=100);
+    }
+        .toast {
+        background-color: $orchid !important;
+        }
+        .toast-success {
+        background-color: $lila !important;
+        }
+        .toast-error {
+        background-color: $rose_red !important;
+        }
+        .toast-info {
+        background-color: #2f96b4 !important;
+        }
+        .toast-warning {
+        background-color: #f89406 !important;
+        }

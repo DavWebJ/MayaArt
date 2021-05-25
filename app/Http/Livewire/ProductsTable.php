@@ -49,12 +49,6 @@ class ProductsTable extends LivewireDatatable
          
 
             })->label('modifier,voir,supprimer'),
-            Column::callback(['vignette1'], function ($vignette1) {
-
-                return view('admin.action.columunimage', ['vignette1'=>$vignette1]);
-               
-            })->label('Image du produit'),
-          
 
         ];
     }

@@ -106,7 +106,7 @@
                   @endif
                 <div class="my-4">
                   <p class="my-4 text-center detail-commande-title-right">Détail de la commande : </p>
-                    @foreach (Cart::content() as $item)
+                    @foreach (Cart::instance('cart')->content() as $item)
                       @if ($item->options->option_price > 0)
                           @if ($item->model->price_promos > 0)
                             <div class="col-lg-6"><img src="{{ asset($item->model->vignette1)}}"> <span>modéle de base: {{$item->model->name}} <i>prix: {{FormatPrice($item->model->price)}}</i> <br> option: {{$item->options->name_option}} (supplément: {{FormatPrice($item->options->option_price)}})</span><i class="badge vert-background text-black mx-2"> X {{$item->qty}} </i></div> <br><span>Total (option) : {{FormatPrice($item->model->price + $item->options->option_price)}}</span> <br><span>réduction : {{FormatPrice($item->model->price_promos)}}</span> <hr>
@@ -123,10 +123,10 @@
                     @endforeach
                     <span class="text-muted">
                     @if (IsFreeShipping())
-                      Sous-total : {{ FormatPrice(Cart::subtotal())}} <br>
+                      Sous-total : {{ FormatPrice(Cart::instance('cart')->subtotal())}} <br>
                       Total à payer : {{ FormatPrice(Total()) }}
                     @else
-                      Sous-total : {{ FormatPrice(Cart::subtotal())}} <br>
+                      Sous-total : {{ FormatPrice(Cart::instance('cart')->subtotal())}} <br>
                      Frais de port : {{ FormatPrice(FraisDePort()) }} <br>
                       Total à payer : {{ FormatPrice(TotalTTC()) }}
                     @endif
@@ -148,7 +148,7 @@
                   </div>
                   <div>
                   <p class="my-4 text-center detail-commande-title-right">Détails de la commande : </p>
-                    @foreach (Cart::content() as $item)
+                    @foreach (Cart::instance('cart')->content() as $item)
                           <div class="col-lg-6"><img src="{{ asset($item->model->vignette1)}}"> <span>{{$item->model->name}}</span><i class="badge vert-background text-black mx-2"> X {{$item->qty}} </i></div> <br>  <hr>
                     @endforeach
                     <span class="text-muted">
@@ -157,9 +157,9 @@
                         Promotion sur ce produit: {{$item->model->price_promos}}
                       @else
                       @endif
-                      Total sans remise : {{ FormatPrice(Cart::subtotal())}} <br>
+                      Total sans remise : {{ FormatPrice(Cart::instance('cart')->subtotal())}} <br>
                       Total de la remise : {{ FormatPrice(request()->session()->get('coupon')['remise']) }} <br> 
-                      Total à payer : {{ FormatPrice((Cart::subtotal() - request()->session()->get('coupon')['remise'])) }}
+                      Total à payer : {{ FormatPrice((Cart::instance('cart')->subtotal() - request()->session()->get('coupon')['remise'])) }}
                     @else
                       Frais de livraison : {{ FormatPrice(FraisDePort())}} <br>
                       Total sans remise : {{ FormatPrice(TotalTTC())}} <br>

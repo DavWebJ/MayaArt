@@ -17,21 +17,14 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->string('slug')->unique();
-            $table->text('detail')->nullable();
+            $table->longText('detail')->nullable();
             $table->longText('desc')->nullable();
             $table->integer('price')->default(0);
             $table->integer('price_promos')->default(0);
-            $table->foreignId('category_id')->constrained('categories')->cascadeOnDelete()->cascadeOnUpdate();;
-            $table->string('vignette1')->nullable();
-            $table->string('alt1')->nullable();
-            $table->string('vignette2')->nullable();
-            $table->string('alt2')->nullable();
-            $table->string('vignette3')->nullable();
-            $table->string('alt3')->nullable();
-            $table->string('vignette4')->nullable();
-            $table->string('alt4')->nullable();
+            $table->string('main_image')->nullable();
+            $table->string('video')->nullable();
+            $table->foreignId('category_id')->constrained('categories')->cascadeOnDelete('cascade');
             $table->string('meta')->nullable();
-            
             $table->unsignedInteger('stock')->default(0);
             $table->timestamps();
         });

@@ -55,7 +55,7 @@ class CreateNewUser implements CreatesNewUsers
             'prenom' => $input['prenom'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
-
+            'email_verified_at'=>Carbon::now(),
         ]);
 
     }

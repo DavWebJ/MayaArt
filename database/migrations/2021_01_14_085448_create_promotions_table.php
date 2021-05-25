@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -20,6 +21,7 @@ class CreatePromotionsTable extends Migration
             $table->string('banner')->nullable();
             $table->string('alt')->nullable();
             $table->foreignId('product_id')->constrained('products');
+            $table->date('end')->nullable()->default(Carbon::now('Europe/Paris')->addYear());
             $table->timestamps();
         });
     }

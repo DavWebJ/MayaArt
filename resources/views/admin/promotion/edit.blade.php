@@ -36,16 +36,20 @@
                         </div>
                     </div>
 
-                    
+                    <div class="form-group">
+                        <label for="end">Modifie la date à laquelle ta promos prendra fin</label>
+                        <input type="text" class="js-flatpickr form-control bg-white js-flatpickr-enabled flatpickr-input active date" id="end" name="end" placeholder="{{ $promotion->end }}" value="{{ $promotion->end }}" readonly="readonly">
+                    </div> 
+
                     <label for="alt" class="label">Ajouter une description pour l'image (ALT)</label>
                     <input type="text" id="alt" name="alt" value="{{ $promotion->alt}}" class="form-control my-2" placeholder="description de l'image">
                     <div class="my-2"></div>
 
-                    <label for="title">Modifiez le titre de la promotion</label>
+                    <label for="title">Modifiez la phrase d'accroche de ta promotion</label>
                     <input type="text" id="title" name="title" value="{{ $promotion->title }}" class="form-control my-2" placeholder="">
 
                     <hr class="hr-light">
-                    <label for="content">Modifier la description de cette promotion</label>
+                    <label for="content">Modifier la description du produit</label>
                     <textarea type="text" id="desc" name="desc" class="form-control my-2" placeholder="{{ $promotion->desc }}">{{ $promotion->desc }}</textarea>
 
                         <button class="btn btn-success btn-block" type="submit"><span class="fas fa-pen pr-2"></span>Modifier la promotion</button>

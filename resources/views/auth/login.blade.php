@@ -1,58 +1,83 @@
 @extends('layouts.master')
 @section('login')
 
- <!--================login_part Area =================-->
-    <section class="login_part section_padding ">
+
+<!-- Page Title/Header Start -->
+    <div class="page-title-section section" data-bg-image="images/bg/page-title-1.jpg">
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 col-md-6">
-                    <div class="login_part_text text-center">
-                        <div class="login_part_text_iner">
-                            <h2>Pas encore inscrit ? </h2>
-                            <p>There are advances being made in science and technology
-                                everyday, and a good example of this is the</p>
-                                @if (Route::has('register'))
-                                    <a href="{{ route('register') }}" class="btn btn-secondary px-5 py-3 mt-3">Créer un compte.</a>
-                                @endif
-                        </div>
+            <div class="row">
+                <div class="col">
+                    <div class="page-title">
+                        <h1 class="title">Page de connexion</h1>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{{ route('home') }}">Acceuil</a></li>
+                            <li class="breadcrumb-item active">Connexion</li>
+                        </ul>
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="login_part_form">
-                        <div class="login_part_form_iner">
-                            <h3>Content de vous revoir ! <br>
-                                Connectez vous ici</h3>
-                            <form method="POST"  id="form-login" action="{{ route('login') }}" class="row contact_form" novalidate="novalidate">
+            </div>
+        </div>
+    </div>
+    <!-- Page Title/Header End -->
+
+    <!-- Login & Register Section Start -->
+    <div class="section section-padding">
+        <div class="container">
+            <div class="row no-gutters">
+                <div class="col-lg-12">
+                    <div class="user-login-register bg-light">
+                        <div class="login-register-title">
+                            <h2 class="title">Login</h2>
+                            <p class="desc">Content de vous revoir !</p>
+                        </div>
+                        <div class="login-register-form">
+                            <form method="POST"  id="form-login" action="{{ route('login') }}"  novalidate="novalidate">
                                 @csrf
-                                <div class="col-md-12 form-group p_star">
-                                    <input type="email" id="email" name="email" class="form-control":value="old('email')" required autofocus
+                                <div class="row learts-mb-n50">
+                                    <div class="col-12 learts-mb-50">
+                                        <input type="email" id="email" name="email" :value="old('email')" required autofocus
                                         placeholder="Votre adresse email">
-                                </div>
-                                <div class="col-md-12 form-group p_star">
-                                    <input  class="form-control" type="password" name="password" required autocomplete="current-password"
-                                        placeholder="Mot de passe">
-                                </div>
-                                <div class="col-md-12 form-group">
-                                    <div class="creat_account d-flex align-items-center">
-                                        <input type="checkbox" id="f-option" name="selector">
-                                        <label for="f-option">Se souvenir de moi</label>
                                     </div>
-                                    <button type="submit" value="submit" class="btn btn-primary px-5 py-3 mt-3">
-                                        Connexion
-                                    </button>
-                                    @if (Route::has('password.request'))
-                                        <a class="btn btn-primary px-5 py-3 mt-3" href="{{ route('password.request') }}">Mot de passe oublié ?</a>
-                                    @endif
+                                    <div class="col-12 learts-mb-50">
+                                    <input   type="password" name="password" required autocomplete="current-password"
+                                        placeholder="Mot de passe">
+                                    <div class="col-12 text-center learts-mb-50 mt-4">
+                                        <button class="btn btn-dark btn-outline-hover-dark" type="submit">se connecter</button>
+                                    </div>
+                                    <div class="col-12 learts-mb-50">
+                                        <div class="row learts-mb-n20">
+                                            <div class="col-12 learts-mb-20">
+                                                <div class="form-check">
+                                                    <input type="checkbox" class="form-check-input" id="rememberMe">
+                                                    <label class="form-check-label" for="rememberMe">Se souvenir de moi ?</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 learts-mb-20">
+                                                @if (Route::has('password.request'))
+                                                    <a href="{{ route('password.request') }}" class="fw-400">Mot de passe oublié ?</a>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </form>
+                            <div class="col-12 learts-mb-50">
+                                <h2 class="title text-center">Vous n' avez pas encore de compte ? </h2>
+                                @php
+                                    $user = App\Models\User::count();
+                                @endphp
+                                <p class="desc text-center">rejoigner les {{ $user }} clients déjà inscrits</p>
+                                <div class="row justify-center">
+                                    <a href="{{ route('register') }}" class="btn btn-outline-primary3 mx-auto">Me créer un compte</a>
+                                </div>
+                                </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-    <!--================login_part end =================-->
-
+    </div>
+    <!-- Login & Register Section End -->
 
         <x-jet-validation-errors class="mb-4" />
         @if (session('status'))

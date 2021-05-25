@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use App\Models\Promotion;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
 
 class PromotionController extends Controller
 {
@@ -33,7 +36,8 @@ class PromotionController extends Controller
      */
     public function create()
     {
-        return view('admin.promotion.create');
+        $products = Product::all();
+        return view('admin.promotion.create',compact('products'));
     }
 
     /**
@@ -44,52 +48,64 @@ class PromotionController extends Controller
      */
     public function store(Request $request)
     {
+       
         $this->validate($request,
         [
             'title'=>'required|unique:promotions,title',
             'banner' => 'image|mimes:jpeg,png,jpg,gif,svg',
             'alt'=>'required',
             'desc'=>'required',
+            'product_id' => ['required','exists:App\Models\product,id'],
+            'end'=>'required'
         ]);
 
         
         $promos = Promotion::create([
             'title' => $request->title,
-            'banner' => 'image',
             'alt'=>$request->alt,
+            'banner'=>'image',
             'desc'=>$request->desc,
+            'product_id'=>$request->product_id,
+            'end' =>$request->end
         ]);
-
-
-        if($request->hasFile('image') )
-        {
-            $file = $request->file('image');
-
-            // Get filename with extension
-            $filenameWithExt = $file->getClientOriginalName();
-
-            // Get file path
-            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-
-            // Remove unwanted characters
-            $filename = preg_replace("/[^A-Za-z0-9 ]/", '', $filename);
-            $filename = preg_replace("/\s+/", '-', $filename);
-
-            // Get the original image extension
-            $extension = $file->getClientOriginalExtension();
-
-            // Create unique file name
-            $fileNameToStore = $filename.'_'.time().'.'.$extension;
-
-            $file->move('storage/promos/banner/',$fileNameToStore);
-            $promos->image = 'storage/promos/banner/' .$fileNameToStore;
            
-        }
+
+        $file = $request->file('banner');
+      // Get filename with extension
+      $filenameWithExt = $file->getClientOriginalName();
+
+      // Get file path
+      $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+
+      // Remove unwanted characters
+      $filename = preg_replace("/[^A-Za-z0-9 ]/", '', $filename);
+      $filename = preg_replace("/\s+/", '-', $filename);
+
+      // Get the original image extension
+      $extension = $file->getClientOriginalExtension();
+
+      // Create unique file name
+      $fileNameToStore = $filename.'_'.time().'.'.$extension;
+
+        $resize = Image::make($file)->resize(1920, 750, function ($constraint) {
+        $constraint->aspectRatio();
+      })->encode('jpg');
+
+      // Create hash value
+      $hash = md5($resize->__toString());
+
+      // Prepare qualified image name
+      $image = $hash."jpg";
+
+      // Put image to storage
+       // Storage::move('storage/promos/',$image);
+       $image =  Storage::put('promos/',$image);
+       $file->move('storage/promos/',$fileNameToStore);
+        $promos->banner = 'storage/promos/'.$fileNameToStore;
 
         $promos->save();
-
-        $request->session()->flash('success', 'La réduction a bien été créée');
-        return redirect('admin/dashboard');
+        $request->session()->flash('success', 'La promotion a bien été créée');
+        return redirect()->route('promotion.index');
     }
 
     /**

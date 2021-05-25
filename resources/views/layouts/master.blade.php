@@ -1,243 +1,401 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
-        <meta http-equiv="X-UA-Compatible" content="IE=7">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-         <meta name="keywords" content="tissus,design,maya art,art,peinture,dessin,vetement,commerce,boutique,shop">
-         <meta name="description"content="@yield('meta')">
-        <meta name="author" content="Ludmilla Quesnot">
-        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-        {{--  <meta name="author" content="David Friquet">
-        <meta name="twitter:site" content="@david_friquet">
-        <meta name="twitter:title" content="david-friquet développeur Web/Unity freelance">
-        <meta name="twitter:description" content="développeur web freelance/développeur Unity.">
-        <meta name="twitter:image:src" content="https://twitter.com/david_friquet/photo">  --}}
-        <!-- Open Graph meta pour Facebook -->
-        {{--  <meta property="og:title" content="David-friquet developpeur web freelance" />
-        <meta property="og:url" content="https://www.facebook.com/davidfriquet27/" />
-        <meta property="og:image" content="https://www.facebook.com/610335496111481/photos/678034209341609/" />
-        <meta property="og:description" content="développeur web freelance/développeur Unity." />
-        <meta property="og:site_name" content="davidfriquet27" />  --}}
-        <title>@yield('title')</title>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+  <meta http-equiv="X-UA-Compatible" content="IE=7">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="keywords" content="tissus,design,maya art,art,peinture,dessin,vetement,commerce,boutique,shop">
+    <meta name="description"content="@yield('meta')">
+  <meta name="author" content="Ludmilla Quesnot">
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    {{--  <meta name="author" content="David Friquet">
+    <meta name="twitter:site" content="@david_friquet">
+    <meta name="twitter:title" content="david-friquet développeur Web/Unity freelance">
+    <meta name="twitter:description" content="développeur web freelance/développeur Unity.">
+    <meta name="twitter:image:src" content="https://twitter.com/david_friquet/photo">  --}}
+    <!-- Open Graph meta pour Facebook -->
+    {{--  <meta property="og:title" content="David-friquet developpeur web freelance" />
+    <meta property="og:url" content="https://www.facebook.com/davidfriquet27/" />
+    <meta property="og:image" content="https://www.facebook.com/610335496111481/photos/678034209341609/" />
+    <meta property="og:description" content="développeur web freelance/développeur Unity." />
+    <meta property="og:site_name" content="davidfriquet27" />  --}}
+    <title>@yield('title')</title>
 
-        <link rel="alternate" href="rss.xml" type="application/rss+xml" title="RSS">
-        <!-- styles  -->
-        <link rel="icon" href="{{ asset('img/favicon.png') }}">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
-    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="{{asset('css/open-iconic-bootstrap.min.css')}}">
-    <link rel="stylesheet" href="{{asset('css/animate.css')}}">
-    <link rel="stylesheet" href="{{asset('css/owl.carousel.min.css')}}">
-    <link rel="stylesheet" href="{{asset('css/owl.theme.default.min.css')}}">
-    <link rel="stylesheet" href="{{asset('css/magnific-popup.css')}}">
-    <link rel="stylesheet" href="{{asset('css/aos.css')}}">
-    <link rel="stylesheet" href="{{asset('css/ionicons.min.css')}}">
-    <link rel="stylesheet" href="{{asset('css/bootstrap-datepicker.css')}}">
-    <link rel="stylesheet" href="{{asset('css/jquery.timepicker.css')}}">
-    <link rel="stylesheet" href="{{asset('css/flaticon.css')}}">
-    <link rel="stylesheet" href="{{asset('css/icomoon.css')}}">
-    <link rel="stylesheet" href="{{asset('css/style.css')}}">
-        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css'/>
+    <link rel="alternate" href="rss.xml" type="application/rss+xml" title="RSS">
+    <!-- styles  -->
+    <link rel="icon" href="{{ asset('img/favicon.png') }}">
 
-        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css'/>
-        <link rel="stylesheet" type="text/css" href="{{asset("vendor/cookie-consent/css/cookie-consent.css")}}">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css'/>
 
-        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.3/dist/alpine.js" defer></script>
-        
-        <!-- Scripts -->
-        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js'></script>
-
-        
-        @yield('extra-script')
-        <script src='https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js'></script>
-        
-        <script src="{{ asset('js/app.js') }}"></script>
-        @livewireScripts
-
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css'/>
         <!-- Styles -->
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/coookie.css') }}" rel="stylesheet">
-        @livewireStyles
+    <link rel="stylesheet" href="{{  asset('css/vendor/vendor.min.css') }}">
+    <link rel="stylesheet" href="{{  asset('css/plugins/plugins.min.css') }}">
+    <link rel="stylesheet" href="{{ mix('css/main.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.7.0/nouislider.min.css" />
+    <link href="{{ asset('css/coookie.css') }}" rel="stylesheet">
+    @livewireStyles
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.3/dist/alpine.js" defer></script>
+    
+    <!-- Scripts -->
+    @yield('extra-script')
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js'></script>
+    <script src="{{  asset('js/vendor/vendor.min.js')}}"></script>
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    @livewireScripts
     </head>
-    <body class="overflow-x-hidden goto-here">
-     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-	    <div class="container">
-	      <a class="navbar-brand" href="{{ route('home') }}">MayArt</a>
-	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-	        <span class="oi oi-menu"></span> Menu
-	      </button>
-	      <div class="collapse navbar-collapse" id="ftco-nav">
-	        <ul class="navbar-nav mr-auto">
-	          <li class="nav-item active"><a href="{{ route('home') }}" class="nav-link">Home</a></li>
-	          <li class="nav-item"><a href="{{ route('about') }}" class="nav-link">Qui-suis-je</a></li>
-            <li class="nav-item"><a href="{{ route('shop') }}" class="nav-link">Boutique</a></li>
-	          <li class="nav-item"><a href="{{ route('contact') }}" class="nav-link">Contact</a></li>
-            @auth
-             	<li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }}</a>
-              <div class="dropdown-menu" aria-labelledby="dropdown04">
-                @if (auth()->user()->role_id == 2)
-                <a href="{{ route('admin.dashboard') }}" :active="request()->routeIs('admin.dashboard')">
-                    {{ __('Dashboard') }}
-                </a>
-                        @elseif(auth()->user()->role_id == 1)
-                <a href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                    {{ __('Dashboard') }}
-                </a>
-                @endif
-                <div class="border-t border-gray-100"></div>
-                <!-- Authentication -->
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <a href="{{ route('logout') }}"
+    <body>
+    <script src="{{  asset('js/plugins/plugins.min.js')}}"></script> 
+    <script src="{{ asset('js/share.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}" defer></script>
+   <!-- Header Section Start -->
+    <div class="header-section section section-fluid bg-white d-none d-xl-block">
+        <div class="container">
+            <div class="row align-items-center">
+
+                <!-- Header Logo Start -->
+                <div class="col-auto">
+                    <div class="header-logo">
+                        <a href="{{ route('home') }}"><img src="{{ asset('images/logo/MayArt.jpg') }}" alt="Learts Logo" width="250px"></a>
+                    </div>
+                </div>
+                <!-- Header Logo End -->
+
+                <!-- Search Start -->
+                <div class="col-auto mr-auto">
+                    <nav class="site-main-menu site-main-menu-left menu-height-100 justify-content-center">
+                        <ul>
+                        <li ><a href="{{ route('home') }}"><span class="menu-text">Home</span></a></li>
+                        <li><a href="{{ route('about') }}"><span class="menu-text">Qui suis je</span></a>
+                        </li>
+                        <li class="has-children"><a href="#"><span class="menu-text">Gallery</span></a>
+                            <ul class="sub-menu">
+                                <li><a href="portfolio-3-columns.html"><span class="menu-text">Portfolio 3 Columns</span></a></li>
+                                <li><a href="portfolio-details.html"><span class="menu-text">Portfolio Details</span></a></li>
+                            </ul>
+                        </li>
+                        <li><a href="{{ route('shop') }}"><span class="menu-text">Boutique</span></a>
+                        </li>
+                        <li><a href="{{ route('contact') }}"><span class="menu-text">Contact</span></a>
+                        </li>
+                        <!-- if logged -->
+                        @auth
+                          <li class="has-children"><a href="#"><span class="menu-text">{{ Auth::user()->prenom }}</span></a>
+                            <ul class="sub-menu">
+                              @if (auth()->user()->role_id == 2)
+                              <li><a href="{{ route('admin.dashboard') }}" :active="request()->routeIs('admin.dashboard')"><span class="menu-text">dashboard admin</span></a></li>
+                              </a>
+                                @elseif(auth()->user()->role_id == 1)
+                                <li><a href="{{ route('dashboard') }}"  :active="request()->routeIs('dashboard')"><span class="menu-text">mon compte</span></a></li>
+                              </a>
+                              @endif
+                              <li><form method="POST" action="{{ route('logout') }}">
+                                      @csrf
+                                        <a href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                    this.closest('form').submit();">
-                        {{ __('Logout') }}
-                </a>
-                </form>
-              </div> 
-            @endauth
-            @guest
-                <li class="nav-item cta cta-colored"><a href="{{ route('login') }}" class="nav-link"><span class="fa fa-user"></span></a></li>
-            @endguest
-	          <li class="nav-item cta cta-colored"><a href="{{route('customer.cart')}}" class="nav-link"><span class="icon-shopping_cart"></span>[{{ Cart::count()}}]</a></li>
-	        </ul>
-	      </div>
-	    </div>
-	  </nav>
-    <!-- END nav -->
+                                                    this.closest('form').submit();"><span class="menu-text">Déconexion</span></a>
+                                    </form></li>
+                            </ul>
+                        </li>
+                        @endauth
+                        <!--end if logged -->
+                    </ul>
+                </nav>
+            </div>
+            <div class="col-auto">
+                    <div class="header-tools justify-content-end">
+                        @guest
+                        <div class="header-login">
+                            <a href="{{ route('login') }}"><i class="fal fa-user"></i></a>
+                        </div>
+                        @endguest
+                        @auth
+                        @endauth
+                       @livewire('cart-count-component')
+                       @livewire('wish-list-count-component')
+                    </div>
+            </div>
+        <!-- Site Menu Section End -->
+        </div>
+    </div>
+</div>
+    <!-- Header Section End -->
+
+    <!-- Header Sticky Section Start -->
+    <div class="sticky-header header-menu-center section bg-white d-none d-xl-block">
+        <div class="container">
+            <div class="row align-items-center">
+                <!-- Header Logo Start -->
+                <div class="col">
+                    <div class="header-logo">
+                        <a href="{{ route('home') }}"><img src="{{ asset('images/logo/MayArt.jpg') }}" alt="Learts Logo" width="250px"></a>
+                    </div>
+                </div>
+                <!-- Header Logo End -->
+
+                <!-- Search Start -->
+                <div class="col d-none d-xl-block">
+                    <nav class="site-main-menu justify-content-center">
+                        <ul>
+                            <li><a href="{{ route('home') }}"><span class="menu-text">Home</span></a>
+                            </li>
+                            <li><a href="{{ route('about') }}"><span class="menu-text">Qui suis je</span></a>
+                            <li class="has-children"><a href="#"><span class="menu-text">Gallery</span></a>
+                                <ul class="sub-menu">
+                                    <li><a href="portfolio-3-columns.html"><span class="menu-text">Portfolio 3 Columns</span></a></li>
+                                    <li><a href="portfolio-details.html"><span class="menu-text">Portfolio Details</span></a></li>
+                                </ul>
+                            </li>
+                            <li ><a href="{{ route('shop') }}"><span class="menu-text">Boutique</span></a>
+                            </li>
+                            <li ><a href="{{ route('contact') }}"><span class="menu-text">Contact</span></a>
+                            </li>
+                             <!-- if logged -->
+                        @auth
+                          <li class="has-children"><a href="#"><span class="menu-text">{{ Auth::user()->prenom }}</span></a>
+                            <ul class="sub-menu">
+                              @if (auth()->user()->role_id == 2)
+                              <li><a href="{{ route('admin.dashboard') }}" :active="request()->routeIs('admin.dashboard')"><span class="menu-text">dashboard admin</span></a></li>
+                              </a>
+                                @elseif(auth()->user()->role_id == 1)
+                                <li><a href="{{ route('dashboard') }}"  :active="request()->routeIs('dashboard')"><span class="menu-text">mon compte</span></a></li>
+                              </a>
+                              @endif
+                              <li><form method="POST" action="{{ route('logout') }}">
+                                      @csrf
+                                        <a href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                    this.closest('form').submit();"><span class="menu-text">Déconexion</span></a>
+                                    </form></li>
+                            </ul>
+                        </li>
+                        @endauth
+                        <!--end if logged -->
+                        </ul>
+                    </nav>
+                </div>
+                <!-- Search End -->
+
+                <!-- Header Tools Start -->
+                <div class="col-auto">
+                    <div class="header-tools justify-content-end">
+                        @guest
+                        <div class="header-login">
+                            <a href="{{ route('login') }}"><i class="fal fa-user"></i></a>
+                        </div>
+                        @endguest
+                        @auth
+                        @endauth
+                           @livewire('cart-count-component')
+                           @livewire('wish-list-count-component')
+                        <div class="mobile-menu-toggle d-xl-none">
+                            <a href="#offcanvas-mobile-menu" class="offcanvas-toggle">
+                                <svg viewBox="0 0 800 600">
+                                    <path d="M300,220 C300,220 520,220 540,220 C740,220 640,540 520,420 C440,340 300,200 300,200" id="top"></path>
+                                    <path d="M300,320 L540,320" id="middle"></path>
+                                    <path d="M300,210 C300,210 520,210 540,210 C740,210 640,530 520,410 C440,330 300,190 300,190" id="bottom" transform="translate(480, 320) scale(1, -1) translate(-480, -318) "></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Header Tools End -->
+
+            </div>
+        </div>
+
+    </div>
+    <!-- Header Sticky Section End -->
+    <!-- Mobile Header Section Start -->
+    <div class="mobile-header bg-white section d-xl-none">
+        <div class="container">
+            <div class="row align-items-center">
+
+                <!-- Header Logo Start -->
+                <div class="col">
+                    <div class="header-logo">
+                        <a href="{{ route('home') }}"><img src="{{ asset('images/logo/MayArt.jpg') }}" alt="Learts Logo" width="250px"></a>
+                    </div>
+                </div>
+                <!-- Header Logo End -->
+
+                <!-- Header Tools Start -->
+                <div class="col-auto">
+                    <div class="header-tools justify-content-end">
+                        @guest
+                        <div class="header-login d-none d-sm-block">
+                            <a href="{{ route('login') }}"><i class="fal fa-user"></i></a>
+                        </div>
+                        @endguest
+                        @auth
+                        @endauth
+                        <div class="header-cart">
+                           @livewire('cart-count-component')
+                            @livewire('wish-list-count-component')
+                        </div>
+                        <div class="mobile-menu-toggle">
+                            <a href="#offcanvas-mobile-menu" class="offcanvas-toggle">
+                                <svg viewBox="0 0 800 600">
+                                    <path d="M300,220 C300,220 520,220 540,220 C740,220 640,540 520,420 C440,340 300,200 300,200" id="top"></path>
+                                    <path d="M300,320 L540,320" id="middle"></path>
+                                    <path d="M300,210 C300,210 520,210 540,210 C740,210 640,530 520,410 C440,330 300,190 300,190" id="bottom" transform="translate(480, 320) scale(1, -1) translate(-480, -318) "></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Header Tools End -->
+
+            </div>
+        </div>
+    </div>
+    <!-- Mobile Header Section End -->
+
+        <!-- OffCanvas Wishlist Start -->
+    <div id="offcanvas-wishlist" class="offcanvas offcanvas-wishlist">
+       @livewire('wishlist-dynamique')
+    </div>
+    <!-- OffCanvas Wishlist End -->
+
+    <!-- OffCanvas Cart Start -->
+    <div id="offcanvas-cart" class="offcanvas offcanvas-cart">
+        @livewire('cart-dynamique-component')
+    </div>
+    <!-- OffCanvas Cart End -->
+
+    <!-- OffCanvas Search Start -->
+    <div id="offcanvas-mobile-menu" class="offcanvas offcanvas-mobile-menu">
+        <div class="inner customScroll">
+            <div class="offcanvas-menu">
+                <ul>
+                    <li><a href="{{ route('home') }}"><span class="menu-text">Home</span></a></li>
+                    <li><a href="{{ route('about') }}"><span class="menu-text">Qui suis je</span></a></li>
+                    <li><a href="#"><span class="menu-text">Gallery</span></a>
+                        <ul class="sub-menu">
+                            <li><a href="portfolio-3-columns.html"><span class="menu-text">Portfolio 3 Columns</span></a></li>
+                        </ul>
+                    </li>
+                    <li><a href="{{ route('shop') }}"><span class="menu-text">Boutique</span></a></li>
+                    <li><a href="{{ route('contact') }}"><span class="menu-text">Contact</span></a></li>
+                </ul>
+            </div>
+            <div class="offcanvas-buttons">
+                <div class="header-tools">
+                    <div class="header-login">
+                        @auth
+                        @if (auth()->user()->role_id == 2)
+                          <a href="{{ route('admin.dashboard') }}" :active="request()->routeIs('admin.dashboard')"><i class="fal fa-user"></i></a>
+                            </a>
+                            @elseif(auth()->user()->role_id == 1)
+                           <a href="{{ route('dashboard') }}"  :active="request()->routeIs('dashboard')"><i class="fal fa-user"></i></a>
+                            </a>
+                            @endif
+                        @endauth
+                        @guest
+                            <a href="{{ route('login') }}"><i class="fal fa-user"></i></a>
+                        @endguest
+                    </div>
+                    @livewire('cart-count-component')
+                    @livewire('wish-list-count-component')
+                </div>
+            </div>
+            <div class="offcanvas-social">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+    <!-- OffCanvas Search End -->
+
+    <div class="offcanvas-overlay"></div>
+
         {{ $slot ?? '' }}
         @yield('about')
         @yield('home')
         @yield('contact')
         @yield('checkout')
+        @yield('shop')
+        @yield('shop-filter')
         @yield('success')
         @yield('error')
         @yield('order')
         @yield('mentions')
         @yield('polices')
-        @yield('post_single')
-        @yield('blog.category')
         @yield('content')
         @yield('script')
-        @yield('shop.category')
         @yield('login')
+        @yield('register')
         @include('includes.errors')
         @stack('modals')
         @yield('stripejs')
-  <section class="ftco-section-parallax">
-      <div class="parallax-img d-flex align-items-center">
+        @yield('404')
+        @yield('500')
+    <!-- Subscribe Section Start -->
+    <div class="section learts-pt-60 learts-pb-60" data-bg-image="images/bg/bg-3.jpg">
         <div class="container">
-          <div class="row d-flex justify-content-center py-5">
-            <div class="col-md-7 text-center heading-section ftco-animate">
-              <h2>Rester informer sur mes nouveau produits, inscrivez-vous à ma newsletter.</h2>
-              <div class="row d-flex justify-content-center mt-5">
-                <div class="col-md-8">
-                  <form action="{{ route('subscribe') }}" class="subscribe-form" method="POST">
-                    @csrf
-                    @method('post')
-                    <div class="form-group d-flex">
-                      <input type="text" class="form-control" placeholder="Enter email address" required>
-                      <button type="submit" class="submit px-3">S'inscrire</button>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <footer class="ftco-footer bg-light ftco-section">
-      <div class="container">
-      	<div class="row">
-      		<div class="mouse">
-						<a href="#" class="mouse-icon">
-							<div class="mouse-wheel"><span class="ion-ios-arrow-up"></span></div>
-						</a>
-					</div>
-      	</div>
-        <div class="row mb-5">
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">MayArt</h2>
-              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-              <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
-                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4 ml-md-5">
-              <h2 class="ftco-heading-2">Menu</h2>
-              <ul class="list-unstyled">
-                <li><a href="{{ route('shop') }}" class="py-2 d-block">Boutique</a></li>
-                <li><a href="{{ route('about') }}" class="py-2 d-block">Qui-suis-je</a></li>
-                <li><a href="{{ route('contact') }}" class="py-2 d-block">Contactez-moi</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md-4">
-             <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">Help</h2>
-              <div class="d-flex">
-	              <ul class="list-unstyled mr-l-5 pr-l-3 mr-4">
-	                <li><a href="{{ route('cgv') }}" class="py-2 d-block">Shipping Information</a></li>
-	                <li><a href="{{ route('contact') }}" class="py-2 d-block">retour et échanges</a></li>
-	                <li><a href="{{ route('mentions') }}" class="py-2 d-block">Mentions légales</a></li>
-	                <li><a href="{{ route('cgv') }}" class="py-2 d-block">CGV</a></li>
-	              </ul>
-	            </div>
-            </div>
-          </div>
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4">
-            	<h2 class="ftco-heading-2">Have a Questions?</h2>
-            	<div class="block-23 mb-3">
-	              <ul>
-	                <li><span class="icon icon-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
-	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929 210</span></a></li>
-	                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@yourdomain.com</span></a></li>
-	              </ul>
-	            </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12 text-center">
+            <div class="row align-items-center learts-mb-n30">
 
-            <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-						  Copyright &copy; {{ \Carbon\Carbon::now()->parse()->year }} All rights reserved MayArt | This template is made with <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-						  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-						</p>
-          </div>
+                <div class="col-lg-5 learts-mb-30">
+                    <!-- Section Title Start -->
+                    <div class="section-title text-center mb-0">
+                        <h3 class="sub-title">rester au courant</h3>
+                    </div>
+                    <!-- Section Title End -->
+                </div>
+
+                <div class="col-lg-7 learts-mb-30">
+                    <span class="d-block h4 text-heading learts-mb-10 text-center text-lg-left">Souscrire à ma newsletter.</span>
+                    <form id="mc-form" class="mc-form widget-subscibe m-lg-0">
+                        <input id="mc-email" autocomplete="off" type="email" placeholder="votre email">
+                        <button id="mc-submit" class="btn btn-primary">Souscrire</button>
+                    </form>
+                    <!-- mailchimp-alerts Start -->
+                    <div class="mailchimp-alerts text-centre">
+                        <div class="mailchimp-submitting"></div><!-- mailchimp-submitting end -->
+                        <div class="mailchimp-success text-success"></div><!-- mailchimp-success end -->
+                        <div class="mailchimp-error text-danger"></div><!-- mailchimp-error end -->
+                    </div><!-- mailchimp-alerts end -->
+                </div>
+
+            </div>
         </div>
-      </div>
-    </footer>
+    </div>
+    <!-- Subscribe Section End -->
+    @include('includes.footer')
+        <!-- Modal -->
+    <div class="quickViewModal modal fade" id="quickViewModal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <button class="close" data-dismiss="modal">&times;</button>
+                <div class="row learts-mb-n30">
+                    <!-- Product Images Start -->
+                    <div class="col-lg-6 col-12 learts-mb-30">
+                        <div class="product-images">
+                            <div class="product-gallery-slider-quickview">
+                                <div class="product-zoom" data-image="assets/images/product/single/1/product-zoom-1.jpg">
+                                    <img src="assets/images/product/single/1/product-1.jpg" alt="">
+                                </div>
+                                <div class="product-zoom" data-image="assets/images/product/single/1/product-zoom-2.jpg">
+                                    <img src="assets/images/product/single/1/product-2.jpg" alt="">
+                                </div>
+                                <div class="product-zoom" data-image="assets/images/product/single/1/product-zoom-3.jpg">
+                                    <img src="assets/images/product/single/1/product-3.jpg" alt="">
+                                </div>
+                                <div class="product-zoom" data-image="assets/images/product/single/1/product-zoom-4.jpg">
+                                    <img src="assets/images/product/single/1/product-4.jpg" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product Images End -->
+                </div>
+            </div>
+        </div>
+    </div>
   <!-- loader -->
-  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
-      <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-      <script src="{{ asset('js/jquery.easing.1.3.js') }}"></script>
-      <script src="{{ asset('js/jquery.waypoints.min.js') }}"></script>
-      <script src="{{ asset('js/jquery.stellar.min.js') }}"></script>
-      <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
-      <script src="{{ asset('js/jquery.magnific-popup.min.js') }}"></script>
-      <script src="{{ asset('js/aos.js') }}"></script>
-      <script src="{{ asset('js/jquery.animateNumber.min.js') }}"></script>
-      <script src="{{ asset('js/bootstrap-datepicker.js') }}"></script>
-      <script src="{{ asset('js/scrollax.min.js') }}"></script>
-      <script src="{{ asset('js/main.js') }}"></script>
-        <script src="{{ asset('js/Init.js') }}"></script>
-         <script>
-             $(function () {
-                 const InitClass = new Init();
-             });
-         </script>
     </body>
 </html>

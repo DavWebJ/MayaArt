@@ -13,6 +13,10 @@ class Product extends Model
     protected $fillable = [];
     protected $guarded = ['created_at','deleted_at','updated_at'];
 
+    public function images()
+    {
+        return $this->hasMany(ImageProduct::class,'product_id','id');
+    }
     public function FormatPrice()
     {
         $price = $this->price;
@@ -56,9 +60,10 @@ class Product extends Model
     
   public function calculateRating()
   {
-    $reviews = $this->ratings();
-    $avgRating = $reviews->avg('rating');
+   $ratings = $this->ratings();
+    $avgRating = $ratings->avg('rating');
     $total = round($avgRating,1);
+    
     return $total;
   }
     

@@ -25,8 +25,8 @@ class PromoTable extends LivewireDatatable
                 ->label('Titre'),
 
           
-            Column::name('desc')
-                ->label('Description'),
+            Column::name('end')
+                ->label('Prendra fin le'),
 
             
             Column::callback(['banner'], function ($banner) {

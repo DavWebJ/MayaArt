@@ -2,24 +2,14 @@
 
 @section('admin.index')
 <style>
-  [x-cloak=""] { display: none; }
+    [x-cloak=""] {
+        display: none;
+    }
 </style>
-   <div class="space-y-4">
-       <div class="block jumbotron bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-center">
-           <h1 class="text-teal-900 text-5xl">Liste des Super Admins</h1>
-       </div>
-   </div>
-   <div class="row">
-      <div class="col-12">
-      	<div class="card card-list">
-        <div class="card-header py-3 d-flex justify-content-center my-4">
-            <a href="{{route('admin.create')}}" class="btn btn-outline-danger btn-md px-3 my-0 mr-0 white-text"><i class="fas fa-plus pr-2"></i>Créer un Super Admin</a>
-        </div>
-          <div class="card-body">
 
-            <livewire:admin-tables />
-          </div>
-        </div>
-      </div>
-    </div>
+<div class="col-md-12 col-12 col-md-12 col-xl-12">
+    <h1 class="head-title">Liste des Super Admins</h1>
+    <button  type="button" class="btn btn-hero-info js-click-ripple-enabled" data-toggle="click-ripple" style="overflow: hidden; position: relative; z-index: 1;"><a href="{{route('admin.create')}}"></a><span class="fa fa-plus"></span> Ajouter un Admin</button>
+      <livewire:admin-tables />
+</div>
 @endsection

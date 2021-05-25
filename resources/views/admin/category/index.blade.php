@@ -5,22 +5,14 @@
   [x-cloak=""] { display: none; }
 </style>
 
-   <div class="elegant-color">
-       <div class="jumbotron text-center">
-           <h1 class="font-perso text-info display-2">Liste des catégories boutique</h1>
-       </div>
-   </div>
-
-
-   <div class="row">
-      <div class="col-12">
-      	<div class="card card-list">
-        {{-- <div class="card-header bg-dark py-3 d-flex justify-content-center my-4">
-          <a href="{{route('category.create')}}" class="btn btn-success btn-md px-3 my-0 mr-0 white-text"><i class="fas fa-plus pr-2"></i> Ajouter une catégorie de produit</a>
-        </div> --}}
-            <div class="card-body">
-                <livewire:category-table searchable="category,name" />
-            </div>
+<div class="content">
+  <div class="my-5">
+        <div class="row justify-content-center my-4">
+          <a href="{{route('category.create')}}" class="btn btn-hero-lg btn-rounded btn-outline-dark"><i class="fas fa-plus pr-2"></i> Ajouter une nouvelle catégorie de produit</a>
+        </div>
+          <div class="block">
+            <livewire:category-table searchable="category,name" />
+          </div>
         </div>
       </div>
     </div>

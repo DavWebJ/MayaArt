@@ -9,6 +9,8 @@ use App\Models\User;
 use App\Models\Comment;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Header;
+use App\Models\ImageProduct;
 use App\Models\Option;
 use App\Models\Promotion;
 use Illuminate\Support\Str;
@@ -28,38 +30,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-
+      $cat =  Category::factory()->count(5)->create();
       $user = User::factory(25)->create();
-
-      $postcat =  PostCategory::factory()->count(5)->create();
-
-        //création des categories de produit fake
-        $categories = new Category();
-        $categories->name = 'design';
-        $categories->slug =  Str::slug($categories->name, '-');
-        $categories->image = 'https://picsum.photos/200/200?random=1';
-        $categories->save();
-
-        $categories = new Category();
-        $categories->name = 'quotidien';
-        $categories->slug =  Str::slug($categories->name, '-');
-        $categories->image = 'https://picsum.photos/200/200?random=2';
-        $categories->save();
-
-        $categories = new Category();
-        $categories->name = 'snikers';
-        $categories->slug =  Str::slug($categories->name, '-');
-        $categories->image = 'https://picsum.photos/200/200?random=3';
-        $categories->save();
-
-        $categories = new Category();
-        $categories->name = 'vêtement';
-        $categories->slug =  Str::slug($categories->name, '-');
-        $categories->image = 'https://picsum.photos/200/200?random=4';
-        $categories->save();
-     $attr = Option::factory()->count(25)->create();
+     
         //création des produits fake
-      $product = Product::factory()->count(25)->create();
+      $product = Product::factory()->count(40)->create();
+      $attr = Option::factory()->count(40)->create();
+      $header = Header::factory()->count(3)->create();
       
         //création des roles utilisateurs fake
         $role = new Role();
@@ -80,7 +57,6 @@ class DatabaseSeeder extends Seeder
 
         ]);
     
-     $post =  Post::factory()->count(25)->create();
       $promo =  Promotion::factory()->count(3)->create();
        $comments = Rating::factory()->count(20)->state(new Sequence(
              ['status' => 0],

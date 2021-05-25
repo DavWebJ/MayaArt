@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{--  <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
@@ -22,7 +22,7 @@
         <meta property="og:image" content="https://www.facebook.com/610335496111481/photos/678034209341609/" />
         <meta property="og:description" content="développeur web freelance/développeur Unity." />
         <meta property="og:site_name" content="davidfriquet27" />  --}}
-        <title>@yield('title')</title>
+        {{--  <title>@yield('title')</title>
 
         <link rel="alternate" href="rss.xml" type="application/rss+xml" title="RSS">
         <!-- styles  -->
@@ -535,4 +535,4 @@
         <script src='https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.js' ></script>
         <script src="{{ asset('js/custom.js') }}"></script>
     </body>
-</html>
+</html>  --}}  

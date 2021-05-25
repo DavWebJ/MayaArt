@@ -8,9 +8,11 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 
 class Header extends Component
 {
-    public $cartTotal = 0;
+    
 
-
+    protected $listeners = [
+        'refreshcart' => '$refreshcart',
+    ];
 
     public function mount()
     {
@@ -21,5 +23,6 @@ class Header extends Component
     {
         return view('livewire.header');
     }
+
 
 }

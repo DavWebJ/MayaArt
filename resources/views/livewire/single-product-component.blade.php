@@ -1,427 +1,540 @@
 @section('title')
 {{$product->name}}
 @endsection
+<div>
+ <link rel="stylesheet" href="{{asset('css/rate.css')}}">
+    <!-- Page Title/Header Start -->
+    <div class="page-title-section section" style="background-image: url({{ asset('images/bg/bg-1.jpg') }})">
+        <div class="container">
+            <div class="row">
+                <div class="col">
 
-<div class="content-product"> 
-    <section id="product_single" class="">
-        @if(Session::has('success'))
-    <script>
-        toastr.success("{{ Session::get('success') }}");
-    </script>
-    @endif
-    @if(Session::has('error'))
-    <script>
-        toastr.error("{{ Session::get('error') }}");
-    </script>
-    @endif
-    <link rel="stylesheet" href="{{asset('css/rate.css')}}">
-        {{--  <div class="row ">
-            <div class="col-lg-4" >
-                <img src="{{asset($product->vignette1)}}" alt="{{$product->alt}}" id="img-product">
-                <div id="product_miniature_container" class="d-flex justify-start vignette my-1">
-                    <img src="{{asset($product->vignette2)}}"  alt="" width="100px" class=" product-miniature-img pr-1">
-                    <img src="{{asset($product->vignette3)}}"  alt="" width="100px" class=" product-miniature-img pr-1">
-                    <img src="{{asset($product->vignette4)}}"  alt="" width="100px" class=" product-miniature-img pr-1">
+                    <div class="page-title">
+                        <h1 class="title">La boutique de May Art</h1>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{{ route('home') }}">Accueil</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('shop') }}">Boutique</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('shop') }}">Produit</a></li>
+                            <li class="breadcrumb-item active">{{ $product->slug }}</li>
+                        </ul>
+                    </div>
+
                 </div>
-                    
             </div>
-            <div class="col-lg-8">
-                <div class="content-product-52vh">
-                    <div class="flex">
-                        <div class="col-lg-6 relative ">
-                            <div class="product-name-rate">
-                                <h2 class="product-name uppercase">{{$product->name}} </h2> 
+        </div>
+    </div>
+    <!-- Page Title/Header End -->
+
+    <!-- Single Products Section Start -->
+    <div class="section section-fluid section-padding border-bottom">
+        <div class="container">
+            <div class="row learts-mb-n40">
+                <!-- Product Images Start -->
+                <div class="col-lg-6 col-12 learts-mb-40">
+                    <div class="product-images vertical">
+                        <button class="product-gallery-popup hintT-left" data-hint="Clicker pour voir en plein écran" data-images='[
+                                        {"src": "{{ asset($product->main_image) }}", "w": 810, "h": 1080},
+                                        {"src": "assets/images/product/single/2/product-zoom-2.jpg", "w": 810, "h": 1080},
+                                        {"src": "assets/images/product/single/2/product-zoom-3.jpg", "w": 810, "h": 1080},
+                                        {"src": "assets/images/product/single/2/product-zoom-4.jpg", "w": 810, "h": 1080},
+                                        {"src": "assets/images/product/single/2/product-zoom-5.jpg", "w": 810, "h": 1080}
+                                    ]'><i class="far fa-expand"></i></button>
+                                @if ($product->video ?? '')
+                                      <a href="https://www.youtube.com/watch?v=1jSsy7DtYgc" class="product-video-popup video-popup hintT-left" data-hint="Lire la vidéo"><i class="fal fa-play"></i></a>
+                                @endif
+                      
+                        <div class="product-gallery-slider">
+                            <div class="product-zoom" data-image="{{ asset($product->main_image) }}">
+                                <img src="{{ asset($product->main_image) }}" alt="">
+                            </div>
+                            <div class="product-zoom" data-image="assets/images/product/single/2/product-zoom-2.jpg">
+                                <img src="assets/images/product/single/2/product-2.jpg" alt="">
+                            </div>
+                            <div class="product-zoom" data-image="assets/images/product/single/2/product-zoom-3.jpg">
+                                <img src="assets/images/product/single/2/product-3.jpg" alt="">
+                            </div>
+                            <div class="product-zoom" data-image="assets/images/product/single/2/product-zoom-4.jpg">
+                                <img src="assets/images/product/single/2/product-4.jpg" alt="">
+                            </div>
+                            <div class="product-zoom" data-image="assets/images/product/single/2/product-zoom-5.jpg">
+                                <img src="assets/images/product/single/2/product-5.jpg" alt="">
                             </div>
                         </div>
-                        <div class="col-lg-6 relative">
-                            <p class="product-restant"><span > {{$product->stock}} Exemplaire(s) restant(s)</span></p>
+                        <div class="product-thumb-slider-vertical">
+                            <div class="item">
+                                <img src="{{ asset($product->main_image) }}" alt="">
+                            </div>
+                            <div class="item">
+                                <img src="assets/images/product/single/2/product-thumb-2.jpg" alt="">
+                            </div>
+                            <div class="item">
+                                <img src="assets/images/product/single/2/product-thumb-3.jpg" alt="">
+                            </div>
+                            <div class="item">
+                                <img src="assets/images/product/single/2/product-thumb-4.jpg" alt="">
+                            </div>
+                            <div class="item">
+                                <img src="assets/images/product/single/2/product-thumb-5.jpg" alt="">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="product-name-rate mb-2" id="rate">
-                            <span id="moyenne"></span>
-                                {!! str_repeat('<i class="fa fa-star text-yellow-400" aria-hidden="true"></i>', $product->calculateRating()) !!}
-                                {!! str_repeat('<i class="fa fa-star-o text-gray-400" aria-hidden="true"></i>', 5- $product->calculateRating()) !!}   
-                        </div>
-                    </div>
-                    
-                    <span class="hidden" id="reste">{{$product->stock}}</span>
-                    <div class="relative">
-                        <div class=" product-description">
-                            <h5 class="font-bold product-description-title">Description</h5>
-                            <p class="product-description-text">{!! $product->desc !!}</p>
-                        </div>
-                    </div>
-                    <div class=" product-description-mobile">
-                        <h5 class="font-bold product-description-title">Description</h5>
-                        <p class="product-description-text">{!! $product->desc !!}</p>
                     </div>
                 </div>
-                <form class="product-form" action="{{route('cart.store')}}" method="post">
-                    <div class="row justify-between my-5">
-                        <div class="col-lg-6 col-sm-4">
-                            @if ($product->options->count() > 0)
-                                <select class="select-variant" name="attr" id="attr">
-                                                <option value="" selected >Sélectionner une option</option>
-                                                <option value="">Produit de base</option>
-                                                @foreach ($product->options as $item)
-                                                    @if ($item->option_price > 0)
-                                                    <option value="{{$item->id}}" data-img_src="{{asset($item->image)}}">{{$item->option}} (supplément de {{ FormatPrice($item->option_price) }})</option>
-                                                    @else
-                                                    <option value="{{$item->id}}" data-img_src="{{asset($item->image)}}">{{$item->option}}</option>
-                                                    @endif
-                                                @endforeach
-                                </select>                       
-                                @endif
-                        </div>
+                <!-- Product Images End -->
 
-                        <div class="col-lg-6 col-sm-4 price-container">
-                            @if ($product->price_promos ?? '')
-                                <span class="mx-5 product-price product-price-promo"><del>{{$product->price}} €</del> <i class="text-red-400">{{$product->price - $product->price_promos}} €</i></span>
+                <!-- Product Summery Start -->
+                <div class="col-lg-6 col-12 learts-mb-40">
+                    <div class="product-summery product-summery-center">
+                        <div class="product-ratings">
+                                {!! str_repeat('<i class="fas fa-star btn-outline-warning" aria-hidden="true"></i>', $product->calculateRating()) !!}
+                                {!! str_repeat('<i class="far fa-star btn-outline-secondary" aria-hidden="true"></i>', 5- $product->calculateRating()) !!} 
+                            <a href="#reviews" class="review-link mx-2">(<span class="count">{{ $rate->count() }}</span> avis sur ce produit)</a>
+                        </div>
+                        <h3 class="product-title">{{ $product->name }}</h3>
+                        <div class="product-price">{{ $product->FormatPrice() }}</div>
+                        <div class="product-description">
+                            <p>{!! $product->desc !!}</p>
+                        </div>
+                        <div class="product-variations">
+                            @if ($product->stock == 0)
+                                <p><span class="fa fa-ban rose-red"></span> ce produit n'est plus en stock actuellement</p>
                             @else
-                                <span class="mx-5 product-price">{{$product->FormatPrice()}}</span> 
-                            @endif
-                        </div> 
-                        
-                    </div>
-                    @if($product->stock > 0)
-                        <div class="d-flex justify-between" id="product_info">
-                                @csrf
-                                
-                                <input type="hidden" name="product_id" id="product_id" value="{{ $product->id}}">
-                                <button id="addproduct" class="font-bold py-2 px-4 uppercase btn">Ajouter au panier</button>
-                                    
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td class="label"><span>Options couleur:</span></td>
+                                        <td class="value">
+                                            <div class="product-colors">
+                                                <a href="#" data-bg-color="#000000"></a>
+                                                <a href="#" data-bg-color="#b2483c"></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="label"><span>Options:</span></td>
+                                        <td class="value">
+                                            <div class="product-sizes">
+                                                @forelse ( $attributes as $attr )
+                                                     <a href="#">{{ $attr->option }}</a>
+                                                @empty
+                                                    <p>pas d'option disponible pour ce produit</p>
+                                                @endforelse
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="label"><span>Quantity</span></td>
+                                        <td class="value">
+                                            <div class="product-quantity">
+                                                <span class="qty-btn minus"><i class="ti-minus"></i></span>
+                                                <input type="text" class="input-qty" value="1">
+                                                <span class="qty-btn plus"><i class="ti-plus"></i></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-                        <p class="text-livraison">*livraison offerte à partir de 50 € d'achat</p>
-                    @else
-                        <div class="col-lg-2 h-12 bg-red-600">
-                            <span>Ce produit n'est plus disponible</span>
-                        </div>
-                    @endif
-                </form>
-            </div>
-            </div>
-    </section>
-    <section id="detail_product" class="row">
-        <div class="col-lg-7">
-            <h4 class="detail-title">Détail du produit</h4>
-            <p class="detail-text">{!! $product->detail !!}</p>
-            <h5 class=" avis-title">Les avis</h5>
-            <div class="my-4">
-                @forelse ($rate as $comment)
-                <div class="flex py-3">
-                    <div class="avis-star-name">
-                        {!! str_repeat('<i class="fa fa-star text-yellow-400" aria-hidden="true"></i>', $comment->rating) !!}
-                        {!! str_repeat('<i class="fa fa-star-o text-gray-400" aria-hidden="true"></i>', 5 - $comment->rating) !!}
-                        <p class="text-muted font-italique text-right"> @_{{$comment->user->prenom}}</p>
-                    </div>
-                    <p class="avis-comment">"{{$comment->comment}}"</p> 
-                </div>
-
-                    
-                    @auth
-                        @if(auth()->user()->id == $comment->user_id)
-                            - <a role="button" wire:click.prevent="deleteRate({{ $comment->id }})" class="btn cursor-pointer btn-outline-warning">Supprimer mon avis</a>
-                        @endif
-                    @endauth
-
-                @empty
-                
-                <!-- <div class="flex col-span-1">
-                    <div class="relative px-4 mb-16 leading-6 text-left">
-                        <div class="box-border text-lg font-medium text-gray-600">
-                            @guest
-                                pas d'avis sur ce produis soyez le premier à le noter
-                                <a class="btn avis-connexion-button" href="{{route('login')}}">Connexion</a> 
+                        <div class="product-buttons">
+                            @php
+                                $wishitems = Cart::instance('wishlist')->content()->pluck('id');
+                            @endphp
+                                @if ($wishitems->contains($product->id))
+                                <a href="#" wire:click.prevent="removeFromWishlist({{ $product->id }})" class="btn btn-icon btn-primary hintT-top" data-hint="retirer de ma liste"><i class="fas fa-heart"></i></a>
                                 @else
-                                pas d'avis sur ce produis soyez le premier à le noter
+                                <a href="#" wire:click.prevent="addToWishlist({{ $product->id }})" class="btn btn-icon btn-outline-body rose-red  hintT-top" data-hint="Ajouter à ma liste"><i class="far fa-heart"></i></a>
+                                @endif
+                            <a href="#" class="btn btn-primary"><i class="fal fa-shopping-cart"></i> Add to Cart</a>
+                        </div>
+                        
+                        <div class="product-meta">
+                            <table>
+                                <tbody>
+                                        <td class="label"><span>Catégorie:</span></td>
+                                        <td class="value">
+                                            <ul class="product-category">
+                                                <li><a href="{{route('shop.category',['category_slug'=>$product->category->slug])}}" style="color: {{ $product->category->color}}!important;">{{ $product->category->name }}</a></li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                        <td class="label"><span>partager sur :</span></td>
+                                        <td class="va">
+                                            <div class="product-share">
+                                                <a  href="{{ Share::currentPage()->facebook()->getRawLinks() }}" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                                                <a href="{{ Share::currentPage()->twitter()->getRawLinks() }}" target="_blank"><i class="fab fa-twitter"></i></a>
+                                                <a href="{{ Share::currentPage()->linkedin()->getRawLinks() }}" target="_blank"><i class="fab fa-linkedin"></i></a>
+                                                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a> 
+                                                <a href="{{ Share::currentPage()->pinterest()->getRawLinks() }}" target="_blank"><i class="fab fa-pinterest"></i></a>
+                                                <a href="{{ Share::currentPage()->whatsapp()->getRawLinks() }}" target="_blank"><i class="fab fa-whatsapp"></i></a> 
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                             @endif
+                        </div>
+                    </div>
+                </div>
+               
+                <!-- Product Summery End -->
+
+            </div>
+        </div>
+
+    </div>
+    <!-- Single Products Section End -->
+
+    <!-- Single Products Infomation Section Start -->
+    <div class="section section-padding border-bottom" id="reviews">
+        <div class="container">
+
+            <ul class="nav product-info-tab-list">
+                <li><a class="active" data-toggle="tab" href="#tab-description">Description</a></li>
+                <li><a data-toggle="tab" href="#tab-additional_information">Option(s) du produit</a></li>
+                <li><a data-toggle="tab" href="#tab-reviews">Avis ({{ $rate->count() }})</a></li>
+            </ul>
+            <div class="tab-content product-infor-tab-content">
+                <div class="tab-pane fade show active" id="tab-description">
+                    <div class="row">
+                        <div class="col-lg-10 col-12 mx-auto">
+                            <p>{{  $product->detail  }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="tab-additional_information">
+                    <div class="row">
+                        <div class="col-lg-8 col-md-10 col-12 mx-auto">
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <tbody>
+                                        <tr>
+                                            @forelse ($attributes as $option)
+                                                <td>{{ $option->option }}</td>
+                                            @empty
+                                                <td>pas d'option pour ce produit</td>
+                                            @endforelse
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="tab-reviews">
+                    <div class="product-review-wrapper">
+                        <span class="title">{{ $rate->count() }} avis pour {{ $product->name }}</span>
+                        <ul class="product-review-list">
+                            @forelse ($rate as $comment)
+                            <li>
+                                <div class="product-review">
+                                    <div class="thumb"><img src="{{ asset('images/review/review-2.jpeg') }}" alt=""></div>
+                                    <div class="content">
+                                        <div class="ratings">
+                                            <div class="avis-star-name">
+                                                {!! str_repeat('<i class="fa fa-star btn-outline-warning" aria-hidden="true"></i>', $comment->rating) !!}
+                                                {!! str_repeat('<i class="fa fa-star-o text-gray-400" aria-hidden="true"></i>', 5 - $comment->rating) !!}
+                                            </div>
+                                        </div>
+                                        @auth
+                                            @if(auth()->user()->id == $comment->user_id)
+                                                <a role="button" wire:click.prevent="deleteRate({{ $comment->id }})" class="btn cursor-pointer btn-outline-warning">Supprimer mon avis</a>
+                                            @endif
+                                        @endauth
+                                        <div class="meta">
+                                            <h5 class="title">{{$comment->user->prenom}}</h5>
+                                            <span class="date">publié {{ \Carbon\Carbon::parse($comment->created_at)->diffForHumans() }}</span>
+                                        </div>
+                                            <p>{{$comment->comment}}</p>
+                                    </div>
+                                </div>
+                            </li>
+                                @empty
+                                @endforelse
+                        </ul>
+                        <span class="title">Ajouter votre avis</span>
+                        <div class="review-form">
+                        @auth
+                            @if($rating_unvalide ?? '')
+                                <span class=" text-red-500 font-medium text-2xl">Votre commentaire apparaîtra bientôt.</span>
+                            @else
+                                @livewire('product-ratings', ['product' => $product], key($product->id))
+                            @endif
+                        @endauth
+                            <p class="note text-center">Seul votre prénom et votre commentaire apparaîtrons * <br>Pour laisser votre avis,  vous devez être connecter</p>
+                            @guest
+                                <div class="col-12 text-center learts-mb-30"><a href="{{route('login')}}" class="btn btn-dark btn-outline-hover-dark">Se Connecter</a></div>
                             @endguest
                         </div>
                     </div>
-                </div> -->
-                @endforelse
-                <div id="com">
-                    @auth
-                        @if($rating_unvalide)
-                            <span class=" text-red-500 font-medium text-2xl">Votre commentaire apparaîtra bientôt.</span>
-                        @elseif ($rating_valide)
-
-                        @else
-                            @livewire('product-ratings', ['product' => $product], key($product->id))
-                        @endif
-                    @endauth
                 </div>
-                @guest
-                    <div class="my-4"></div>
-                    <span class="fas fa-bullhorn mx-2  rounded"><i class="mx-2">Donner votre avis sur ce produit</i> </span>
-                    <a class="btn avis-connexion-button" href="{{route('login')}}">Connexion</a> 
-                @endguest
-            </div>
-        </div>
-
-        <div class="col-lg-5">
-            <div class="product-valeur2">
-                    <img class="product-valeur-img" src="{{asset('img/valeur2.svg')}}" alt="">
-                    <h3 class="text-center product-valeur uppercase">Fabrication <br> française</h3>
-                    <p class="text-center w-4/5 valeur-description my-2">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh</p>
-            </div>
-            <div class="product-valeur1">
-                    <img class="product-valeur-img" src="{{asset('img/valeur1.svg')}}" alt="">
-                    <h3 class="text-center product-valeur uppercase">100% recyclé</h3>
-                    <p class="text-center w-4/5 valeur-description my-2">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh</p>
-            </div>
-            <div class="product-valeur3">
-                    <img class="product-valeur-img" src="{{asset('img/valeur3.svg')}}" alt="">
-                    <h3 class="text-center product-valeur uppercase">Paiement sécurisé</h3>
-                    <p class="text-center w-4/5 valeur-description my-2">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh</p>
             </div>
 
         </div>
-    
-    </section>
-
-
-</div>  --}}
-
-
- <div class="hero-wrap hero-bread" style="background-image: url('images/bg_6.jpg');">
-      <div class="container">
-        <div class="row no-gutters slider-text align-items-center justify-content-center">
-          <div class="col-md-9 ftco-animate text-center">
-          	<p class="breadcrumbs"><span class="mr-2"><a href="{{ route('home') }}">Acceuil</a>/</span> <span class="mr-2"><a href="{{ route('shop') }}">Boutique</a>/</span> <span>Produit</span></p>
-            <h1 class="mb-0 bread">{{ $product->slug }}</h1>
-          </div>
-        </div>
-      </div>
     </div>
+    <!-- Single Products Infomation Section End -->
 
-    <section class="ftco-section">
-    	<div class="container">
-    		<div class="row">
-    			<div class="col-lg-6 mb-5 ftco-animate">
-    				<a href="{{ asset($product->vignette1) }}" class="image-popup"><img src="{{ asset($product->vignette1) }}" class="img-fluid" alt="{{ $product->alt }}"></a>
-    			</div>
-    			<div class="col-lg-6 product-details pl-md-5 ftco-animate">
-    				<h3>{{ $product->name }}</h3>
-    				<div class="rating d-flex">
-							<p class="text-left mr-4">
-								<span class="mr-2">{{ $product->calculateRating() }}/5</span>
-                                {!! str_repeat('<i class="fa fa-star text-yellow-400" aria-hidden="true"></i>', $product->calculateRating()) !!}
-                                {!! str_repeat('<i class="fa fa-star-o text-gray-400" aria-hidden="true"></i>', 5- $product->calculateRating()) !!}   
-							</p>
-							<p class="text-left mr-4">
-								<a href="#" class="mr-2" style="color: #000;">{{ $product->ratings->count() }} <span style="color: #bbb;">Avis</span></a>
-							</p>
-							<p class="text-left">
-								<a href="#" class="mr-2" style="color: #000;">500 <span style="color: #bbb;">Sold</span></a>
-							</p>
-						</div>
-    				<p class="price"><span>$120.00</span></p>
-    				<p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-    				<p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word "and" and the Little Blind Text should turn around and return to its own, safe country. But nothing the copy said could convince her and so it didn’t take long until a few insidious Copy Writers ambushed her, made her drunk with Longe and Parole and dragged her into their agency, where they abused her for their.
-						</p>
-						<div class="row mt-4">
-							<div class="col-md-6">
-								<div class="form-group d-flex">
-		              <div class="select-wrap">
-	                  <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-	                  <select name="" id="" class="form-control">
-	                  	<option value="">Small</option>
-	                    <option value="">Medium</option>
-	                    <option value="">Large</option>
-	                    <option value="">Extra Large</option>
-	                  </select>
-	                </div>
-		            </div>
-							</div>
-							<div class="w-100"></div>
-							<div class="input-group col-md-6 d-flex mb-3">
-	             	<span class="input-group-btn mr-2">
-	                	<button type="button" class="quantity-left-minus btn"  data-type="minus" data-field="">
-	                   <i class="ion-ios-remove"></i>
-	                	</button>
-	            		</span>
-	             	<input type="text" id="quantity" name="quantity" class="form-control input-number" value="1" min="1" max="100">
-	             	<span class="input-group-btn ml-2">
-	                	<button type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
-	                     <i class="ion-ios-add"></i>
-	                 </button>
-	             	</span>
-	          	</div>
-	          	<div class="w-100"></div>
-	          	<div class="col-md-12">
-	          		<span  class="badge my-2"> encore {{ $product->stock }} disponible</span>
-	          	</div>
-          	</div>
-          	<p><a href="cart.html" class="btn btn-black py-3 px-5">Add to Cart</a></p>
-    			</div>
-    		</div>
-    	</div>
-    </section>
+    <!-- Recommended Products Section Start -->
+    <div class="section section-padding">
+        <div class="container">
+            @if ($otherproduct->count() > 0)
+            <!-- Section Title Start -->
+            <div class="section-title2 text-center">
+                <h2 class="title">Mayart vous recommande aussi ces produits.</h2>
+            </div>
+            <!-- Section Title End -->
 
-    <section class="ftco-section bg-light">
-    	<div class="container">
-				<div class="row justify-content-center mb-3 pb-3">
-          <div class="col-md-12 heading-section text-center ftco-animate">
-            <h2 class="mb-4">Ralated Products</h2>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
-          </div>
-        </div>   		
-    	</div>
-    	<div class="container">
-    		<div class="row">
-    			<div class="col-sm col-md-6 col-lg ftco-animate">
-    				<div class="product">
-    					<a href="#" class="img-prod"><img class="img-fluid" src="images/product-1.jpg" alt="Colorlib Template">
-    						<span class="status">30%</span>
-    						<div class="overlay"></div>
-    					</a>
-    					<div class="text py-3 px-3">
-    						<h3><a href="#">Floral Jackquard Pullover</a></h3>
-    						<div class="d-flex">
-    							<div class="pricing">
-		    						<p class="price"><span class="mr-2 price-dc">$120.00</span><span class="price-sale">$80.00</span></p>
-		    					</div>
-		    					<div class="rating">
-	    							<p class="text-right">
-	    								<a href="#"><span class="ion-ios-star-outline"></span></a>
-	    								<a href="#"><span class="ion-ios-star-outline"></span></a>
-	    								<a href="#"><span class="ion-ios-star-outline"></span></a>
-	    								<a href="#"><span class="ion-ios-star-outline"></span></a>
-	    								<a href="#"><span class="ion-ios-star-outline"></span></a>
-	    							</p>
-	    						</div>
-	    					</div>
-	    					<p class="bottom-area d-flex px-3">
-    							<a href="#" class="add-to-cart text-center py-2 mr-1"><span>Add to cart <i class="ion-ios-add ml-1"></i></span></a>
-    							<a href="#" class="buy-now text-center py-2">Buy now<span><i class="ion-ios-cart ml-1"></i></span></a>
-    						</p>
-    					</div>
-    				</div>
-    			</div>
-    			<div class="col-sm col-md-6 col-lg ftco-animate">
-    				<div class="product">
-    					<a href="#" class="img-prod"><img class="img-fluid" src="images/product-2.jpg" alt="Colorlib Template">
-    						<div class="overlay"></div>
-    					</a>
-    					<div class="text py-3 px-3">
-    						<h3><a href="#">Floral Jackquard Pullover</a></h3>
-    						<div class="d-flex">
-    							<div class="pricing">
-		    						<p class="price"><span>$120.00</span></p>
-		    					</div>
-		    					<div class="rating">
-	    							<p class="text-right">
-	    								<a href="#"><span class="ion-ios-star-outline"></span></a>
-	    								<a href="#"><span class="ion-ios-star-outline"></span></a>
-	    								<a href="#"><span class="ion-ios-star-outline"></span></a>
-	    								<a href="#"><span class="ion-ios-star-outline"></span></a>
-	    								<a href="#"><span class="ion-ios-star-outline"></span></a>
-	    							</p>
-	    						</div>
-	    					</div>
-    						<p class="bottom-area d-flex px-3">
-    							<a href="#" class="add-to-cart text-center py-2 mr-1"><span>Add to cart <i class="ion-ios-add ml-1"></i></span></a>
-    							<a href="#" class="buy-now text-center py-2">Buy now<span><i class="ion-ios-cart ml-1"></i></span></a>
-    						</p>
-    					</div>
-    				</div>
-    			</div>
-    			<div class="col-sm col-md-6 col-lg ftco-animate">
-    				<div class="product">
-    					<a href="#" class="img-prod"><img class="img-fluid" src="images/product-3.jpg" alt="Colorlib Template">
-	    					<div class="overlay"></div>
-	    				</a>
-    					<div class="text py-3 px-3">
-    						<h3><a href="#">Floral Jackquard Pullover</a></h3>
-    						<div class="d-flex">
-    							<div class="pricing">
-		    						<p class="price"><span>$120.00</span></p>
-		    					</div>
-		    					<div class="rating">
-	    							<p class="text-right">
-	    								<a href="#"><span class="ion-ios-star-outline"></span></a>
-	    								<a href="#"><span class="ion-ios-star-outline"></span></a>
-	    								<a href="#"><span class="ion-ios-star-outline"></span></a>
-	    								<a href="#"><span class="ion-ios-star-outline"></span></a>
-	    								<a href="#"><span class="ion-ios-star-outline"></span></a>
-	    							</p>
-	    						</div>
-	    					</div>
-    						<p class="bottom-area d-flex px-3">
-    							<a href="#" class="add-to-cart text-center py-2 mr-1"><span>Add to cart <i class="ion-ios-add ml-1"></i></span></a>
-    							<a href="#" class="buy-now text-center py-2">Buy now<span><i class="ion-ios-cart ml-1"></i></span></a>
-    						</p>
-    					</div>
-    				</div>
-    			</div>
-    			<div class="col-sm col-md-6 col-lg ftco-animate">
-    				<div class="product">
-    					<a href="#" class="img-prod"><img class="img-fluid" src="images/product-4.jpg" alt="Colorlib Template">
-    						<div class="overlay"></div>
-    					</a>
-    					<div class="text py-3 px-3">
-    						<h3><a href="#">Floral Jackquard Pullover</a></h3>
-    						<div class="d-flex">
-    							<div class="pricing">
-		    						<p class="price"><span>$120.00</span></p>
-		    					</div>
-		    					<div class="rating">
-	    							<p class="text-right">
-	    								<a href="#"><span class="ion-ios-star-outline"></span></a>
-	    								<a href="#"><span class="ion-ios-star-outline"></span></a>
-	    								<a href="#"><span class="ion-ios-star-outline"></span></a>
-	    								<a href="#"><span class="ion-ios-star-outline"></span></a>
-	    								<a href="#"><span class="ion-ios-star-outline"></span></a>
-	    							</p>
-	    						</div>
-	    					</div>
-    						<p class="bottom-area d-flex px-3">
-    							<a href="#" class="add-to-cart text-center py-2 mr-1"><span>Add to cart <i class="ion-ios-add ml-1"></i></span></a>
-    							<a href="#" class="buy-now text-center py-2">Buy now<span><i class="ion-ios-cart ml-1"></i></span></a>
-    						</p>
-    					</div>
-    				</div>
-    			</div>
-    		</div>
-    	</div>
-    </section>
+            <!-- Products Start -->
+            <div class="product-carousel">
+                @forelse ($otherproduct as $item)
+                <div class="col">
+                    <div class="product">
+                        <div class="product-thumb">
+                            <a href="{{ route('shop.show', ['slug'=> $item->slug]) }}" class="image">
+                                @if ($item->price_promos ?? '')
+                                <span class="product-badges">
+                                    <span class="onsale">
+                                        -{{ $item->price_promos }} €
+                                    </span>
+                                </span>
+                                @endif
+                                <img src="{{ asset($item->main_image) }}" alt="Product Image">
+                                <img class="image-hover " src="assets/images/product/s270/product-1-hover.jpg" alt="Product Image">
+                            </a>
+                        </div>
+                        <div class="product-info">
+                            <h6 class="title"><a href="{{ route('shop.show', ['slug'=> $item->slug]) }}">{{ $item->name }}</a></h6>
+                            <p style="color: {{ $item->category->color}}!important;">{{ $item->category->name }}</p>
+                            <span class="price">
+                            @if ($item->price_promos ?? '')
+                                    <span class="old">{{$item->price}} €</span>
+                                    <span class="new">{{$item->FormatPrice()}}</span>
+                                @else
+                                    {{$item->FormatPrice()}}
+                                @endif
+                            </span>
+                            <div class="product-buttons">
+                            <a href="{{ route('shop.show', ['slug'=> $item->slug]) }}"  class="product-button hintT-top" data-hint="Voir le produit"><i class="fal fa-eye"></i></a>
+                            <a href="{{ route('shop') }}" class="product-button hintT-top" data-hint="Retourner sur la boutique"><i class="fal fa-store"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @empty
+                pas d'autres produits à montrer
+            @endforelse
+            </div>
+        @endif
+            <!-- Products End -->
 
+        </div>
+    </div>
+    <!-- Recommended Products Section End -->
+     <!-- Modal -->
+    <div class="quickViewModal modal fade" id="quickViewModal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <button class="close" data-dismiss="modal">&times;</button>
+                <div class="row learts-mb-n30">
 
+                    <!-- Product Images Start -->
+                    <div class="col-lg-6 col-12 learts-mb-30">
+                        <div class="product-images">
+                            <div class="product-gallery-slider-quickview">
+                                <div class="product-zoom" data-image="assets/images/product/single/1/product-zoom-1.jpg">
+                                    <img src="assets/images/product/single/1/product-1.jpg" alt="">
+                                </div>
+                                <div class="product-zoom" data-image="assets/images/product/single/1/product-zoom-2.jpg">
+                                    <img src="assets/images/product/single/1/product-2.jpg" alt="">
+                                </div>
+                                <div class="product-zoom" data-image="assets/images/product/single/1/product-zoom-3.jpg">
+                                    <img src="assets/images/product/single/1/product-3.jpg" alt="">
+                                </div>
+                                <div class="product-zoom" data-image="assets/images/product/single/1/product-zoom-4.jpg">
+                                    <img src="assets/images/product/single/1/product-4.jpg" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product Images End -->
 
-@section('script')
-<script src="{{ asset('js/boutique.js') }}"></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-alpha3/js/bootstrap.js' integrity='sha512-utNtKYxs6dJjYa65JtF+qDYJfU1N9TKVNI7eNQWpnU1w40c+GNSdMIzZhy8MMpy/+23KG2cWdUUMk8WwcuWKCw==' crossorigin='anonymous'></script>
+                    <!-- Product Summery Start -->
+                    <div class="col-lg-6 col-12 overflow-hidden learts-mb-30">
+                        <div class="product-summery customScroll">
+                            <div class="product-ratings">
+                                <span class="star-rating">
+                                <span class="rating-active" style="width: 100%;">ratings</span>
+                                </span>
+                                <a href="#reviews" class="review-link">(<span class="count">3</span> customer reviews)</a>
+                            </div>
+                            <h3 class="product-title">Cleaning Dustpan & Brush</h3>
+                            <div class="product-price">£38.00 – £50.00</div>
+                            <div class="product-description">
+                                <p>Easy clip-on handle – Hold the brush and dustpan together for storage; the dustpan edge is serrated to allow easy scraping off the hair without entanglement. High-quality bristles – no burr damage, no scratches, thick and durable, comfortable to remove dust and smaller particles.</p>
+                            </div>
+                            <div class="product-variations">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td class="label"><span>Size</span></td>
+                                            <td class="value">
+                                                <div class="product-sizes">
+                                                    <a href="#">Large</a>
+                                                    <a href="#">Medium</a>
+                                                    <a href="#">Small</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="label"><span>Color</span></td>
+                                            <td class="value">
+                                                <div class="product-colors">
+                                                    <a href="#" data-bg-color="#000000"></a>
+                                                    <a href="#" data-bg-color="#ffffff"></a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="label"><span>Quantity</span></td>
+                                            <td class="value">
+                                                <div class="product-quantity">
+                                                    <span class="qty-btn minus"><i class="ti-minus"></i></span>
+                                                    <input type="text" class="input-qty" value="1">
+                                                    <span class="qty-btn plus"><i class="ti-plus"></i></span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="product-buttons">
+                                <a href="#" class="btn btn-icon btn-outline-body btn-hover-dark"><i class="fal fa-heart"></i></a>
+                                <a href="#" class="btn btn-dark btn-outline-hover-dark"><i class="fal fa-shopping-cart"></i> Add to Cart</a>
+                                <a href="#" class="btn btn-icon btn-outline-body btn-hover-dark"><i class="fal fa-random"></i></a>
+                            </div>
+                            <div class="product-brands">
+                                <span class="title">Brands</span>
+                                <div class="brands">
+                                    <a href="#"><img src="assets/images/brands/brand-3.png" alt=""></a>
+                                    <a href="#"><img src="assets/images/brands/brand-8.png" alt=""></a>
+                                </div>
+                            </div>
+                            <div class="product-meta mb-0">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td class="label"><span>SKU</span></td>
+                                            <td class="value">0404019</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="label"><span>Category</span></td>
+                                            <td class="value">
+                                                <ul class="product-category">
+                                                    <li><a href="#">Kitchen</a></li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="label"><span>Tags</span></td>
+                                            <td class="value">
+                                                <ul class="product-tags">
+                                                    <li><a href="#">handmade</a></li>
+                                                    <li><a href="#">learts</a></li>
+                                                    <li><a href="#">mug</a></li>
+                                                    <li><a href="#">product</a></li>
+                                                    <li><a href="#">learts</a></li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="label"><span>Share on</span></td>
+                                            <td class="va">
+                                                <div class="product-share">
+                                                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                                    <a href="#"><i class="fab fa-twitter"></i></a>
+                                                    <a href="#"><i class="fab fa-google-plus-g"></i></a>
+                                                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                                                    <a href="#"><i class="fal fa-envelope"></i></a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product Summery End -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+    <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+        <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+        <div class="pswp__bg"></div>
+
+        <!-- Slides wrapper with overflow:hidden. -->
+        <div class="pswp__scroll-wrap">
+
+            <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+            <div class="pswp__container">
+                <div class="pswp__item"></div>
+                <div class="pswp__item"></div>
+                <div class="pswp__item"></div>
+            </div>
+
+            <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+            <div class="pswp__ui pswp__ui--hidden">
+
+                <div class="pswp__top-bar">
+
+                    <!--  Controls are self-explanatory. Order can be changed. -->
+
+                    <div class="pswp__counter"></div>
+
+                    <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                    <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                    <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                    <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                    <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+                    <!-- element will get class pswp__preloader--active when preloader is running -->
+                    <div class="pswp__preloader">
+                        <div class="pswp__preloader__icn">
+                            <div class="pswp__preloader__cut">
+                                <div class="pswp__preloader__donut"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                    <div class="pswp__share-tooltip"></div>
+                </div>
+
+                <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+                </button>
+
+                <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+                </button>
+
+                <div class="pswp__caption">
+                    <div class="pswp__caption__center"></div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
 <script>
 $(document).ready(function () {
 
-        let mainImage = $("#img-product").attr('src');
-        // console.log(mainImage);
-
-        $('#product_miniature_container').append('<img src="'+ mainImage +'"  alt="" width="100px" class=" product-miniature-img pr-1">')
-        //ajout d'id dans les images
-        
-        SetIdImage();
-
-        // set id on each small images 
-
-
-        function SetIdImage()
-        {   
-            
-            $('.product-miniature-img').attr('id', function(i) {
-            return 'miniature' + i;
-            })
-        }
-        //  get all  small images in variable
-        let C_Image = $('.product-miniature-img');
-        // set the clicked image in big image container
-        $(C_Image).each(function(){
-            $(this).click(function(){
-                    let sourceImg = $(this).attr('src');
-                    $("#img-product").attr('src', sourceImg)   
-            });
-        });
         // rating and comment 
         $(document).on({
             mouseover: function(event) {
@@ -446,6 +559,6 @@ $(document).ready(function () {
 
 
 });
-
 </script>
-@endsection
+</div>
+
