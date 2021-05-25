@@ -149,7 +149,7 @@
         </div>
         <!-- Section Title End -->
         <div class="container">
-            <div class="section-padding" data-bg-image="images/bg/bg-1.jpg">
+            <div class="section-padding" data-bg-image="images/avis.jpg" title="actionvance uis jmjqau by unsplash 1720x570">
                 <div class="container">
                     <div class="testimonial-slider">
                         @forelse ($rate as $comment)
@@ -159,7 +159,7 @@
                                 <div class="author">
                                     <div class="content">
                                         <h6 class="name">{{ $comment->user->prenom }}</h6>
-                                        <span class="title">à laisser un avis sur le produit  <a href="{{ route('shop.show', ['slug'=> $comment->product->slug]) }}">{{ $comment->product->name }}</a></span>
+                                        <span class="title">à laisser un avis sur le produit  <a class="link rose-red" href="{{ route('shop.show', ['slug'=> $comment->product->slug]) }}">{{ $comment->product->name }}</a></span>
                                            {!! str_repeat('<i class="fas fa-star btn-outline-warning" aria-hidden="true"></i>', $comment->product->calculateRating()) !!}
                                             {!! str_repeat('<i class="far fa-star btn-outline-secondary" aria-hidden="true"></i>', 5- $comment->product->calculateRating()) !!} <br>
                                     </div>

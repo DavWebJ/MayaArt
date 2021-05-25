@@ -90,7 +90,7 @@
     & p {
         font-family: $marcellus;
         font-size: 24px;
-        font-weight: 400;
+        font-weight: 900;
         line-height: 1.75;
 
         max-width: 800px;
@@ -98,8 +98,8 @@
         margin-bottom: 40px;
         margin-left: auto;
 
-        opacity: 0.8;
-        color: #454545;
+        opacity: 1;
+        color: black;
     }
 
     & .author {
@@ -123,17 +123,17 @@
             & .name {
                 font-family: $futura;
                 font-size: 18px;
-                font-weight: 600;
+                font-weight: 900;
                 line-height: 1;
 
                 margin-bottom: 18px;
 
-                color: $heading-color;
+                color: black;
             }
 
             & .title {
                 font-size: 14px;
-                font-weight: 400;
+                font-weight: 700;
                 line-height: 1;
 
                 display: block;
@@ -141,7 +141,7 @@
                 letter-spacing: 1px;
                 text-transform: uppercase;
 
-                color: $body-light;
+                color: black;
             }
         }
     }

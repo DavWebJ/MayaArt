@@ -4,28 +4,27 @@
 
 <div class="content">
     <h3 class="text-center text-xl text-xsmooth-dark">Créer un produit</h3>
-<div class="row-deck">
-    <!-- Info -->
-    <div class="block block-rounded">
+    <div class="row-deck">
+        <div class="block block-rounded">
         <div class="block-header block-header-default">
             <h3 class="block-title">Détail du produit</h3>
         </div>
-        <div class="block-content">
-            <div class="row justify-content-center">
-                <div class="col-md-10 col-lg-8">
-                    @include('includes.errors')
-                <form class="text-center" action="{{route('product.store')}}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    @include('includes.errors')
-                    <div class="form-group">
-                        <label for="category">Sélectionner la catégorie du produit</label>
-                        <select name="category" id="category" class="custom-select custom-select-sm" required>
-                            <option value=""selected style="display: none">Catégorie du produit</option>
-                            @foreach ($category as $cat)
-                        <option value="{{ $cat->id }}">{{ $cat->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
+            <div class="block-content">
+                <div class="row justify-content-center">
+                    <div class="col-md-10 col-lg-8">
+                        @include('includes.errors')
+                    <form class="text-center" action="{{route('product.store')}}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        @include('includes.errors')
+                        <div class="form-group">
+                            <label for="category">Sélectionner la catégorie du produit</label>
+                            <select name="category" id="category" class="custom-select custom-select-sm" required>
+                                <option value=""selected style="display: none">Catégorie du produit</option>
+                                @foreach ($category as $cat)
+                            <option value="{{ $cat->id }}">{{ $cat->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     <div class="form-goup my-4">
                         <label for="name">Donner un nom à votre produit</label>
                         <input type="text" class="js-maxlength form-control  js-maxlength-enabled" id="name" name="name"  maxlength="100" data-placement="bottom" placeholder="Nom du produit" data-always-show="true" required>
@@ -37,12 +36,10 @@
                         <label for="desc">Description du produit détailler</label>
                         <textarea type="text" id="desc" name="desc" class=" tiny js-maxlength form-control" placeholder="Décrit ton produit ici..." rows="20" data-always-show="true"></textarea>
                     </div>
-
                     <div class="form-group my-4">
                         <label for="meta">Ajouter une meta description qui apparaitra sur le moteur de recherche Google (SEO)</label>
-                          <input type="text" class="js-maxlength form-control js-maxlength-enabled" id="meta" name="meta"  maxlength="55" data-always-show="true" data-placement="bottom" placeholder="métadescription du produit" data-always-show="true" required>              
+                          <input type="text" class="js-maxlength form-control js-maxlength-enabled" id="meta" name="meta"  maxlength="150" data-always-show="true" data-placement="bottom" placeholder="métadescription du produit" data-always-show="true" required>              
                     </div>
-
                     <!-- prix et réduction -->
                     <div class="block block-rounded my-2">
                         <div class="block-header block-header-default">
@@ -85,9 +82,6 @@
                                                     </span>
                                                 </div>
                                                 <input type="number" class="form-control text-center" id="stock" name="stock" placeholder="5" required> 
-                                                <div class="input-group-append">
-                                                    <span class="input-group-text fa fa-weight-hanging"></span>
-                                                </div>
                                             </div>
                                         </div>
                                 </div>
@@ -95,7 +89,6 @@
                         </div>
                     </div>
                     <!-- END stock -->
-
                     <!-- Media -->
                     <div class="block block-rounded">
                         <div class="block-header block-header-default">
@@ -117,16 +110,14 @@
                         </div>
                     </div>
                     <!-- END Media -->
-                    <button class="btn btn-hero-lg btn-rounded btn-hero-success mr-1 mb-3 mt-3" type="submit">
-                    <i class="si si-rocket mr-1"></i> 
-                    Mettre en vente le produit</button>
-                </form>
-            </div>
+                            <button class="btn btn-hero-lg btn-rounded btn-hero-success mr-1 mb-3 mt-3" type="submit"><i class="si si-rocket mr-1"></i> Mettre en vente le produit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
-</div>
     </div>
 </div>
 

@@ -38193,14 +38193,14 @@ body.offcanvas-open .sticky-header {
 .testimonial2 p {
   font-family: "Marcellus";
   font-size: 24px;
-  font-weight: 400;
+  font-weight: 900;
   line-height: 1.75;
   max-width: 800px;
   margin-right: auto;
   margin-bottom: 40px;
   margin-left: auto;
-  opacity: 0.8;
-  color: #454545;
+  opacity: 1;
+  color: black;
 }
 .testimonial2 .author {
   display: flex;
@@ -38221,19 +38221,19 @@ body.offcanvas-open .sticky-header {
 .testimonial2 .author .content .name {
   font-family: "Futura";
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 900;
   line-height: 1;
   margin-bottom: 18px;
-  color: #333333;
+  color: black;
 }
 .testimonial2 .author .content .title {
   font-size: 14px;
-  font-weight: 400;
+  font-weight: 700;
   line-height: 1;
   display: block;
   letter-spacing: 1px;
   text-transform: uppercase;
-  color: #7E7E7E;
+  color: black;
 }
 @media only screen and (max-width: 767px) {
   .testimonial2 p {
@@ -38941,10 +38941,6 @@ body.offcanvas-open .sticky-header {
   padding-top: 10px;
   padding-bottom: 10px;
   letter-spacing: 1.5px;
-}
-.widget-subscibe .btn:hover {
-  border-color: transparent !important;
-  background-color: #72A499 !important;
 }
 @media only screen and (max-width: 767px) {
   .widget-subscibe input[type=email] {
@@ -40334,4 +40330,9 @@ a.rose-red {
 
 .toast-warning {
   background-color: #f89406 !important;
+}
+
+.cover {
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 1.3em;
 }

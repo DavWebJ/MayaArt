@@ -335,23 +335,22 @@
         @yield('404')
         @yield('500')
     <!-- Subscribe Section Start -->
-    <div class="section learts-pt-60 learts-pb-60" data-bg-image="images/bg/bg-3.jpg">
-        <div class="container">
+    <div class="section learts-pt-60 learts-pb-60" data-bg-image="images/newsletter.jpg">
+        <div class="container cover">
             <div class="row align-items-center learts-mb-n30">
 
                 <div class="col-lg-5 learts-mb-30">
                     <!-- Section Title Start -->
                     <div class="section-title text-center mb-0">
-                        <h3 class="sub-title">rester au courant</h3>
+                        <h3 class="sub-title rose-red">rester au courant</h3>
                     </div>
                     <!-- Section Title End -->
                 </div>
 
-                <div class="col-lg-7 learts-mb-30">
-                    <span class="d-block h4 text-heading learts-mb-10 text-center text-lg-left">Souscrire à ma newsletter.</span>
-                    <form id="mc-form" class="mc-form widget-subscibe m-lg-0">
-                        <input id="mc-email" autocomplete="off" type="email" placeholder="votre email">
-                        <button id="mc-submit" class="btn btn-primary">Souscrire</button>
+                <div class="col-lg-7">
+                    <form class="mc-form widget-subscibe m-lg-0">
+                        <input id="email" name="email" autocomplete="off" type="email" placeholder="votre Email">
+                        <button class="btn btn-primary">Souscrire</button>
                     </form>
                     <!-- mailchimp-alerts Start -->
                     <div class="mailchimp-alerts text-centre">
