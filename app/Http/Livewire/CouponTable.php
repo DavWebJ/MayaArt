@@ -29,9 +29,17 @@ class CouponTable extends LivewireDatatable
             Column::name('code')
                 ->label('Code promo'),
        
-            Column::name('percent')
-                ->label('Remise % '),
-        
+            Column::name('type')
+                ->label('Type de coupon'),
+
+            Column::name('value')
+            ->label('Valeur'),
+
+            Column::name('cart_value')
+            ->label('Valeur min du panier'),
+            Column::name('expiry_date')
+            ->label('Expire le:'),
+
                 Column::callback(['id'], function ($id) {
 
                     return view('admin.action.couponaction', ['id'=>$id]);

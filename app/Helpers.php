@@ -34,7 +34,7 @@ function TotalTTC()
 function IsFreeShipping()
 {
     $price =  Cart::instance('cart')->subtotal();
-    $maxPrice = 50;
+    $maxPrice = 35;
     $isFree = false;
     if($price > $maxPrice)
     {
@@ -49,18 +49,23 @@ function IsFreeShipping()
 
 function IsPriceReduce()
 {
-    $isReduce = false;
-    foreach (Cart::instance('cart')->content() as $item) {
-        if($item->model->price_promos > 0)
-        {
-            $isReduce = true;
-        }else
-        {
-            $isReduce = false;
+
+    $promos = 0;
+        foreach (Cart::instance('cart')->content() as $item) {
+            
+            if($item->model->price_promos == 0)
+            {
+                return;
+            }else
+            {
+                $promos++;
+            }
+            
         }
-        return $isReduce;
-    }
+        dd($promos);
+        return $promos;
 }
+
 
 function OptionPrice($option)
 {

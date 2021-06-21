@@ -29,22 +29,24 @@
 
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css'/>
 
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css'/>
+
         <!-- Styles -->
     <link rel="stylesheet" href="{{  asset('css/vendor/vendor.min.css') }}">
     <link rel="stylesheet" href="{{  asset('css/plugins/plugins.min.css') }}">
     <link rel="stylesheet" href="{{ mix('css/main.css') }}">
+    {{--  <link rel="stylesheet" href="{{ mix('css/app.css') }}">  --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.7.0/nouislider.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.0.17/sweetalert2.min.css" integrity="sha512-fZ1HwrDVLoUUUDGK7gZdHJ4TIMQ9KnleLU/Jgf98v1nGz9umOciIbF3zs3R5stCIY/MVMqReXgUGnxOoWUdZDQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="{{ asset('css/coookie.css') }}" rel="stylesheet">
+    
     @livewireStyles
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.3/dist/alpine.js" defer></script>
     
     <!-- Scripts -->
-    @yield('extra-script')
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js'></script>
+
     <script src="{{  asset('js/vendor/vendor.min.js')}}"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
-    @livewireScripts
+
     </head>
     <body>
     <script src="{{  asset('js/plugins/plugins.min.js')}}"></script> 
@@ -58,7 +60,7 @@
                 <!-- Header Logo Start -->
                 <div class="col-auto">
                     <div class="header-logo">
-                        <a href="{{ route('home') }}"><img src="{{ asset('images/logo/MayArt.jpg') }}" alt="Learts Logo" width="250px"></a>
+                        <a href="{{ route('home') }}"><img src="{{ asset('images/logo/MayArt.jpg') }}" alt="MayArt Logo" width="250px"></a>
                     </div>
                 </div>
                 <!-- Header Logo End -->
@@ -68,13 +70,8 @@
                     <nav class="site-main-menu site-main-menu-left menu-height-100 justify-content-center">
                         <ul>
                         <li ><a href="{{ route('home') }}"><span class="menu-text">Home</span></a></li>
-                        <li><a href="{{ route('about') }}"><span class="menu-text">Qui suis je</span></a>
-                        </li>
-                        <li class="has-children"><a href="#"><span class="menu-text">Gallery</span></a>
-                            <ul class="sub-menu">
-                                <li><a href="portfolio-3-columns.html"><span class="menu-text">Portfolio 3 Columns</span></a></li>
-                                <li><a href="portfolio-details.html"><span class="menu-text">Portfolio Details</span></a></li>
-                            </ul>
+                        <li><a href="{{ route('about') }}"><span class="menu-text">Qui suis je</span></a></li>
+                        <li><a href="{{ route('portfolio') }}"><span class="menu-text">Portfolio</span></a>
                         </li>
                         <li><a href="{{ route('shop') }}"><span class="menu-text">Boutique</span></a>
                         </li>
@@ -125,12 +122,12 @@
 
     <!-- Header Sticky Section Start -->
     <div class="sticky-header header-menu-center section bg-white d-none d-xl-block">
-        <div class="container">
+        <div class="col-lg-8 m-auto">
             <div class="row align-items-center">
                 <!-- Header Logo Start -->
                 <div class="col">
                     <div class="header-logo">
-                        <a href="{{ route('home') }}"><img src="{{ asset('images/logo/MayArt.jpg') }}" alt="Learts Logo" width="250px"></a>
+                        <a href="{{ route('home') }}"><img src="{{ asset('images/logo/MayArt.jpg') }}" alt="MayArt Logo" width="250px"></a>
                     </div>
                 </div>
                 <!-- Header Logo End -->
@@ -139,20 +136,11 @@
                 <div class="col d-none d-xl-block">
                     <nav class="site-main-menu justify-content-center">
                         <ul>
-                            <li><a href="{{ route('home') }}"><span class="menu-text">Home</span></a>
-                            </li>
-                            <li><a href="{{ route('about') }}"><span class="menu-text">Qui suis je</span></a>
-                            <li class="has-children"><a href="#"><span class="menu-text">Gallery</span></a>
-                                <ul class="sub-menu">
-                                    <li><a href="portfolio-3-columns.html"><span class="menu-text">Portfolio 3 Columns</span></a></li>
-                                    <li><a href="portfolio-details.html"><span class="menu-text">Portfolio Details</span></a></li>
-                                </ul>
-                            </li>
-                            <li ><a href="{{ route('shop') }}"><span class="menu-text">Boutique</span></a>
-                            </li>
-                            <li ><a href="{{ route('contact') }}"><span class="menu-text">Contact</span></a>
-                            </li>
-                             <!-- if logged -->
+                            <li><a href="{{ route('home') }}"><span class="menu-text">Home</span></a></li>
+                            <li><a href="{{ route('about') }}"><span class="menu-text">Qui suis je</span></a></li>
+                            <li><a href="{{ route('portfolio') }}"><span class="menu-text">Portfolio</span></a></li>
+                            <li ><a href="{{ route('shop') }}"><span class="menu-text">Boutique</span></a></li>
+                            <li ><a href="{{ route('contact') }}"><span class="menu-text">Contact</span></a></li>
                         @auth
                           <li class="has-children"><a href="#"><span class="menu-text">{{ Auth::user()->prenom }}</span></a>
                             <ul class="sub-menu">
@@ -167,12 +155,11 @@
                                       @csrf
                                         <a href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                    this.closest('form').submit();"><span class="menu-text">Déconexion</span></a>
+                                                    this.closest('form').submit();"><span class="menu-text">Déconnexion</span></a>
                                     </form></li>
                             </ul>
                         </li>
                         @endauth
-                        <!--end if logged -->
                         </ul>
                     </nav>
                 </div>
@@ -216,7 +203,7 @@
                 <!-- Header Logo Start -->
                 <div class="col">
                     <div class="header-logo">
-                        <a href="{{ route('home') }}"><img src="{{ asset('images/logo/MayArt.jpg') }}" alt="Learts Logo" width="250px"></a>
+                        <a href="{{ route('home') }}"><img src="{{ asset('images/logo/MayArt.jpg') }}" alt="MayArt logo" width="250px"></a>
                     </div>
                 </div>
                 <!-- Header Logo End -->
@@ -229,12 +216,6 @@
                             <a href="{{ route('login') }}"><i class="fal fa-user"></i></a>
                         </div>
                         @endguest
-                        @auth
-                        @endauth
-                        <div class="header-cart">
-                           @livewire('cart-count-component')
-                            @livewire('wish-list-count-component')
-                        </div>
                         <div class="mobile-menu-toggle">
                             <a href="#offcanvas-mobile-menu" class="offcanvas-toggle">
                                 <svg viewBox="0 0 800 600">
@@ -272,11 +253,7 @@
                 <ul>
                     <li><a href="{{ route('home') }}"><span class="menu-text">Home</span></a></li>
                     <li><a href="{{ route('about') }}"><span class="menu-text">Qui suis je</span></a></li>
-                    <li><a href="#"><span class="menu-text">Gallery</span></a>
-                        <ul class="sub-menu">
-                            <li><a href="portfolio-3-columns.html"><span class="menu-text">Portfolio 3 Columns</span></a></li>
-                        </ul>
-                    </li>
+                    <li><a href="{{ route('portfolio') }}"><span class="menu-text">Portfolio</span></a>
                     <li><a href="{{ route('shop') }}"><span class="menu-text">Boutique</span></a></li>
                     <li><a href="{{ route('contact') }}"><span class="menu-text">Contact</span></a></li>
                 </ul>
@@ -305,7 +282,8 @@
                 <a href="#"><i class="fab fa-facebook-f"></i></a>
                 <a href="#"><i class="fab fa-twitter"></i></a>
                 <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-pinterest"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
             </div>
         </div>
     </div>
@@ -314,12 +292,14 @@
     <div class="offcanvas-overlay"></div>
 
         {{ $slot ?? '' }}
-        @yield('about')
         @yield('home')
-        @yield('contact')
-        @yield('checkout')
+        @yield('about')
+        @yield('portfolio')
         @yield('shop')
         @yield('shop-filter')
+        @yield('shipping')
+        @yield('contact')
+        @yield('checkout')
         @yield('success')
         @yield('error')
         @yield('order')
@@ -334,6 +314,7 @@
         @yield('stripejs')
         @yield('404')
         @yield('500')
+        @yield('message')
     <!-- Subscribe Section Start -->
     <div class="section learts-pt-60 learts-pb-60" data-bg-image="images/newsletter.jpg">
         <div class="container cover">
@@ -365,36 +346,11 @@
     </div>
     <!-- Subscribe Section End -->
     @include('includes.footer')
-        <!-- Modal -->
-    <div class="quickViewModal modal fade" id="quickViewModal">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <button class="close" data-dismiss="modal">&times;</button>
-                <div class="row learts-mb-n30">
-                    <!-- Product Images Start -->
-                    <div class="col-lg-6 col-12 learts-mb-30">
-                        <div class="product-images">
-                            <div class="product-gallery-slider-quickview">
-                                <div class="product-zoom" data-image="assets/images/product/single/1/product-zoom-1.jpg">
-                                    <img src="assets/images/product/single/1/product-1.jpg" alt="">
-                                </div>
-                                <div class="product-zoom" data-image="assets/images/product/single/1/product-zoom-2.jpg">
-                                    <img src="assets/images/product/single/1/product-2.jpg" alt="">
-                                </div>
-                                <div class="product-zoom" data-image="assets/images/product/single/1/product-zoom-3.jpg">
-                                    <img src="assets/images/product/single/1/product-3.jpg" alt="">
-                                </div>
-                                <div class="product-zoom" data-image="assets/images/product/single/1/product-zoom-4.jpg">
-                                    <img src="assets/images/product/single/1/product-4.jpg" alt="">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Product Images End -->
-                </div>
-            </div>
-        </div>
-    </div>
   <!-- loader -->
+  @stack('modals')
+
+    @livewireScripts
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.16.6/sweetalert2.all.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js'></script>
     </body>
 </html>

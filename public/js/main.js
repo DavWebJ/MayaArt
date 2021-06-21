@@ -645,86 +645,24 @@
     /*--
         MailChimp
     -----------------------------------*/
-    $('#mc-form').ajaxChimp({
-        language: 'en',
-        callback: mailChimpResponse,
-        // ADD YOUR MAILCHIMP URL BELOW HERE!
-        url: 'http://devitems.us11.list-manage.com/subscribe/post?u=6bbb9b6f5827bd842d9640c82&amp;id=05d85f18ef'
+    // $('#mc-form').ajaxChimp({
+    //     language: 'en',
+    //     callback: mailChimpResponse,
+    //     // ADD YOUR MAILCHIMP URL BELOW HERE!
+    //     url: 'http://devitems.us11.list-manage.com/subscribe/post?u=6bbb9b6f5827bd842d9640c82&amp;id=05d85f18ef'
 
-    });
-
-    function mailChimpResponse(resp) {
-        if (resp.result === 'success') {
-            $('.mailchimp-success').html('' + resp.msg).fadeIn(900);
-            $('.mailchimp-error').fadeOut(400);
-        } else if (resp.result === 'error') {
-            $('.mailchimp-error').html('' + resp.msg).fadeIn(900);
-        }
-    }
-
-    /*--
-        Instagram Feed
-    -----------------------------------*/
-    // $.instagramFeed({
-    //     'username': 'ludmilla.mayart',
-    //     'container': ".instagram-feed",
-    //     'display_profile': false,
-    //     'display_biography': false,
-    //     'display_gallery': true,
-    //     'styling': false,
-    //     'items': 12,
-    //     "image_size": "320",
     // });
-    // $('.instagram-feed').on("DOMNodeInserted", function (e) {
-    //     if (e.target.className == 'instagram_gallery') {
-    //         $('.instagram-carousel1 .' + e.target.className).slick({
-    //             infinite: true,
-    //             slidesToShow: 5,
-    //             slidesToScroll: 1,
-    //             prevArrow: '<button class="slick-prev"><i class="ti-angle-left"></i></button>',
-    //             nextArrow: '<button class="slick-next"><i class="ti-angle-right"></i></button>',
-    //             responsive: [{
-    //                 breakpoint: 119,
-    //                 settings: {
-    //                     slidesToShow: 4
-    //                 }
-    //             }, {
-    //                 breakpoint: 991,
-    //                 settings: {
-    //                     slidesToShow: 3
-    //                 }
-    //             }, {
-    //                 breakpoint: 767,
-    //                 settings: {
-    //                     slidesToShow: 2
-    //                 }
-    //             }, {
-    //                 breakpoint: 575,
-    //                 settings: {
-    //                     slidesToShow: 1
-    //                 }
-    //             }]
-    //         })
-    //         $('.instagram-carousel2 .' + e.target.className).slick({
-    //             infinite: true,
-    //             slidesToShow: 3,
-    //             slidesToScroll: 1,
-    //             prevArrow: '<button class="slick-prev"><i class="ti-angle-left"></i></button>',
-    //             nextArrow: '<button class="slick-next"><i class="ti-angle-right"></i></button>',
-    //             responsive: [{
-    //                 breakpoint: 767,
-    //                 settings: {
-    //                     slidesToShow: 2
-    //                 }
-    //             }, {
-    //                 breakpoint: 575,
-    //                 settings: {
-    //                     slidesToShow: 1
-    //                 }
-    //             }]
-    //         });
+
+    // function mailChimpResponse(resp) {
+    //     if (resp.result === 'success') {
+    //         $('.mailchimp-success').html('' + resp.msg).fadeIn(900);
+    //         $('.mailchimp-error').fadeOut(400);
+    //     } else if (resp.result === 'error') {
+    //         $('.mailchimp-error').html('' + resp.msg).fadeIn(900);
     //     }
-    // });
+    // }
+
+
     /*--
         CountDown
     -----------------------------------*/
@@ -763,21 +701,21 @@
     /*--
         Product Quantity
     -----------------------------------*/
-    $('.qty-btn').on('click', function () {
-        var $this = $(this);
-        var oldValue = $this.siblings('input').val();
-        if ($this.hasClass('plus')) {
-            var newVal = parseFloat(oldValue) + 1;
-        } else {
-            // Don't allow decrementing below zero
-            if (oldValue > 1) {
-                var newVal = parseFloat(oldValue) - 1;
-            } else {
-                newVal = 1;
-            }
-        }
-        $this.siblings('input').val(newVal);
-    });
+    // $('.qty-btn').on('click', function () {
+    //     var $this = $(this);
+    //     var oldValue = $this.siblings('input').val();
+    //     if ($this.hasClass('plus')) {
+    //         var newVal = parseFloat(oldValue) + 1;
+    //     } else {
+    //         // Don't allow decrementing below zero
+    //         if (oldValue > 1) {
+    //             var newVal = parseFloat(oldValue) - 1;
+    //         } else {
+    //             newVal = 1;
+    //         }
+    //     }
+    //     $this.siblings('input').val(newVal);
+    // });
 
     /*--
         Post Share

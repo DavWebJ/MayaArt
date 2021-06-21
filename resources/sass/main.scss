@@ -136,3 +136,8 @@
 
 // theme website import
 @import 'mainscss/style';
+
+// tailwind support
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';

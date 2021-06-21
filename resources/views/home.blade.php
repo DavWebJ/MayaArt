@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-  Le monde de MayArt
+  La boutique de MayArt
 @endsection
 @section('meta')
  Le monde de MayArt
@@ -33,8 +33,8 @@
                     <span class="bg" data-bg-image="images/slider/home1/slide-2-1.png"></span>
                     <span class="slide-border"></span>
                     <span class="icon">
-                        <img src="{{ asset('images/slider/home1/slide-2-2.png') }}" alt="Slide Icon">
-                        <img src="{{ asset('images/slider/home1/slide-2-3.png') }}" alt="Slide Icon">
+                        <img src="{{ asset('images/slide gauche.png') }}" alt="Slide Icon">
+                        <img src="{{ asset('images/slide droit.png') }}" alt="Slide Icon">
                     </span>
                     <h2 class="title text-center">{{ $header_2->title }}</h2>
                     <h3 class="sub-title">{{ $header_2->subtitle }}</h3>
@@ -193,16 +193,28 @@
                 <div class="col-lg-6 col-12 learts-mb-30">
                     <div class="sale-banner11">
                         <div class="inner">
-                            <img src="{{ asset($promos_2->banner) }}" alt="{{ $promos_2->alt }}">
+                            <img src="{{ asset($promos->banner) }}" alt="{{ $promos->alt }}">
                             <div class="content">
-                                <h3 class="title white-text" >{{ $promos_2->product->name }}</h3>
+                                <h3 class="title white-text" >{{ $promos->product->name }}</h3>
                                 {{--  <img class="price " src="{{ asset($promos_2->banner) }}" alt="{{ $promos_2->alt }}">  --}}
                             </div>
                         </div>
                     </div>
-                    <div class="countdown2 primary2 justify-content-center learts-mt-50" data-countdown="{{ $promos_2->end }}"></div>
+                    <div class="countdown2 primary2 justify-content-center learts-mt-50" data-countdown="{{ $promos->end }}">
+                        
+                    </div>
+                    <div class="d-flex justify-content-center product-info">   
+                        <span class="price">
+                            @if ($promos->product->price_promos ?? '')
+                                <span class="old">{{$promos->product->price}} €</span>
+                                <span class="new">{{$promos->product->FormatPrice()}}</span>
+                            @else
+                                {{$promos->product->FormatPrice()}}
+                            @endif
+                        </span>
+                    </div>
                     <div class="d-flex justify-content-center learts-mt-50">
-                        <a href="{{ route('shop.show',['slug' => $promos_2->product->slug]) }}" class="btn btn-primary">je veux ce produit</a>
+                        <a href="{{ route('shop.show',['slug' => $promos->product->slug]) }}" class="btn btn-primary">je veux ce produit</a>
                     </div>
                 </div>
                 <div class="col-lg-6 col-12 learts-mb-30">
@@ -223,18 +235,28 @@
 
                 <div class="col-lg-6 col-12 learts-mb-30">
                     <div class="product-deal-image text-center">
-                        <img src="{{ asset($promos_3->banner) }}" alt="{{ $promos_3->alt }}">
+                        <img src="{{ asset($promos_2->banner) }}" alt="{{ $promos_2->alt }}">
                     </div>
                 </div>
 
                 <div class="col-lg-6 col-12 learts-mb-30">
                     <div class="product-deal-content">
-                        <h2 class="title">{{ $promos_3->product->name }}</h2>
+                        <h2 class="title">{{ $promos_2->product->name }}</h2>
                         <div class="desc">
-                            <p>{!! $promos_3->desc !!}</p>
+                            <p>{!! $promos_2->desc !!}</p>
+                            <div class="product-info d-flex justify-content-center my-4">   
+                                <span class="price orchid" style="font-weight: bold !important">
+                                    @if ($promos_2->product->price_promos ?? '')
+                                        <span class="old">{{$promos_2->product->price}} €</span>
+                                        <span class="new">{{$promos_2->product->FormatPrice()}}</span>
+                                    @else
+                                        {{$promos_2->product->FormatPrice()}}
+                                    @endif
+                                </span>
+                            </div>
                         </div>
                         <div class="countdown1" data-countdown="{{ $promos_2->end }}"></div>
-                        <a href="{{ route('shop.show',['slug' => $promos_3->product->slug]) }}" class="btn btn-primary">Acheter maintenant</a>
+                        <a href="{{ route('shop.show',['slug' => $promos_2->product->slug]) }}" class="btn btn-primary">Acheter maintenant</a>
                     </div>
                 </div>
 

@@ -32,7 +32,7 @@ class CouponController extends Controller
      */
     public function create()
     {
- 
+        
         return view('admin.coupon.create');
     }
 
@@ -47,20 +47,26 @@ class CouponController extends Controller
         $this->validate($request,
         [
             'code'=>'bail|required|unique:coupons,code',
-            'percent' => 'bail|required|',
+            'type'=>'required',
+            'value' => 'bail|required|numeric',
+            'cart_value'=>'required|numeric',
+            'expiry_date'=>'required'
 
         ]);
 
         
         $coupons = Coupon::create([
             'code' => $request->code,
-            'percent' => $request->percent,
+            'type' => $request->type,
+            'value' => $request->value,
+            'cart_value' => $request->cart_value,
+            'expiry_date'=>$request->expiry_date
 
         ]);
 
         $coupons->save();
 
-        $request->session()->flash('success', 'Le code promo est créé !');
+        $request->session()->flash('success', 'Le code promo as était créé avec succées !');
         return redirect()->route('coupon.index');
     }
 
@@ -99,16 +105,26 @@ class CouponController extends Controller
         $this->validate($request,
         [
             'code'=>'required',
+            'type'=>'required',
+            'value' => 'bail|required|numeric',
+            'cart_value'=>'required|numeric',
+            'expiry_date'=>'required'
         ]);
 
 
             $code = $request->input('code');
-            $percent = $request->input('percent');
+            $type = $request->input('type');
+            $value = $request->input('value');
+            $cart_value = $request->input('cart_value');
+            $exipy_date = $request->input('expiry_date');
 
    
 
             $coupon->code = $code;
-            $coupon->percent = $percent;
+            $coupon->type = $type;
+            $coupon->value = $value;
+            $coupon->cart_value = $cart_value;
+            $coupon->expiry_date = $exipy_date;
             $coupon->save();
 
         Session::flash('success', 'Ce code promo a bien été modifié !');

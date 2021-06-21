@@ -10,7 +10,6 @@
             <a href="{{route('product.create')}}" class="btn btn-hero-lg btn-rounded btn-outline-dark"><i class="fas fa-plus mx-2"></i> Créer un nouveau produit</a>
        </div>
             <livewire:products-table 
-            {{-- include="id ,tagged.tag_name|Tags, title,desc,category.name|Catégories,slug"  --}}
             searchable="title,slug"/>
   </div>
 </div>

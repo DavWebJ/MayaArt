@@ -4,7 +4,7 @@
                 <div class="col-lg-4 col-sm-6 col-12 learts-mb-40">
                     <h4 class="widget-title">Contactez-moi</h4>
                     <div class="widget-contact2">
-                        <p>Gont-Pontouvre 16160<br> 16160 <br> <span class="text-heading">06.00.00.00.00</span> <br> <span class="rose-red"><a class="link rose-red" href="{{ route('contact') }}">contactez-moi</a></span></p>
+                        <p>Gont-Pontouvre <br> 16160 <br> <span class="text-heading">06.00.00.00.00</span> <br> <span class="rose-red"><a class="link rose-red" href="{{ route('contact') }}">contactez-moi</a></span></p>
                     </div>
                 </div>
 
@@ -22,6 +22,7 @@
                     <ul class="widget-list">
                         <li><a href="{{ route('home') }}" >Home</a></li>
                         <li><a href="{{ route('about') }}" >About me</a></li>
+                        <li><a href="{{ route('portfolio') }}" >My portfolio</a></li>
                         <li><a href="{{ route('shop') }}" >Shop</a></li>
                         <li><a href="{{ route('contact') }}" >Contact</a></li>
                     </ul>

@@ -72,10 +72,7 @@ class User extends Authenticatable implements MustVerifyEmailContract
     {
         return $this->belongsTo(Role::class);
     }
-    public function posts()
-    {
-        return $this->belongsToMany(Post::class);
-    }
+
     public function shipping()
     {
         return $this->belongsTo(Shipping::class);
@@ -83,5 +80,10 @@ class User extends Authenticatable implements MustVerifyEmailContract
     public function rates()
     {
         return $this->belongsToMany(Rating::class);
+    }
+
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class);
     }
 }

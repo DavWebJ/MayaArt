@@ -61,7 +61,7 @@ class ShopFilterComponents extends Component
         Cart::instance('cart')->add($product_id, $product_name,1,$product_price)->associate(Product::class);
         $this->emitTo('cart-count-component','refreshComponent');
         $this->emitTo('cart-dynamique-component','refreshComponent');
-        return redirect()->back();
+        session()->flash('success','Votre article à bien été ajouté à votre panier !');
     
     }
 

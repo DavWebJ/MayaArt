@@ -10,12 +10,21 @@ class Order extends Model
     use HasFactory;
     protected $guarded = [];
 
-    public function products()
+     protected $fillable = [];
+    public function orderItems()
     {
-        return $this->belongsToMany(Product::class);
+        return $this->hasMany(OrderItem::class);
     }
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+    public function shipping()
+    {
+        return $this->hasOne(Shipping::class);
+    }
+    public function transaction()
+    {
+        return $this->hasOne(Transaction::class);
     }
 }

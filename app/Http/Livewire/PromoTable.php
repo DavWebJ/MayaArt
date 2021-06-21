@@ -41,6 +41,7 @@ class PromoTable extends LivewireDatatable
          
 
             }),
+            Column::delete()
 
 
         ];

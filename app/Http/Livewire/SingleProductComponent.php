@@ -105,6 +105,17 @@ class SingleProductComponent extends Component
 
         
     }
+    
+    public function removeFromCart($product_id)
+    {
+        $rows  = Cart::instance('cart')->content();
+        $rowId = $rows->where('id', $product_id)->first()->rowId;
+        Cart::instance('cart')->remove($rowId);
+       $this->emitTo('cart-count-component','refreshComponent');
+       $this->emitTo('cart-dynamique-component','refreshComponent');
+
+
+    }
 
     public function addToCart($product_id)
     {

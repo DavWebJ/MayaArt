@@ -2,6 +2,16 @@
 {{$product->name}}
 @endsection
 <div>
+    @if(Session::has('success'))
+    <script>
+        toastr.success("{{ Session::get('success') }}");
+    </script>
+    @endif
+    @if(Session::has('error'))
+    <script>
+        toastr.error("{{ Session::get('error') }}");
+    </script>
+    @endif
  <link rel="stylesheet" href="{{asset('css/rate.css')}}">
     <!-- Page Title/Header Start -->
     <div class="page-title-section section" style="background-image: url({{ asset('images/bg/bg-1.jpg') }})">
@@ -101,16 +111,7 @@
                             <table>
                                 <tbody>
                                     <tr>
-                                        <td class="label"><span>Options couleur:</span></td>
-                                        <td class="value">
-                                            <div class="product-colors">
-                                                <a href="#" data-bg-color="#000000"></a>
-                                                <a href="#" data-bg-color="#b2483c"></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="label"><span>Options:</span></td>
+                                        <td class="label"><span>Options disponible:</span></td>
                                         <td class="value">
                                             <div class="product-sizes">
                                                 @forelse ( $attributes as $attr )
@@ -121,29 +122,27 @@
                                             </div>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td class="label"><span>Quantity</span></td>
-                                        <td class="value">
-                                            <div class="product-quantity">
-                                                <span class="qty-btn minus"><i class="ti-minus"></i></span>
-                                                <input type="text" class="input-qty" value="1">
-                                                <span class="qty-btn plus"><i class="ti-plus"></i></span>
-                                            </div>
-                                        </td>
-                                    </tr>
                                 </tbody>
                             </table>
                         </div>
                         <div class="product-buttons">
                             @php
                                 $wishitems = Cart::instance('wishlist')->content()->pluck('id');
+                                $item = Cart::instance('cart')->content()->pluck('id');
                             @endphp
                                 @if ($wishitems->contains($product->id))
-                                <a href="#" wire:click.prevent="removeFromWishlist({{ $product->id }})" class="btn btn-icon btn-primary hintT-top" data-hint="retirer de ma liste"><i class="fas fa-heart"></i></a>
+                                <a href="#" wire:click.prevent="removeFromWishlist({{ $product->id }})" class="btn btn-icon btn-primary hintT-top" data-hint="Retirer de ma liste de souhait"><i class="fas fa-heart"></i></a>
                                 @else
-                                <a href="#" wire:click.prevent="addToWishlist({{ $product->id }})" class="btn btn-icon btn-outline-body rose-red  hintT-top" data-hint="Ajouter à ma liste"><i class="far fa-heart"></i></a>
+                                <a href="#" wire:click.prevent="addToWishlist({{ $product->id }})" class="btn btn-icon btn-outline-body rose-red  hintT-top" data-hint="Ajouter à ma liste de souhait"><i class="far fa-heart"></i></a>
                                 @endif
-                            <a href="#" class="btn btn-primary"><i class="fal fa-shopping-cart"></i> Add to Cart</a>
+                                @if ($item->contains($product->id))
+                                 <a href="#" wire:click.prevent="removeFromCart({{ $product->id }})" class="btn btn-icon btn-outline-body rose-red  hintT-top" data-hint="Retirer de mon panier"><i class="fas fa-trash"></i></a>
+                                @else
+                                    <a href="#" wire:click.prevent="addToCart({{ $product->id }})" class="btn btn-primary"><i class="fal fa-shopping-cart"></i>ajouter au panier</a>
+                                @endif
+                                @if (Cart::instance('cart')->count() > 0)
+                                    <a href="{{ route('customer.cart') }}" class="btn btn-dark btn-hover-primary">Voir mon panier</a>
+                                @endif
                         </div>
                         
                         <div class="product-meta">
@@ -159,12 +158,11 @@
                                         <td class="label"><span>partager sur :</span></td>
                                         <td class="va">
                                             <div class="product-share">
-                                                <a  href="{{ Share::currentPage()->facebook()->getRawLinks() }}" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                                                <a href="{{ Share::currentPage()->twitter()->getRawLinks() }}" target="_blank"><i class="fab fa-twitter"></i></a>
-                                                <a href="{{ Share::currentPage()->linkedin()->getRawLinks() }}" target="_blank"><i class="fab fa-linkedin"></i></a>
-                                                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a> 
-                                                <a href="{{ Share::currentPage()->pinterest()->getRawLinks() }}" target="_blank"><i class="fab fa-pinterest"></i></a>
-                                                <a href="{{ Share::currentPage()->whatsapp()->getRawLinks() }}" target="_blank"><i class="fab fa-whatsapp"></i></a> 
+                                                <a  href="{{ Share::currentPage()->facebook()->getRawLinks() }}" target="_blank"><i class="fab fa-facebook-f" style="font-size: 23px !important;"></i></a>
+                                                <a href="{{ Share::currentPage()->twitter()->getRawLinks() }}" target="_blank"><i class="fab fa-twitter" style="font-size: 23px !important;"></i></a>
+                                                <a href="{{ Share::currentPage()->linkedin()->getRawLinks() }}" target="_blank"><i class="fab fa-linkedin" style="font-size: 23px !important;"></i></a>
+                                                <a href="{{ Share::currentPage()->pinterest()->getRawLinks() }}" target="_blank"><i class="fab fa-pinterest" style="font-size: 23px !important;"></i></a>
+                                                <a href="{{ Share::currentPage()->whatsapp()->getRawLinks() }}" target="_blank"><i class="fab fa-whatsapp" style="font-size: 23px !important;"></i></a> 
                                             </div>
                                         </td>
                                     </tr>

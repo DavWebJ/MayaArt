@@ -127,7 +127,8 @@ class PromotionController extends Controller
      */
     public function edit(Promotion $promotion)
     {
-         return view('admin.promotion.edit',compact(['promotion']));
+        $product = Product::all();
+         return view('admin.promotion.edit',compact(['promotion','product']));
     }
 
     /**
@@ -144,6 +145,7 @@ class PromotionController extends Controller
             'title'=>'required',
             'alt'=>'required',
             'desc'=>'required',
+            'end' =>'required'
         ]);
            
             if($promotion->isClean('title'))
@@ -161,11 +163,21 @@ class PromotionController extends Controller
             {
                 $promotion->banner  = $promotion->banner;
             }
+            if($promotion->isClean('end'))
+            {
+                $promotion->end  = $promotion->end;
+            }
+            if($promotion->isClean('product_id'))
+            {
+                $promotion->product_id  = $promotion->product_id;
+            }
 
 
             $promotion->title  = $request->title;
             $promotion->alt = $request->alt;
             $promotion->desc =$request->desc;
+             $promotion->product_id = $request->product_id;
+            $promotion->end = $request->end;
 
 
 
@@ -191,14 +203,14 @@ class PromotionController extends Controller
             // Create unique file name
             $fileNameToStore = $filename.'_'.time().'.'.$extension;
 
-            $file->move('storage/promos/banner/',$fileNameToStore);
-            $promotion->banner = 'storage/promos/banner/' .$fileNameToStore;
+            $file->move('storage/promos/',$fileNameToStore);
+            $promotion->banner = 'storage/promos/' .$fileNameToStore;
            
         }
 
         $promotion->save();
 
-        $request->session()->flash('success', 'Votre réduction a bien été modifiée');
+        $request->session()->flash('success', 'Votre promotion a bien été modifiée');
         return redirect('admin/promotion');
     }
 

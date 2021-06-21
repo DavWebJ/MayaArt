@@ -211,7 +211,7 @@
                                     </li>
                                 </ul>
                             </li>
-                           <li class="nav-main-heading">Gestion promotions</li>
+                           <li class="nav-main-heading">Promotion produit</li>
                             <li class="nav-main-item">
                                 <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
                                     <i class="nav-main-link-icon fa fa-bullhorn text-xsmooth"></i>
@@ -221,7 +221,7 @@
                                     <li class="nav-main-item">
                                         <a class="nav-main-link" href="{{ route('promotion.create') }}">
                                             <i class="nav-main-link-icon fa fa-plus"></i>
-                                            <span class="nav-main-link-name">Nouveau</span>
+                                            <span class="nav-main-link-name">Créer une nouvelle promos</span>
                                         </a>
                                     </li>
                                     <li class="nav-main-item">
@@ -235,19 +235,19 @@
                             <li class="nav-main-item">
                                 <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
                                     <i class="nav-main-link-icon fa fa-percentage text-xsmooth"></i>
-                                    <span class="nav-main-link-name">Réduction</span>
+                                    <span class="nav-main-link-name">Coupons</span>
                                 </a>
                                 <ul class="nav-main-submenu">
                                     <li class="nav-main-item">
                                         <a class="nav-main-link" href="{{ route('coupon.create') }}">
                                             <i class="nav-main-link-icon fa fa-plus"></i>
-                                            <span class="nav-main-link-name">Nouveau</span>
+                                            <span class="nav-main-link-name">Créer un nouveau coupon</span>
                                         </a>
                                     </li>
                                     <li class="nav-main-item">
                                         <a class="nav-main-link" href="{{ route('coupon.index') }}">
                                             <i class="nav-main-link-icon fa fa-pencil-alt"></i>
-                                            <span class="nav-main-link-name">Gérer les réductions</span>
+                                            <span class="nav-main-link-name">Gérer les coupons</span>
                                         </a>
                                     </li>
                                 </ul>

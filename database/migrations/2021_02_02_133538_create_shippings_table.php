@@ -15,15 +15,14 @@ class CreateShippingsTable extends Migration
     {
         Schema::create('shippings', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->nullable()->constrained('users');
-            $table->tinyInteger('shipping_numero')->nullable();
-            $table->string('shipping_adress');
-            $table->string('shipping_zip');
-            $table->string('shipping_city');
-            $table->tinyInteger('billing_numero')->nullable();
-            $table->string('billing_adress');
-            $table->string('billing_zip');
-            $table->string('billing_city');
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->string('prenom');
+            $table->string('nom');
+            $table->string('email');
+            $table->string('adresse');
+            $table->string('ville');
+            $table->string('zip');
+            $table->string('pays');
             $table->timestamps();
         });
     }

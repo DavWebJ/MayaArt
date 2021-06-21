@@ -7,7 +7,7 @@
    <div class="content">
       <div class="my-5">
         <div class="row justify-content-center my-4">
-        <a href="{{route('coupon.create')}}" class="btn btn-hero-lg btn-rounded btn-outline-dark"><i class="fas fa-plus pr-2"></i>Créer un code promo</a>
+        <a href="{{route('coupon.create')}}" class="btn btn-hero-lg btn-rounded btn-outline-dark"><i class="fas fa-plus pr-2"></i>Créer un nouveau coupon</a>
         </div>
             <livewire:coupon-table 
             searchable="coupon"/>

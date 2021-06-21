@@ -24,7 +24,12 @@ use App\Http\Controllers\PromotionController;
 use App\Http\Livewire\SingleProductComponent;
 use App\Http\Controllers\NewsLetterController;
 use App\Http\Controllers\admin\AdminController;
+use App\Http\Controllers\BillingController;
 use App\Http\Controllers\ImageProductController;
+use App\Http\Controllers\NotificationController;
+use App\Http\Livewire\Customer\CheckoutComponent;
+use App\Http\Livewire\DashboardComponent;
+use App\Http\Livewire\UserOrderDetailComponent;
 use App\Http\Livewire\WishlistPageComponent;
 
 /*
@@ -42,41 +47,43 @@ use App\Http\Livewire\WishlistPageComponent;
 Route::get('/',[HomeController::class,'index'])->name('home');
 Route::get('/qui-suis-je',[HomeController::class,'about'])->name('about');
 Route::get('/contact',[HomeController::class,'contact'])->name('contact');
+Route::get('/portfolio',[HomeController::class,'portfolio'])->name('portfolio');
 
 
 // shop routes
-Route::get('/boutique',ShopFilterComponents::class)->name('shop');
+Route::get('/la boutique de mayart',ShopFilterComponents::class)->name('shop');
 Route::get('/boutique/{slug}',SingleProductComponent::class)->name('shop.show');
 Route::get('/boutique/categories/{category_slug}',CategoryComponent::class)->name('shop.category');
+
 
 // mentions and polices  routes
 Route::get('/cgv',[HomeController::class,'policies'])->name('cgv');
 Route::get('/mentions légales',[HomeController::class,'mentions'])->name('mentions');
+
 // send messages
 Route::post('/message',[MessageController::class,'send'])->name('message');
 
 //subscribe newsletter
 Route::post('/subscribe',[NewsLetterController::class,'subscribe'])->name('subscribe');
 
-// add product to cart
-Route::get('/panier',CartComponent::class)->name('customer.cart');
-Route::get('/liste-de-souhait',WishlistPageComponent::class)->name('product.wishlist');
 
 // customer payement && cart shop needs authentication
 Route::group(['middleware' => ['auth:sanctum','verified']], function () {
-    
-    Route::get('/paiement',[CheckoutController::class,'index'])->name('checkout.index');
-    Route::post('/paiement',[CheckoutController::class,'store'])->name('checkout.store');
+
+    Route::post('/paiement',[CheckoutController::class,'PaiementAction'])->name('customer.paiement');
+    Route::get('/paiement',[CheckoutController::class,'checkout'])->name('customer.checkout');
     Route::get('/merci',[CheckoutController::class,'payementSuccess'])->name('checkout.payementSuccess');
     Route::get('/echec',[CheckoutController::class,'payementError'])->name('checkout.payementError');
     Route::get('/commande',[CustomerController::class,'order'])->name('customer.order');
-    Route::get('/dashboard',[CustomerController::class,'dashboard'] )->name('dashboard');
-    Route::post('/coupon',[CustomerController::class,'storeCoupon'])->name('cart.store.coupon');
-    
-    Route::delete('/coupon',[CustomerController::class,'destroyCoupon'])->name('cart.destroy.coupon');
+    Route::get('/dashboard/commandes/{transaction_id}',UserOrderDetailComponent::class)->name('dashboard.order');
+    Route::get('/dashboard',DashboardComponent::class)->name('dashboard');
      Route::post('/change/status',[AdminController::class,'changestatus']);
+     Route::get('/panier',CartComponent::class)->name('customer.cart');
+    Route::get('/liste-de-souhait',WishlistPageComponent::class)->name('product.wishlist');
     Route::resources([
-        'shipping'=>ShippingController::class
+        'shipping'=>ShippingController::class,
+        'billing'=>BillingController::class,
+        'notification'=>NotificationController::class
     ]);
 });
 
