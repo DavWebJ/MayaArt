@@ -29,6 +29,7 @@ use App\Http\Controllers\ImageProductController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Livewire\Customer\CheckoutComponent;
 use App\Http\Livewire\DashboardComponent;
+use App\Http\Livewire\UserOrder;
 use App\Http\Livewire\UserOrderDetailComponent;
 use App\Http\Livewire\WishlistPageComponent;
 
@@ -75,7 +76,7 @@ Route::group(['middleware' => ['auth:sanctum','verified']], function () {
     Route::get('/merci',[CheckoutController::class,'payementSuccess'])->name('checkout.payementSuccess');
     Route::get('/echec',[CheckoutController::class,'payementError'])->name('checkout.payementError');
     Route::get('/commande',[CustomerController::class,'order'])->name('customer.order');
-    Route::get('/dashboard/commandes/{transaction_id}',UserOrderDetailComponent::class)->name('dashboard.order');
+    Route::get('/dashboard/commandes/{transaction_id}',UserOrder::class)->name('dashboard.order');
     Route::get('/dashboard',DashboardComponent::class)->name('dashboard');
      Route::post('/change/status',[AdminController::class,'changestatus']);
      Route::get('/panier',CartComponent::class)->name('customer.cart');

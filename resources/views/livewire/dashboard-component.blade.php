@@ -169,11 +169,11 @@
                                         <tbody>
                                             @forelse ($order as $item)
                                                 <tr>
-                                                    <td>{{ $item->transaction->id }}</td>
+                                                    <td>{{ $item->transaction->transaction_id }}</td>
                                                     <td>{{ Carbon\Carbon::parse($item->order_at )->locale('fr')->translatedFormat('d F Y à H\hi') }}</td>
                                                     <td class="lila">{{ $item->status }}</td>
                                                     <td>{{ FormatPrice($item->total) }}</td>
-                                                    <td><a href="{{ route('dashboard.order',['transaction_id'=>$item->transaction->id]) }}"><i class="fas fa-eye"></i> Voir</a></td>
+                                                   <td><a href="{{ route('dashboard.order',['transaction_id'=>$item->transaction->transaction_id]) }}"><i class="fas fa-eye"></i> Voir</a></td>  
                                                 </tr>
                                             @empty
                                             <tr>

@@ -6,7 +6,7 @@
                 <div class="col">
 
                     <div class="page-title">
-                        <h1 class="title">Ma commande N°</h1>
+                        <h3 class="title">Ma commande</h3>
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}">Acceuil</a></li>
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">retourner sur mon compte</a></li>
@@ -24,29 +24,30 @@
     <div class="section section-padding">
         <div class="container">
                 <table class="cart-wishlist-table table">
+                    <caption class="orchid title"><p>Total: {{ $order->total }}</p></caption> 
                     <thead>
                         <tr>
-                            <th class="name" colspan="2">Article</th>
+                            <th class="name">Article</th>
                             <th class="price">Prix</th>
                             <th class="quantity">Quantité</th>
-                            <th class="subtotal">Total</th>
-                            <th class="remove">Vider</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (unserialize($order->products) as $item)
+                        @foreach ($order_items as $item)
                             <tr>
-                            <td scope="row"></td>
-                            <td scope="row">{{$item[0]}}</td>
-                            <td scope="row">{{ formatPrice($item[1]) }}</td>
-                            <td scope="row">{{$item[2]}}</td>
+                                <td scope="row">{{ $item->products->name }}</td>
+                                <td scope="row">{{ formatPrice($item->price) }}</td>
+                                <td scope="row">{{ $item->qty }}</td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
+                <div>
+                <div class="my-4"><h4 class="orchid">statut de la commande: <span class="rose-red"> {{ $order->status }}</span></h4></div>
+                </div>
                 <div class="row justify-content-between mb-n3">
                     <div class="col-auto">
-                        <a class="btn btn-light btn-hover-dark mr-3 mb-3" href="shop.html">retourner en boutique</a>
+                        <a class="btn btn-primary btn-hover-dark mr-3 mb-3" href="{{ route('shop') }}">Continuer mes achats</a>
                     </div>
                 </div>
             </form>

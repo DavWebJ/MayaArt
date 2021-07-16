@@ -53,6 +53,8 @@ class Product extends Model
     {
         return $this->belongsToMany(Option::class,'product_option','product_id','option_id');
     }
+
+
     
   public function calculateRating()
   {

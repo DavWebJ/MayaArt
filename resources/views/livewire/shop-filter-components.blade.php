@@ -24,9 +24,58 @@
         </div>
     </div>
     <!-- Page Title/Header End -->
+
+             <!-- Feature Section Start -->
+    <div class="section learts-pt-30 learts-pb-30 bg-yellow">
+        <div class="container">
+            <div class="row learts-mb-n30">
+
+                <div class="col-lg-3 col-sm-6 col-12 learts-mb-30">
+                    <div class="icon-box5">
+                        <div class="icon"><i class="fas fa-truck"></i></div>
+                        <div class="content">
+                            <h4 class="title">Livraison offerte</h4>
+                            <p>à partir de 35 €</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-sm-6 col-12 learts-mb-30">
+                    <div class="icon-box5">
+                        <div class="icon"><i class="fas fa-redo-alt"></i></div>
+                        <div class="content">
+                            <h4 class="title">échange de </h4>
+                            <p>échanger vos produits pendant 30 jours</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-sm-6 col-12 learts-mb-30">
+                    <div class="icon-box5">
+                        <div class="icon"><i class="fas fa-headset"></i></div>
+                        <div class="content">
+                            <h4 class="title">contactez moi</h4>
+                            <p>Service après vente 7/7 jours</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-sm-6 col-12 learts-mb-30">
+                    <div class="icon-box5">
+                        <div class="icon"><i class="fas fa-gift"></i></div>
+                        <div class="content">
+                            <h4 class="title">Code promos</h4>
+                            <p>Chaque mois des nouvelles promotions</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Feature Section End -->
     <!-- Shop Products Section Start -->
     <div class="section section-padding pt-0">
-
         <!-- Shop Toolbar Start -->
         <div class="shop-toolbar border-bottom">
             <div class="container">

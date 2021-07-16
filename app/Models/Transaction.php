@@ -12,6 +12,6 @@ class Transaction extends Model
      protected $fillable = [];
     public function order()
     {
-        return $this->belongsTo(Order::class);
+        return $this->hasOne(Order::class,'id','order_id');
     }
 }

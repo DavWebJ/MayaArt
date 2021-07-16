@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use App\Models\Billing;
 use App\Models\Shipping;
 use Illuminate\Http\Request;
@@ -20,8 +21,10 @@ class ShippingController extends Controller
      */
     public function index()
     {
-        $billing = Billing::where('id',Auth::user()->id)->with('shipping')->first();
-        return view('customer.shipping',compact('billing'));
+         $id =Auth::user()->id;
+        $shipping = Shipping::with('user')->where('user_id',$id)->first();
+        $billing = Billing::where('user_id',$id)->first();
+        return view('customer.shipping',compact('billing','shipping'));
     }
 
     /**
@@ -31,14 +34,8 @@ class ShippingController extends Controller
      */
     public function create()
     {
-        $id = auth()->user()->id;
-        $shipping = Shipping::with('user')->where('user_id',$id)->first();
-        if($shipping)
-        {
-            return view('customer.shipping',compact('shipping'));
-        }else{
-            return view('customer.shipping');
-        }
+
+
         
     }
 
@@ -51,55 +48,82 @@ class ShippingController extends Controller
     public function store(Request $request)
     {
 
-        // $this->validate($request,
-        // [
-        //     'shipping_adress'=>'required',
-        //     'shipping_zip'=>'required|numeric',
-        //     'shipping_city'=>'required',
-        //     'billing_adress'=>'required',
-        //     'billing_zip'=>'required|numeric',
-        //     'billing_city'=>'required',
-
-        // ]);
         $ship_is_diff = $request->input('ship_is_diff');
-        // $shipping = Shipping::updateOrCreate([
-        //     'user_id'=> auth()->user()->id,
-        //     'shipping_numero' => $request->shipping_numero,
-        //     'shipping_adress' => $request->shipping_adress,
-        //     'shipping_zip' => $request->shipping_zip,
-        //     'shipping_city' => $request->shipping_city,
-        //     'billing_numero' => $request->billing_numero,
-        //     'billing_adress' => $request->billing_adress,
-        //     'billing_zip' => $request->billing_zip,
-        //     'billing_city' => $request->billing_city,
-
-        // ]);
+        $billing = Billing::where('user_id',Auth::user()->id)->first();
 
         if($ship_is_diff == true)
         {
             $this->validate($request,[
-                'shp_prenom' => 'required|string',
-                'shp_nom' => 'required|string',
-                'shp_email' => 'required|email',
-                'shp_adresse' => 'required',
-                'shp_ville' => 'required',
-                'shp_zip' => 'required|numeric',
-                'shp_pays' => 'required'
+                'prenom' => 'required|string',
+                'nom' => 'required|string',
+                'email' => 'required|email',
+                'adresse' => 'required',
+                'ville' => 'required',
+                'zip' => 'required|numeric',
+                'pays' => 'required'
             ]);
-            $shipping = new Shipping();
-            $shipping->user_id = Auth::user()->id;
-            $shipping->order_id = null;
-            $shipping->prenom = $request->shp_prenom;
-            $shipping->nom = $request->shp_nom;
-            $shipping->email = $request->shp_email;
-            $shipping->adresse = $request->shp_adresse;
-            $shipping->ville = $request->shp_ville;
-            $shipping->zip = $request->shp_zip;
-            $shipping->pays = $request->shp_pays;
-            $shipping->save();
+            Shipping::updateOrCreate(
+                ['user_id' =>Auth::user()->id],
+                [
+                    'user_id' => Auth::user()->id,
+                    'prenom' => $request->shp_prenom,
+                    'nom' => $request->shp_nom,
+                    'email' => Auth::user()->email,
+                    'adresse' => $request->shp_adresse,
+                    'ville' => $request->shp_ville,
+                    'zip' => $request->shp_zip,
+                    'pays' => $request->shp_pays
+                ]
+            );
+        }else
+        {
+            if($billing)
+            {
+                Shipping::updateOrCreate(
+                    ['user_id' =>Auth::user()->id],
+                    [
+                        'user_id' => Auth::user()->id,
+                        'prenom' => $billing->prenom,
+                        'nom' => $billing->nom,
+                        'email' => $billing->email,
+                        'adresse' => $billing->adresse,
+                        'ville' => $billing->ville,
+                        'zip' => $billing->zip,
+                        'pays' => $billing->pays
+                    ]
+                );
+            }else
+            {
+                $billing = Billing::create([
+                        'user_id' => Auth::user()->id,
+                        'prenom' => $request->prenom,
+                        'nom' => $request->nom,
+                        'email' => Auth::user()->email,
+                        'adresse' => $request->adresse,
+                        'ville' => $request->ville,
+                        'zip' => $request->zip,
+                        'pays' => $request->pays
+                ]);
+                
+                    Shipping::updateOrCreate(
+                    ['user_id' =>Auth::user()->id],
+                    [
+                        'user_id' => Auth::user()->id,
+                        'prenom' => $billing->prenom,
+                        'nom' => $billing->nom,
+                        'email' => $billing->email,
+                        'adresse' => $billing->adresse,
+                        'ville' => $billing->ville,
+                        'zip' => $billing->zip,
+                        'pays' => $billing->pays
+                    ]
+                );
+            }
+
+            return redirect()->route('customer.checkout');
         }
 
-        return redirect()->route('checkout.index');
+        return redirect()->route('customer.checkout');
     }
 
     /**

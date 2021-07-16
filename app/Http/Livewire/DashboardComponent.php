@@ -110,6 +110,7 @@ class DashboardComponent extends Component
         $billing = Billing::where('user_id',Auth::user()->id)->first();
         $shipping = Shipping::where('user_id',Auth::user()->id)->first();
 
+        
         return view('livewire.dashboard-component',
         [
             'user'=>$user,
@@ -119,7 +120,8 @@ class DashboardComponent extends Component
             'old_notifications'=>$old_notifications,
             'restored'=>$restored,
             'billing'=>$billing,
-            'shipping' => $shipping
+            'shipping' => $shipping,
+            'transaction'=>$transaction
 
         ]
         )->layout('layouts.master');

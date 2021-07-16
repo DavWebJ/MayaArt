@@ -56,7 +56,7 @@
         <div class="home1-slider-next swiper-button-next"><i class="ti-angle-right"></i></div>
     </div>
     <!-- Slider main container End -->
-         <!-- Feature Section Start -->
+             <!-- Feature Section Start -->
     <div class="section learts-pt-30 learts-pb-30 bg-yellow">
         <div class="container">
             <div class="row learts-mb-n30">
@@ -75,8 +75,8 @@
                     <div class="icon-box5">
                         <div class="icon"><i class="fas fa-redo-alt"></i></div>
                         <div class="content">
-                            <h4 class="title">Free returns</h4>
-                            <p>Free 7-day returns</p>
+                            <h4 class="title">échange</h4>
+                            <p>échanger vos produits pendant 30 jours</p>
                         </div>
                     </div>
                 </div>
@@ -85,8 +85,8 @@
                     <div class="icon-box5">
                         <div class="icon"><i class="fas fa-headset"></i></div>
                         <div class="content">
-                            <h4 class="title">24/7 Support</h4>
-                            <p>Dedicated support</p>
+                            <h4 class="title">contactez moi</h4>
+                            <p>Service après vente 7/7 jours</p>
                         </div>
                     </div>
                 </div>
@@ -95,8 +95,8 @@
                     <div class="icon-box5">
                         <div class="icon"><i class="fas fa-gift"></i></div>
                         <div class="content">
-                            <h4 class="title">Gift cards</h4>
-                            <p>Code promotion</p>
+                            <h4 class="title">Code promos</h4>
+                            <p>Chaque mois des nouvelles promotions</p>
                         </div>
                     </div>
                 </div>

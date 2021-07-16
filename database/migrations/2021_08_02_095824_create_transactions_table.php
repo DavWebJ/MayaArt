@@ -17,6 +17,7 @@ class CreateTransactionsTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('order_id')->constrained('orders')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->string('transaction_id');
             $table->enum('status',['en cours','valider','annuler','refuser','rembourser'])->default('en cours');
 
             $table->timestamps();
